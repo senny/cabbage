@@ -1,4 +1,3 @@
-(message "DINI MUETER")
 (global-unset-key (kbd "C-b")) ; backward-char
 (global-unset-key (kbd "C-f")) ; forward-char
 (global-unset-key (kbd "C-p")) ; previous-line
