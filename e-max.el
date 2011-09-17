@@ -3,7 +3,7 @@
 
 (cond
  ((string-match "nt" system-configuration)
-  (load "private/platforms/windows"))
+  (load "lib/platforms/windows"))
  ((string-match "apple" system-configuration)
   (load "lib/platforms/mac")))
 
