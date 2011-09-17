@@ -17,6 +17,9 @@ else
   emaxdir=`~/.e-max`
   echo "\033[0;34mCloning e-max to $emaxdir...\033[0m"
   /usr/bin/env git clone https://github.com/senny/e-max.git $emaxdir
+  de $emaxdir
+  /usr/bin/env git submodule init
+  /usr/bin/env git submodule update
 fi
 
 echo "\033[0;34mLooking for an existing emacs config...\033[0m"
