@@ -7,7 +7,7 @@
 ;; use emacs keybindings.
 (setq mac-pass-command-to-system nil
       ns-alternate-modifier (quote none)
-      ns-command-modifier (quote meta)))
+      ns-command-modifier (quote meta))
 
 
 ;; custom place to save customizations
