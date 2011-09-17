@@ -1,8 +1,5 @@
-(defcustom e-max-repository
-  (expand-file-name "~/.e-max/")
-  "The location of the e-max repository you want to use"
-  :group 'e-max
-  :type 'string)
+(load (concat e-max-repository "lib/bundles"))
+(load (concat e-max-repository "lib/defun"))
 
 (dolist (bundle e-max-bundles)
-  (load (concat e-max-repository "bundles/" (symbol-name bundle) "/bundle.el")))
+  (load (concat e-max-repository "bundles/" (symbol-name bundle) "/bundle")))
