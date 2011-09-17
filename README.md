@@ -10,7 +10,7 @@ We want to get e-max working under as many different circumstances as possible. 
 
 ### Automatic installer
 
-    $ bash < <(curl -s https://github.com/senny/e-max.git)
+    $ bash < <(curl -s https://raw.github.com/senny/e-max/master/scripts/install.sh)
 
 ### Developer installation
 
