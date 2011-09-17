@@ -23,15 +23,13 @@ echo "\033[0;34mLooking for an existing emacs config...\033[0m"
 if [ -f ~/.emacs ] || [ -h ~/.emacs ]
 then
   echo "\033[0;33mFound ~/.emacs.\033[0m \033[0;32]Backing up to ~/.emacs-pre-e-max\033[0m";
-  cp ~/.emacs ~/.emacs-pre-e-max;
-  rm ~/.emacs;
+  mv ~/.emacs ~/.emacs-pre-e-max;
 fi
 
 if [ -d ~/.emacs.d ] || [ -h ~/.emacs.d ]
 then
   echo "\033[0;33mFound ~/.emacs.d.\033[0m \033[0;32]Backing up to ~/.emacs.d-pre-e-max\033[0m";
-  cp -r ~/.emacs.d ~/.emacs.d-pre-e-max;
-  rm -r ~/.emacs.d;
+  mv -r ~/.emacs.d ~/.emacs.d-pre-e-max;
 fi
 
 echo "\033[0;34mCreating a ~/.emacs.d directory, containing the emacs load file.\033[0m"
