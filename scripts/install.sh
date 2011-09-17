@@ -29,7 +29,7 @@ fi
 if [ -d ~/.emacs.d ] || [ -h ~/.emacs.d ]
 then
   echo "\033[0;33mFound ~/.emacs.d.\033[0m \033[0;32]Backing up to ~/.emacs.d-pre-e-max\033[0m";
-  mv -r ~/.emacs.d ~/.emacs.d-pre-e-max;
+  mv ~/.emacs.d ~/.emacs.d-pre-e-max;
 fi
 
 echo "\033[0;34mCreating a ~/.emacs.d directory, containing the emacs load file.\033[0m"
