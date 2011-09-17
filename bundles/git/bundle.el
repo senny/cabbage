@@ -1,4 +1,4 @@
-(e-max-vendor "magit")
+(e-max-vendor 'magit)
 
 ;;;; Magit
 (eval-after-load 'magit
