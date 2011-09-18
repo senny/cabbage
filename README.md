@@ -20,6 +20,23 @@ We want to get e-max working under as many different circumstances as possible. 
     $ cd e-max
     $ ./scripts/install.sh
 
+## Bundles
+
+e-max fundamental organization are bundles. You can eneable and disable the configuration on a per bundle basis.
+The bundles live in e-max/bundles. The active bundles are configured in your ~/.emacs.d/init.el file in the `e-max-bundles` variable.
+The following bundles are supported currently:
+* ergonomic (use ergonomic keybindings to use emacs more efficently)
+* accessibility (make emacs behave the way you expect it and get distractions out of the way)
+* git (git handling with magit)
+* lisp (to write elisp)
+* python (to write python)
+* projects (simple projects management stuff)
+
+### Your Bundles are welcome too!
+
+if you got a peace of emacs functionality, that you think might be usefull for other people, please package it up in a bundle and open a
+pull-request.
+
 ## Contributing
 
 The project is under active development and we are always looking for assistance.

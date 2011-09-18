@@ -5,6 +5,7 @@
                       ergonomic
                       git
                       lisp
+                      project
                       python
                       ))
 
