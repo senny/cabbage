@@ -7,6 +7,10 @@
      (when initialize ,@body)
      (setq persp-last current-perspective)))
 
+(defun e-max-persp-last ()
+  (interactive)
+  (persp-switch (persp-name persp-last)))
+
 (defun persp-format-name (name)
   "Format the perspective name given by NAME for display in `persp-modestring'."
   (let ((string-name (format "%s" name)))
@@ -21,5 +25,8 @@ Has no effect when `persp-show-modestring' is nil."
           (append '("[")
                   (persp-intersperse (mapcar 'persp-format-name (persp-names)) "")
                   '("]")))))
+
+(global-set-key (kbd "C-p s") 'persp-switch)
+(global-set-key (kbd "C-p p") 'e-max-persp-last)
 
 (persp-mode)
