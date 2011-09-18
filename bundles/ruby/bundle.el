@@ -1,3 +1,4 @@
+(load (concat e-max-vendor-dir "ruby-mode"))
 (e-max-vendor 'rhtml-mode)
 (e-max-vendor 'haml-mode)
 
@@ -53,11 +54,10 @@
      (define-key ruby-mode-map (kbd "C-c , ,") 'e-max-open-spec-other-buffer)
 
      ;; fix syntax highlighting for Cucumber Step Definition regexps
-     (when (boundp 'ruby-font-lock-syntactic-keywords)
-       (add-to-list 'ruby-font-lock-syntactic-keywords
-                    '("\\(\\(\\)\\(\\)\\|Given\\|When\\|Then\\)\\s *\\(/\\)[^/\n\\\\]*\\(\\\\.[^/\n\\\\]*\\)*\\(/\\)"
-                      (4 (7 . ?/))
-                      (6 (7 . ?/)))))
+     (add-to-list 'ruby-font-lock-syntactic-keywords
+                  '("\\(\\(\\)\\(\\)\\|Given\\|When\\|Then\\)\\s *\\(/\\)[^/\n\\\\]*\\(\\\\.[^/\n\\\\]*\\)*\\(/\\)"
+                    (4 (7 . ?/))
+                    (6 (7 . ?/))))
      ))
 
 (when (e-max-flymake-active-p)
