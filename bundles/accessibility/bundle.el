@@ -1,4 +1,5 @@
 (e-max-vendor 'idle-highlight-mode)
+(e-max-vendor 'popwin)
 
 (when window-system
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
@@ -19,6 +20,8 @@
       inhibit-startup-message t
       truncate-partial-width-windows nil
       gnuserv-frame (car (frame-list)))
+
+(setq display-buffer-function 'popwin:display-buffer)
 
 (setq-default cursor-type '(bar . 2))
 (setq-default indicate-empty-lines t)
