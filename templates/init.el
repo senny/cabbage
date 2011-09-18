@@ -14,6 +14,7 @@
                       project
                       python
                       ruby
+                      sass
                       yaml
 
                       ;; e-max-developer
