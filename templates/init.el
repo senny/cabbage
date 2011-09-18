@@ -2,6 +2,7 @@
 
 (setq e-max-bundles '(
                       accessibility
+                      css
                       ergonomic
                       git
                       html
