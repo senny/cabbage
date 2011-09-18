@@ -10,6 +10,25 @@
 
 (add-hook 'python-mode-hook 'e-max-python-keybindings)
 
+(defun e-max-python-pep8-finished (buffer msg)
+  (pop-to-buffer buffer)
+  (next-error-follow-minor-mode t)
+  (goto-line 5)
+  (next-error-follow-mode-post-command-hook))
+
+(defun e-max-python-pep8 ()
+  "Check for pep8 errors and go to the first error."
+  (interactive)
+
+  (add-to-list 'compilation-finish-functions 'e-max-python-pep8-finished)
+  (pep8))
+
+(defun e-max-python-configure-pep8 ()
+  (e-max-vendor 'python-pep8)
+  (local-set-key (kbd "C-°") 'e-max-python-pep8))
+
+(add-hook 'python-mode-hook 'e-max-python-configure-pep8)
+
 
 (when (executable-find "pyflakes")
   (defun e-max-python-flymake ()
