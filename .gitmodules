@@ -25,3 +25,6 @@
 [submodule "vendor/yaml-mode"]
 	path = vendor/yaml-mode
 	url = https://github.com/yoshiki/yaml-mode.git
+[submodule "vendor/idle-highlight-mode"]
+	path = vendor/idle-highlight-mode
+	url = https://github.com/nonsequitur/idle-highlight-mode.git

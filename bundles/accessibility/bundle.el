@@ -1,3 +1,5 @@
+(e-max-vendor 'idle-highlight-mode)
+
 (when window-system
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
   (tooltip-mode -1)
@@ -9,6 +11,7 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (show-paren-mode 1)
+(idle-highlight-mode 1)
 
 (setq use-dialog-box nil
       visible-bell t
