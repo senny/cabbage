@@ -23,6 +23,7 @@ We want to get e-max working under as many different circumstances as possible. 
 e-max fundamental organization are bundles. You can eneable and disable the configuration on a per bundle basis.
 The bundles live in e-max/bundles. The active bundles are configured in your ~/.emacs.d/init.el file in the `e-max-bundles` variable.
 The following bundles are supported currently:
+
 * ergonomic (use ergonomic keybindings to use emacs more efficently)
 * accessibility (make emacs behave the way you expect it and get distractions out of the way)
 * git (git handling with magit)
