@@ -18,6 +18,16 @@ We want to get e-max working under as many different circumstances as possible. 
     $ cd e-max
     $ ./scripts/install.sh
 
+### Installation on Windows
+
+1. You need to have emacs and git installed
+2. Clone the e-max repository with git
+    git clone https://github.com/senny/e-max.git
+3. Create a .emacs.d directory in your %HOME% folder
+4. Copy the file templates/init.el from e-max to %HOME%/.emacs.d/init.el
+5. Replace "E-MAX-DIR/" in the init.el with the path to the e-max checkout
+6. If you are familiar with batch scripts, please write us a install.bat which does that ;-)
+
 ## Bundles
 
 e-max fundamental organization are bundles. You can eneable and disable the configuration on a per bundle basis.
