@@ -26,7 +26,11 @@ Has no effect when `persp-show-modestring' is nil."
                   (persp-intersperse (mapcar 'persp-format-name (persp-names)) "")
                   '("]")))))
 
-(global-set-key (kbd "C-p s") 'persp-switch)
-(global-set-key (kbd "C-p p") 'e-max-persp-last)
+(defun e-max-perspective-bindings ()
+  (when (e-max-bundle-active-p 'ergonomic)
+    (global-set-key (kbd "C-p s") 'persp-switch)
+    (global-set-key (kbd "C-p p") 'e-max-persp-last)))
+
+(add-hook 'e-max-initialized-hook 'e-max-perspective-bindings)
 
 (persp-mode)

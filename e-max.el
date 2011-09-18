@@ -16,3 +16,5 @@
 
 ;; TODO: load this earlier and debug the weird error
 (load (concat e-max-repository "lib/themes"))
+
+(run-hooks 'e-max-initialized-hook)
