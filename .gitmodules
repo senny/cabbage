@@ -19,3 +19,6 @@
 [submodule "vendor/haml-mode"]
 	path = vendor/haml-mode
 	url = https://github.com/nex3/haml-mode.git
+[submodule "vendor/feature-mode"]
+	path = vendor/feature-mode
+	url = https://github.com/michaelklishin/cucumber.el.git

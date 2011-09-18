@@ -3,6 +3,7 @@
 (setq e-max-bundles '(
                       accessibility
                       css
+                      cucumber
                       ergonomic
                       git
                       html
