@@ -6,6 +6,8 @@
 (delete-selection-mode 1)
 (transient-mark-mode 1)
 (blink-cursor-mode 1)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
 
 (setq use-dialog-box nil
       visible-bell t
