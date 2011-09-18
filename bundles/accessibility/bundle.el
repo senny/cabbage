@@ -21,7 +21,7 @@
       truncate-partial-width-windows nil
       gnuserv-frame (car (frame-list)))
 
-(setq display-buffer-function 'popwin:display-buffer)
+(setq special-display-function 'popwin:special-display-popup-window)
 
 (setq-default cursor-type '(bar . 2))
 (setq-default indicate-empty-lines t)
