@@ -3,6 +3,7 @@
   (tooltip-mode -1)
   (mouse-wheel-mode t))
 
+(delete-selection-mode 1)
 (transient-mark-mode 1)
 (blink-cursor-mode 1)
 
