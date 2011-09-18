@@ -34,3 +34,6 @@
 [submodule "vendor/popwin"]
 	path = vendor/popwin
 	url = https://github.com/m2ym/popwin-el.git
+[submodule "vendor/smex"]
+	path = vendor/smex
+	url = https://github.com/nonsequitur/smex.git
