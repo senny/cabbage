@@ -20,5 +20,11 @@
 (defun e-max-flymake-active-p ()
   e-max-use-flymake)
 
+(defun e-max-flymake-init ()
+  "registered as hook in bundles ; configures flymake"
+  (e-max-vendor 'flymake-point)
+
+  (local-set-key (kbd "C-§") 'flymake-goto-next-error))
+
 (defun e-max-insert-pairs-p ()
   e-max-insert-pairs)

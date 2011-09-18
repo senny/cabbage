@@ -55,7 +55,6 @@
             (concat e-max-repository "bin/jsl-0.3.0-mac/jsl")))
 
   (require 'flymake)
-  (e-max-vendor 'flymake-point)
   (defun e-max-javascript-flymake-jslint-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
                        'flymake-create-temp-inplace))
@@ -79,7 +78,9 @@
 
   (defun e-max-javascript-enable-flymake-mode ()
     (flymake-mode t))
-  (add-hook 'js-mode-hook 'e-max-javascript-enable-flymake-mode))
+  (add-hook 'js-mode-hook 'e-max-javascript-enable-flymake-mode)
+
+  (add-hook 'js-mode-hook 'e-max-flymake-init))
 
 (eval-after-load 'js
   '(progn

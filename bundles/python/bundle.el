@@ -12,10 +12,9 @@
 
 
 (when (executable-find "pyflakes")
-  (e-max-vendor 'flymake-point)
-
   (defun e-max-python-flymake ()
     (when (load "flymake" t)
+
       (defun flymake-pyflakes-init ()
         (let* ((temp-file (flymake-init-create-temp-buffer-copy
                            'flymake-create-temp-inplace))
@@ -29,4 +28,5 @@
 
     (add-hook 'find-file-hook 'flymake-find-file-hook))
 
-  (add-hook 'python-mode-hook 'e-max-python-flymake))
+  (add-hook 'python-mode-hook 'e-max-python-flymake)
+  (add-hook 'python-mode-hook 'e-max-flymake-init))

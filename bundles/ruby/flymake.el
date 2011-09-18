@@ -18,6 +18,8 @@
      (push '("^\\(.*\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3)
            flymake-err-line-patterns)
 
+     (add-hook 'ruby-mode-hook 'e-max-flymake-init)
+
      (add-hook 'ruby-mode-hook
                (lambda ()
                  (when (and buffer-file-name
