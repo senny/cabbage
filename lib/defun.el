@@ -28,6 +28,16 @@ on the current buffer."
   (e-max-untabify-buffer)
   (delete-trailing-whitespace))
 
+(defun e-max-duplicate-line ()
+  "duplicate the current line on the line below it."
+  (interactive)
+  (beginning-of-line)
+  (copy-region-as-kill (point) (progn (end-of-line) (point)))
+  (textmate-next-line)
+  (yank)
+  (beginning-of-line)
+  (indent-according-to-mode))
+
 (defun e-max-comment-or-uncomment-line (&optional lines)
   "Comment current line. Argument gives the number of lines
 forward to comment"

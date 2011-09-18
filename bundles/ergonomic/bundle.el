@@ -112,6 +112,7 @@
 (global-set-key (kbd "C-x C-m") 'execute-extended-command)
 (global-set-key (kbd "C-c C-m") 'execute-extended-command)
 (global-set-key (kbd "M-r") 'replace-string)
+(global-set-key [C-return] 'e-max-duplicate-line)
 (global-set-key (kbd "C-$") 'e-max-kill-buffer)
 (global-set-key (kbd "C-c i") 'indent-buffer)
 (global-set-key (kbd "C-c n") 'e-max-cleanup-buffer)
