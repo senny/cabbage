@@ -44,3 +44,10 @@ is a comment, uncomment."
       (require library))
      ((file-exists-p suffix)
       (require library)))))
+
+
+(defun e-max-next-line ()
+  "Inserts an indented newline after the current line and moves the point to it."
+  (interactive)
+  (end-of-line)
+  (newline-and-indent))
