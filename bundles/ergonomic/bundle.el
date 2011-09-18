@@ -1,3 +1,20 @@
+;; Configuration
+
+(defcustom e-max-ergonomic-enable-ido-hacks
+  t
+  "Enable ido-hacks"
+  :type 'boolean
+  :group 'e-max)
+
+
+;;;; -------------------------------------
+;;;; Bundle
+
+(when e-max-ergonomic-enable-ido-hacks
+  (e-max-vendor 'ido-hacks)
+  (ido-hacks-mode 1))
+
+
 (defun move-cursor-next-pane ()
   "Move cursor to the next pane."
   (interactive)
