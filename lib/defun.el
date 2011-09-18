@@ -9,6 +9,11 @@
   (interactive)
   (kill-buffer (buffer-name)))
 
+(defun e-max-indent-buffer ()
+  "Indent each nonblank line in the buffer. See `indent-region"
+  (interactive)
+  (indent-region (point-min) (point-max)))
+
 (defun e-max-comment-or-uncomment-line (&optional lines)
   "Comment current line. Argument gives the number of lines
 forward to comment"
