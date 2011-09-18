@@ -3,6 +3,9 @@
   :type 'boolean
   :group 'e-max)
 
+ (setq default-frame-alist
+       '((top . 1) (left . 1)))
+
 (when e-max-remove-trailing-whitespace
   (add-hook 'before-save-hook 'delete-trailing-whitespace))
 
