@@ -1,3 +1,6 @@
 [submodule "vendor/magit"]
 	path = vendor/magit
 	url = http://github.com/magit/magit.git
+[submodule "vendor/perspective"]
+	path = vendor/perspective
+	url = https://github.com/nex3/perspective-el.git

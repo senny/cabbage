@@ -2,6 +2,7 @@
 
 (load (concat e-max-repository "lib/bundles"))
 (load (concat e-max-repository "lib/defun"))
+(load (concat e-max-repository "lib/perspective"))
 (load (concat e-max-repository "lib/setup"))
 
 (cond

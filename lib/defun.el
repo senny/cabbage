@@ -69,3 +69,14 @@ is a comment, uncomment."
   (interactive)
   (end-of-line)
   (newline-and-indent))
+
+(defun e-max-ido-open-find-directory-files (directory)
+  (let ((directory (concat (expand-file-name directory) "/")))
+    (concat directory (ido-completing-read (concat directory ": ")
+                                           (mapcar (lambda (path)
+                                                     (replace-regexp-in-string (concat "^" (regexp-quote directory) "/") "" path))
+                                                   (split-string
+                                                    (shell-command-to-string
+                                                     (concat
+                                                      "find \"" directory
+                                                      "\" -type f | grep -v \"/.git/\" | grep -v \"/.yardoc/\""))))))))
