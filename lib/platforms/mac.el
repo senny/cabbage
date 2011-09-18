@@ -6,9 +6,9 @@
 
 ;; use emacs keybindings.
 (setq mac-pass-command-to-system nil
+      ns-pop-up-frames nil
       ns-alternate-modifier (quote none)
       ns-command-modifier (quote meta))
-
 
 ;; custom place to save customizations
 (set-default-font "-apple-consolas-medium-r-normal--13-130-72-72-m-130-iso10646-1")
