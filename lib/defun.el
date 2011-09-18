@@ -49,9 +49,10 @@ is a comment, uncomment."
 
 
 ;; for loading libraries in from the vendor directory
+(setq e-max-vendor-dir (concat e-max-repository "vendor/"))
 (defun e-max-vendor (library)
   (let* ((file (symbol-name library))
-         (normal (concat e-max-repository "vendor/" file))
+         (normal (concat e-max-vendor-dir file))
          (suffix (concat normal ".el")))
     (cond
      ((file-directory-p normal)

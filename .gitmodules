@@ -4,3 +4,6 @@
 [submodule "vendor/perspective"]
 	path = vendor/perspective
 	url = https://github.com/nex3/perspective-el.git
+[submodule "vendor/theme-roller"]
+	path = vendor/theme-roller
+	url = https://github.com/senny/theme-roller.el.git
