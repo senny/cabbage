@@ -16,6 +16,10 @@ if [ -f `dirname $0`/install.sh ]; then
   fi
 
   echo -e "Using already cloned e-max repository at \033[0;32m$emaxdir\033[00m ..."
+  echo -e "Initializing and updating submodules at \033[0;32m$emaxdir\033[00m"
+  cd $emaxdir
+  /usr/bin/env git submodule init
+  /usr/bin/env git submodule update
 
 else
   emaxdir=$HOME/.e-max

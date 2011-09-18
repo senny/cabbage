@@ -15,8 +15,6 @@ We want to get e-max working under as many different circumstances as possible. 
 ### Developer installation
 
     $ git clone https://github.com/senny/e-max.git
-    $ git submodule init
-    $ git submodule update
     $ cd e-max
     $ ./scripts/install.sh
 
