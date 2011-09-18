@@ -5,6 +5,7 @@
                       css
                       cucumber
                       ergonomic
+                      erlang
                       git
                       html
                       javascript
