@@ -4,6 +4,7 @@
                       accessibility
                       ergonomic
                       git
+                      html
                       lisp
                       project
                       python
