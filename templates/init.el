@@ -5,6 +5,7 @@
                       ergonomic
                       git
                       lisp
+                      python
                       ))
 
 (load (concat e-max-repository "e-max"))
