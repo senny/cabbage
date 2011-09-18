@@ -29,8 +29,10 @@
   (if ido-hacks-mode
       (progn
 	(ad-enable-regexp "^ido-hacks-")
-	(global-set-key (kbd "M-x") 'ido-hacks-execute-extended-command))
-    (global-set-key (kbd "M-x") 'execute-extended-command)
+  ;; e-max: please, do not rebind everything..
+	;; (global-set-key (kbd "M-x") 'ido-hacks-execute-extended-command)
+  )
+    ;; (global-set-key (kbd "M-x") 'execute-extended-command)
     (ad-disable-regexp "^ido-hacks-"))
   (ad-activate-regexp "^ido-hacks-"))
 
