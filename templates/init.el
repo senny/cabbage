@@ -17,6 +17,7 @@
                       yaml
 
                       ;; e-max-developer
+                      ;; plone
                       ))
 
 ;; see https://github.com/senny/theme-roller.el for a list of available themes
