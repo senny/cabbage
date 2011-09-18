@@ -14,6 +14,19 @@
   (interactive)
   (indent-region (point-min) (point-max)))
 
+(defun e-max-untabify-buffer ()
+  "Convert all tabs in the buffer to multiple spaces. See `untabify`."
+  (interactive)
+  (untabify (point-min) (point-max)))
+
+(defun e-max-cleanup-buffer ()
+  "Perform task such as auto-indent, untabify and delete trailing whitespace
+on the current buffer."
+  (interactive)
+  (e-max-indent-buffer)
+  (e-max-untabify-buffer)
+  (delete-trailing-whitespace))
+
 (defun e-max-comment-or-uncomment-line (&optional lines)
   "Comment current line. Argument gives the number of lines
 forward to comment"
