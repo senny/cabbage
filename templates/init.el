@@ -6,6 +6,7 @@
                       ergonomic
                       git
                       html
+                      javascript
                       lisp
                       project
                       python
