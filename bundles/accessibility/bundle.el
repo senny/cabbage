@@ -19,6 +19,10 @@
 (setq-default cursor-type '(bar . 2))
 (setq-default indicate-empty-lines t)
 
+;; include path names when two buffers are equally named
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (defun increase-font-size ()

@@ -10,9 +10,6 @@
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 
-(setq uniquify-buffer-name-style 'forward)
-
-
 ;; global location for emacs backup files
 (defcustom e-max-backup-dir
   (expand-file-name "~/.emacs.d/backup")
