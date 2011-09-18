@@ -28,3 +28,6 @@
 [submodule "vendor/idle-highlight-mode"]
 	path = vendor/idle-highlight-mode
 	url = https://github.com/nonsequitur/idle-highlight-mode.git
+[submodule "vendor/auto-complete"]
+	path = vendor/auto-complete
+	url = https://github.com/m2ym/auto-complete.git

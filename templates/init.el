@@ -2,6 +2,7 @@
 
 (setq e-max-bundles '(
                       accessibility
+                      completion
                       css
                       cucumber
                       ergonomic
