@@ -17,14 +17,6 @@
 ;; We never want to edit Rubinius bytecode
 (add-to-list 'completion-ignored-extensions ".rbc")
 
-;; TODO: include compilation library
-;; (defun e-max-ruby-compilation-this-buffer ()
-;;   (interactive)
-;;   (save-buffer)
-;;   (let ((origin (current-buffer)))
-;;     (ruby-compilation-this-buffer)
-;;     (pop-to-buffer origin)))
-
 (defun e-max-open-spec-other-buffer ()
   (interactive)
   (when (featurep 'rspec-mode)
@@ -55,7 +47,6 @@
      (when (fboundp 'rvm-use-default)
        (rvm-use-default))
 
-     ;; (define-key ruby-mode-map (kbd "C-M-r") 'e-max-ruby-compilation-this-buffer)
      (define-key ruby-mode-map (kbd "C-c C-r g") 'rvm-open-gem)
      (define-key ruby-mode-map (kbd "RET") 'reindent-then-newline-and-indent)
      (define-key ruby-mode-map (kbd "#") 'ruby-interpolate)
