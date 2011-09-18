@@ -22,3 +22,6 @@
 [submodule "vendor/feature-mode"]
 	path = vendor/feature-mode
 	url = https://github.com/michaelklishin/cucumber.el.git
+[submodule "vendor/yaml-mode"]
+	path = vendor/yaml-mode
+	url = https://github.com/yoshiki/yaml-mode.git
