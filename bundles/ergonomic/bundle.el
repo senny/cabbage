@@ -107,7 +107,7 @@
 (global-set-key (kbd "C-x C-m") 'execute-extended-command)
 (global-set-key (kbd "C-c C-m") 'execute-extended-command)
 (global-set-key (kbd "M-r") 'replace-string)
-(global-set-key (kbd "C-$") 'senny-kill-buffer)
+(global-set-key (kbd "C-$") 'e-max-kill-buffer)
 (global-set-key (kbd "C-c i") 'indent-buffer)
 (global-set-key (kbd "C-c n") 'cleanup-buffer)
 (global-set-key (kbd "C-h r") 'yari)
