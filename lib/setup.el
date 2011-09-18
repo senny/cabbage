@@ -1,3 +1,11 @@
+(defcustom e-max-remove-trailing-whitespace t
+  "specify if trailing whitespaces should be removed when a file is saved"
+  :type 'boolean
+  :group 'e-max)
+
+(when e-max-remove-trailing-whitespace
+  (add-hook 'before-save-hook 'delete-trailing-whitespace))
+
 (when (> emacs-major-version 21)
   (ido-mode t)
   (setq ido-enable-prefix nil
