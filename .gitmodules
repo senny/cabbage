@@ -7,3 +7,15 @@
 [submodule "vendor/theme-roller"]
 	path = vendor/theme-roller
 	url = https://github.com/senny/theme-roller.el.git
+[submodule "vendor/rspec-mode"]
+	path = vendor/rspec-mode
+	url = https://github.com/pezra/rspec-mode.git
+[submodule "vendor/rvm"]
+	path = vendor/rvm
+	url = https://github.com/senny/rvm.el.git
+[submodule "vendor/rhtml-mode"]
+	path = vendor/rhtml-mode
+	url = https://github.com/eschulte/rhtml.git
+[submodule "vendor/haml-mode"]
+	path = vendor/haml-mode
+	url = https://github.com/nex3/haml-mode.git

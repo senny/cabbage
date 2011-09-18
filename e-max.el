@@ -12,7 +12,7 @@
   (load "lib/platforms/mac")))
 
 (dolist (bundle e-max-bundles)
-  (load (concat e-max-repository "bundles/" (symbol-name bundle) "/bundle")))
+  (load (concat e-max-bundle-dir (symbol-name bundle) "/bundle")))
 
 ;; TODO: load this earlier and debug the weird error
 (load (concat e-max-repository "lib/themes"))

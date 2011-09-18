@@ -9,6 +9,7 @@
                       lisp
                       project
                       python
+                      ruby
                       ))
 
 ;; see https://github.com/senny/theme-roller.el for a list of available themes

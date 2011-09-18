@@ -1,9 +1,10 @@
 (defun e-max--set-pairs (pairs)
   "Sets up handling of pair characters."
-  (mapcar (lambda (pair)
-            (local-set-key pair 'skeleton-pair-insert-maybe))
-          pairs)
-  (setq skeleton-pair t))
+  (when (e-max-insert-pairs-p)
+    (mapcar (lambda (pair)
+              (local-set-key pair 'skeleton-pair-insert-maybe))
+            pairs)
+    (setq skeleton-pair t)))
 
 (defun e-max-kill-buffer ()
   (interactive)
@@ -45,7 +46,7 @@ is a comment, uncomment."
           (comment-or-uncomment-region (mark) (point))
         (comment-or-uncomment-region (point) (mark))
         )
-    (comment-or-uncomment-line lines)))
+    (e-max-comment-or-uncomment-line lines)))
 
 
 ;; for loading libraries in from the vendor directory
