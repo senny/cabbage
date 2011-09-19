@@ -30,7 +30,7 @@
 
 (defun e-max-python-keybindings ()
   (local-set-key (kbd "RET") 'newline-and-indent)
-  (local-set-key (kbd "M-y s") 'e-max-python--sort-lines-at-point))
+  (local-set-key (kbd "C-c f s") 'e-max-python--sort-lines-at-point))
 
 (add-hook 'python-mode-hook 'e-max-python-keybindings)
 
