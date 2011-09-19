@@ -14,11 +14,31 @@
   :type 'boolean
   :group 'e-max)
 
+(defvar e-max--globaly-bound-keys-alist '())
+
 (defun e-max-bundle-active-p (bundle-name)
   (member bundle-name e-max-bundles))
 
 (defun e-max-flymake-active-p ()
   e-max-use-flymake)
+
+(defun e-max-global-set-key (binding func)
+  (add-to-list 'e-max--globaly-bound-keys-alist (cons binding func))
+  (global-set-key binding func))
+
+(defun e-max-clear-local-bindings ()
+  (interactive)
+  (dolist (binding e-max--globaly-bound-keys-alist)
+    (local-unset-key (car binding))))
+
+(add-hook 'after-change-major-mode-hook 'e-max-clear-local-bindings)
+(add-hook 'org-mode-hook 'e-max-clear-local-bindings)
+(add-hook 'org-agenda-mode-hook 'e-max-clear-local-bindings)
+(add-hook 'comint-mode-hook 'e-max-clear-local-bindings)
+(add-hook 'inf-ruby-mode-hook 'e-max-clear-local-bindings)
+(add-hook 'erlang-mode-hook 'e-max-clear-local-bindings)
+(add-hook 'diff-mode 'e-max-clear-local-bindings)
+(add-hook 'magit-mode 'e-max-clear-local-bindings)
 
 (defun e-max-flymake-init ()
   "registered as hook in bundles ; configures flymake"
