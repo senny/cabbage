@@ -18,6 +18,7 @@
                       yaml
 
                       ;; e-max-developer
+                      ;; org
                       ;; plone
                       ))
 
