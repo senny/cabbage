@@ -14,7 +14,7 @@
                       project
                       python
                       ruby
-                      sass
+                      haml-and-sass
                       yaml
 
                       ;; e-max-developer

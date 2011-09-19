@@ -1,6 +1,5 @@
 (load (concat e-max-vendor-dir "ruby-mode"))
 (e-max-vendor 'rhtml-mode)
-(e-max-vendor 'haml-mode)
 
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
