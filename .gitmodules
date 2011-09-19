@@ -1,51 +1,84 @@
 [submodule "vendor/magit"]
 	path = vendor/magit
 	url = http://github.com/magit/magit.git
+	ignore = untracked
+
 [submodule "vendor/perspective"]
 	path = vendor/perspective
 	url = https://github.com/nex3/perspective-el.git
+	ignore = untracked
+
 [submodule "vendor/theme-roller"]
 	path = vendor/theme-roller
 	url = https://github.com/senny/theme-roller.el.git
+	ignore = untracked
+
 [submodule "vendor/rspec-mode"]
 	path = vendor/rspec-mode
 	url = https://github.com/pezra/rspec-mode.git
+	ignore = untracked
+
 [submodule "vendor/rvm"]
 	path = vendor/rvm
 	url = https://github.com/senny/rvm.el.git
+	ignore = untracked
+
 [submodule "vendor/rhtml-mode"]
 	path = vendor/rhtml-mode
 	url = https://github.com/eschulte/rhtml.git
+	ignore = untracked
+
 [submodule "vendor/haml-mode"]
 	path = vendor/haml-mode
 	url = https://github.com/nex3/haml-mode.git
+	ignore = untracked
+
 [submodule "vendor/feature-mode"]
 	path = vendor/feature-mode
 	url = https://github.com/michaelklishin/cucumber.el.git
+	ignore = untracked
+
 [submodule "vendor/yaml-mode"]
 	path = vendor/yaml-mode
 	url = https://github.com/yoshiki/yaml-mode.git
+	ignore = untracked
+
 [submodule "vendor/idle-highlight-mode"]
 	path = vendor/idle-highlight-mode
 	url = https://github.com/nonsequitur/idle-highlight-mode.git
+	ignore = untracked
+
 [submodule "vendor/auto-complete"]
 	path = vendor/auto-complete
 	url = https://github.com/m2ym/auto-complete.git
+	ignore = untracked
+
 [submodule "vendor/popwin"]
 	path = vendor/popwin
 	url = https://github.com/m2ym/popwin-el.git
+	ignore = untracked
+
 [submodule "vendor/smex"]
 	path = vendor/smex
 	url = https://github.com/nonsequitur/smex.git
+	ignore = untracked
+
 [submodule "vendor/textmate"]
 	path = vendor/textmate
 	url = https://github.com/defunkt/textmate.el.git
+	ignore = untracked
+
 [submodule "vendor/sass-mode"]
 	path = vendor/sass-mode
 	url = https://github.com/nex3/sass-mode.git
+	ignore = untracked
+
 [submodule "vendor/scss-mode"]
 	path = vendor/scss-mode
 	url = https://github.com/antonj/scss-mode.git
+	ignore = untracked
+
 [submodule "vendor/mode-compile"]
 	path = vendor/mode-compile
 	url = https://github.com/emacsmirror/mode-compile.git
+	ignore = untracked
