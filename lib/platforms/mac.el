@@ -23,6 +23,8 @@
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 
+(mac-use-shell-path)
+
 ;; Platform-specific stuff
 (when (eq system-type 'darwin)
   ;; Work around a bug on OS X where system-name is FQDN
