@@ -11,6 +11,7 @@
                       html
                       javascript
                       lisp
+                      power-edit
                       project
                       python
                       ruby
