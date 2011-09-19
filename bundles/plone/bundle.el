@@ -14,3 +14,6 @@
   (e-max-vendor 'po-mode)
 
   (add-to-list 'auto-mode-alist '("\\.po\\(t\\)?$" . po-mode)))
+
+(add-to-list 'auto-mode-alist '("\\.\\(z\\)?pt$" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.zcml$" . nxml-mode))
