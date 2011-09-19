@@ -6,6 +6,18 @@
             pairs)
     (setq skeleton-pair t)))
 
+(defun e-max--find-parent-with-file (path filename)
+  "Traverse PATH upwards until we find FILENAME in the dir.
+If we find it return the path of that dir, othwise nil is
+returned."
+  (if (file-exists-p (concat path "/" filename))
+      path
+    (let ((parent-dir (file-name-directory (directory-file-name path))))
+      ;; Make sure we do not go into infinite recursion
+      (if (string-equal path parent-dir)
+          nil
+        (e-max--find-parent-with-file parent-dir filename)))))
+
 (defun e-max-kill-buffer ()
   (interactive)
   (kill-buffer (buffer-name)))
