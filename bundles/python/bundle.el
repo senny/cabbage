@@ -10,6 +10,18 @@
 ;;;; -------------------------------------
 ;;;; Bundle
 
+
+;; helpers
+
+(defun e-max-python--sort-lines-at-point ()
+  "Sorts lines of the block at point. Used for sorting python imports."
+  (interactive)
+  (mark-paragraph)
+  (call-interactively 'sort-lines))
+
+
+;; hooks
+
 (defun e-max-python-set-pairs ()
   (e-max--set-pairs '("(" "{" "[" "\"" "\'" "`")))
 
@@ -18,7 +30,7 @@
 
 (defun e-max-python-keybindings ()
   (local-set-key (kbd "RET") 'newline-and-indent)
-  (local-set-key (kbd "C-§") 'flymake-goto-next-error))
+  (local-set-key (kbd "M-y s") 'e-max-python--sort-lines-at-point))
 
 (add-hook 'python-mode-hook 'e-max-python-keybindings)
 
