@@ -46,3 +46,6 @@
 [submodule "vendor/scss-mode"]
 	path = vendor/scss-mode
 	url = https://github.com/antonj/scss-mode.git
+[submodule "vendor/mode-compile"]
+	path = vendor/mode-compile
+	url = https://github.com/emacsmirror/mode-compile.git
