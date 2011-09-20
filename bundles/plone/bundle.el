@@ -66,19 +66,28 @@
             (e-max-plone-make-changelog-entry))))))
 
 
-(defun e-max-plone-find-file-in-package ()
+(defun e-max-plone-find-file-in-package (&optional buildout-root)
   "Prompts for another package to open, which is in the same src directory,
 then prompts for a file. Expects to be within a package
  (e.g. .../src/some.package/some/package/anyfile.py)."
   (interactive)
 
-  (let* ((srcpath
-          (concat (e-max--find-parent-with-file default-directory "src") "src/"))
-         (path (concat srcpath
-                       (ido-completing-read
-                        "Package: "
-                        (directory-files srcpath)))))
+  (let* ((root (replace-regexp-in-string
+                "\/?$" "/"
+                (or buildout-root
+                    (e-max--find-parent-with-file default-directory "src"))))
+         (srcpath (concat root "src/"))
+         (path nil))
 
+    (if (file-accessible-directory-p srcpath)
+        (setq path (concat srcpath
+                           (ido-completing-read
+                            "Package: "
+                            (directory-files srcpath nil "^[^.]"))))
+
+      (setq path root))
+
+    (setq path (replace-regexp-in-string "\/?$" "" path))
     (find-file
      (concat path "/"
              (textmate-completing-read
@@ -86,16 +95,30 @@ then prompts for a file. Expects to be within a package
               (mapcar
                (lambda (e)
                  (replace-regexp-in-string (concat path "/") "" e))
-               (textmate-cached-project-files path)))))))
+               (textmate-project-files path)))))))
 
 
-;; hooks
+(defun e-max-plone-ido-find-buildout (&optional projects-root)
+  "Open a file within a buildout checkout."
+  (interactive)
 
-(defun e-max-plone-python-keybindings ()
-  (define-key python-mode-map (kbd "C-c f c") 'e-max-plone-find-changelog-make-entry)
-  (e-max-global-set-key (kbd "M-T") 'e-max-plone-find-file-in-package))
+  (let* ((projectsdir (replace-regexp-in-string
+                       "\/?$" "/"
+                       (or projects-root e-max-project-location)))
+         (project-name (ido-completing-read
+                        "Project: "
+                        (directory-files projectsdir nil "^[^.]")))
+         (project-path (concat projectsdir project-name))
 
-(add-hook 'python-mode-hook 'e-max-plone-python-keybindings)
+         (buildout-name (ido-completing-read
+                         (concat project-name " buildout: ")
+                         (directory-files project-path nil "^[^.]")))
+         (buildout-path (concat project-path "/" buildout-name "/")))
+
+    (e-max-persp (concat buildout-name "@" project-name))
+    (e-max-plone-find-file-in-package buildout-path)))
+
+;; hooks & customization
 
 (when e-max-plone-enable-po-mode
   (e-max-vendor 'po-mode)
@@ -104,3 +127,9 @@ then prompts for a file. Expects to be within a package
 
 (add-to-list 'auto-mode-alist '("\\.\\(z\\)?pt$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.zcml$" . nxml-mode))
+
+;; global bindings
+
+(e-max-global-set-key (kbd "C-c f c") 'e-max-plone-find-changelog-make-entry)
+(e-max-global-set-key (kbd "M-T") 'e-max-plone-find-file-in-package)
+(e-max-global-set-key (kbd "C-p b") 'e-max-plone-ido-find-buildout)
