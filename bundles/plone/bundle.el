@@ -18,6 +18,7 @@
 
 ;; dependencies
 (e-max-vendor 'textmate)
+(load (concat e-max-bundle-dir "plone/lookup"))
 
 ;; add additional files / directories to execlude from textmate-goto-file
 (when (not (string-match "eggs" *textmate-gf-exclude*))
@@ -31,6 +32,23 @@
 
 
 ;; helpers
+
+(defun e-max-plone--find-buildout-root (path)
+  "Search PATH for a buildout root.
+
+If a buildout root is found return the path, othwise return
+nil."
+  ;; find the most top one, not the first one
+  (let* ((dir default-directory)
+         (previous dir))
+    (while (not (equalp dir nil))
+      (setq dir (e-max--find-parent-with-file dir "bootstrap.py"))
+      (if (not (equalp dir nil))
+          (progn
+            (setq previous dir)
+            ;; get parent dir
+            (setq dir (file-name-directory (directory-file-name dir))))))
+    previous))
 
 
 (defun e-max-plone-make-changelog-entry ()
@@ -127,6 +145,14 @@ then prompts for a file. Expects to be within a package
 
 (add-to-list 'auto-mode-alist '("\\.\\(z\\)?pt$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.zcml$" . nxml-mode))
+
+
+(defun e-max-plone--python-bindings ()
+  (define-key python-mode-map (kbd "C-M-<return>") 'e-max-plone-goto-defition)
+  (define-key python-mode-map (kbd "C-M-S-<return>") 'e-max-plone-lookup-import))
+
+(add-hook 'python-mode-hook 'e-max-plone--python-bindings)
+
 
 ;; global bindings
 

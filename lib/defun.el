@@ -18,6 +18,17 @@ returned."
           nil
         (e-max--find-parent-with-file parent-dir filename)))))
 
+(defun e-max--expand-symlinks-recursively (path)
+  "Follows symlinks of path and every parent directory."
+  (let* ((realpath (or (file-symlink-p path) path))
+         (parent (replace-regexp-in-string
+                  "\/$" ""
+                  (file-name-directory (directory-file-name realpath)))))
+    (if (not (equal parent ""))
+        (concat (e-max--expand-symlinks-recursively parent)
+                (substring realpath (length parent)))
+      realpath)))
+
 (defun e-max-kill-buffer ()
   (interactive)
   (kill-buffer (buffer-name)))
