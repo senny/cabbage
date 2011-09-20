@@ -94,7 +94,7 @@ then prompts for a file. Expects to be within a package
               "Find file: "
               (mapcar
                (lambda (e)
-                 (replace-regexp-in-string (concat path "/") "" e))
+                 (replace-regexp-in-string (concat path "/") "" (concat "/" e)))
                (textmate-project-files path)))))))
 
 
