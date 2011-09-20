@@ -13,7 +13,7 @@ else
     emaxdir=`dirname \`dirname $0\``
 fi
 
-if [[ `git status -uno | tail -1` =~ "nothing to commit" ]]; then
+if [[ $1 == "-f" || `git status -uno | tail -1` =~ "nothing to commit" ]]; then
     echo ""
 else
     echo -e "\033[1;31mERROR:\033[0;31m Cannot update: You have unstaged changes. Please commit or stash them.\033[00m"
