@@ -52,10 +52,34 @@
             (e-max-plone-make-changelog-entry))))))
 
 
+(defun e-max-plone-find-file-in-package ()
+  "Prompts for another package to open, which is in the same src directory,
+then prompts for a file. Expects to be within a package
+ (e.g. .../src/some.package/some/package/anyfile.py)."
+  (interactive)
+
+  (let* ((srcpath
+          (concat (e-max--find-parent-with-file default-directory "src") "src/"))
+         (path (concat srcpath
+                       (ido-completing-read
+                        "Package: "
+                        (directory-files srcpath)))))
+
+    (find-file
+     (concat path "/"
+             (textmate-completing-read
+              "Find file: "
+              (mapcar
+               (lambda (e)
+                 (replace-regexp-in-string (concat path "/") "" e))
+               (textmate-cached-project-files path)))))))
+
+
 ;; hooks
 
 (defun e-max-plone-python-keybindings ()
-  (define-key python-mode-map (kbd "C-c f c") 'e-max-plone-find-changelog-make-entry))
+  (define-key python-mode-map (kbd "C-c f c") 'e-max-plone-find-changelog-make-entry)
+  (e-max-global-set-key (kbd "M-T") 'e-max-plone-find-file-in-package))
 
 (add-hook 'python-mode-hook 'e-max-plone-python-keybindings)
 
