@@ -138,7 +138,8 @@
 
 ;; File finding
 (e-max-global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
-(e-max-global-set-key (kbd "C-x f") 'recentf-ido-find-file)
+(when (fboundp 'recentf-ido-find-file)
+  (e-max-global-set-key (kbd "C-x f") 'recentf-ido-find-file))
 (e-max-global-set-key (kbd "C-c r") 'revert-buffer)
 
 ;;;; isearch
