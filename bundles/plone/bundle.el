@@ -16,6 +16,20 @@
 ;;;; -------------------------------------
 ;;;; Bundle
 
+;; dependencies
+(e-max-vendor 'textmate)
+
+;; add additional files / directories to execlude from textmate-goto-file
+(when (not (string-match "eggs" *textmate-gf-exclude*))
+  (setq *textmate-gf-exclude*
+        (replace-regexp-in-string ".pyc"
+                                  ".pyc|eggs|parts|coverage"
+                                  *textmate-gf-exclude*))
+
+  (setq *textmate-project-roots*
+        (append *textmate-project-roots* '("setup.py" "bootstrap.py"))))
+
+
 ;; helpers
 
 
