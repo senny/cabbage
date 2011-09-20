@@ -2,21 +2,21 @@
 
 if [[ `dirname $0` != /* ]]; then
   # script run with relative path (./scripts/install.sh)
-  if [[ $0 = './update.sh' ]]; then
-    emaxdir=`dirname \`pwd\``
-  else
-    emaxdir=`dirname \`pwd\`/\`dirname $0\` | sed -e 's/\/\.$//'`  # ../
-  fi
+    if [[ $0 = './update.sh' ]]; then
+        emaxdir=`dirname \`pwd\``
+    else
+        emaxdir=`dirname \`pwd\`/\`dirname $0\` | sed -e 's/\/\.$//'`  # ../
+    fi
 
 else
   # script run with absolute path (/home/me/e-max/scripts/install.sh)
-  emaxdir=`dirname \`dirname $0\``
+    emaxdir=`dirname \`dirname $0\``
 fi
 
 status=`git status -uno | tail -1`
 if [[ `git status -uno | tail -1` != "nothing to commit" ]]; then
-  echo -e "\033[1;31mERROR:\033[0;31m Cannot update: You have unstaged changes. Please commit or stash them.\033[00m"
-  exit 1
+    echo -e "\033[1;31mERROR:\033[0;31m Cannot update: You have unstaged changes. Please commit or stash them.\033[00m"
+    exit 1
 fi
 
 echo -e "Updating e-max at \033[0;32m$emaxdir\033[00m ..."
