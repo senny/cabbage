@@ -28,6 +28,12 @@
 (add-hook 'python-mode-hook 'e-max-python-set-pairs)
 
 
+(defun e-max-python--default-config ()
+  (set (make-local-variable 'tab-width) 4))
+
+(add-hook 'python-mode-hook 'e-max-python--default-config)
+
+
 (defun e-max-python-keybindings ()
   (local-set-key (kbd "RET") 'newline-and-indent)
   (local-set-key (kbd "C-c f s") 'e-max-python--sort-lines-at-point))
