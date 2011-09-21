@@ -106,7 +106,7 @@ is a comment, uncomment."
   (newline-and-indent))
 
 (defun e-max-ido-open-find-directory-files (directory)
-  (let ((directory (concat (expand-file-name directory) "/")))
+  (let ((directory (concat (replace-regexp-in-string "\/?$" "" (expand-file-name directory)) "/")))
     (concat directory (ido-completing-read (concat directory ": ")
                                            (mapcar (lambda (path)
                                                      (replace-regexp-in-string (concat "^" (regexp-quote directory) "/") "" path))
