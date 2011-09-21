@@ -12,6 +12,31 @@
   :type 'string
   :group 'e-max)
 
+(defcustom e-max-plone-known-buildout-instances
+  '(("bin/instance" "fg")
+    ("bin/instance1" "fg")
+    ("bin/instanceadm" "fg")
+    ("bin/serve" ""))
+  "List of known instance names. The instances are usually zope instance scripts,
+but may be any type of python script, startable in pdb-mode. They are used when
+starting the instance within emacs, the first found instance name will be used.
+The key is the path to the script relative to the buildout root, the value are
+optional parameters."
+  :type 'plist
+  :group 'e-max)
+
+(defcustom e-max-plone-known-buildout-test-scripts
+  '(("bin/test" "")
+    ("bin/nose" "")
+    ("bin/freshen" ""))
+  "List of known instance names. The instances are usually zope instance scripts,
+but may be any type of python script, startable in pdb-mode. They are used when
+starting the instance within emacs, the first found instance name will be used.
+The key is the path to the script relative to the buildout root, the value are
+optional parameters."
+  :type 'plist
+  :group 'e-max)
+
 
 ;;;; -------------------------------------
 ;;;; Bundle
@@ -19,6 +44,7 @@
 ;; dependencies
 (e-max-vendor 'textmate)
 (load (concat e-max-bundle-dir "plone/lookup"))
+(load (concat e-max-bundle-dir "plone/buildout"))
 
 ;; add additional files / directories to execlude from textmate-goto-file
 (when (not (string-match "eggs" *textmate-gf-exclude*))
@@ -33,7 +59,7 @@
 
 ;; helpers
 
-(defun e-max-plone--find-buildout-root (path)
+(defun e-max-plone--find-buildout-root (path &optional first-match)
   "Search PATH for a buildout root.
 
 If a buildout root is found return the path, othwise return
@@ -43,6 +69,10 @@ nil."
          (previous dir))
     (while (not (equalp dir nil))
       (setq dir (e-max--find-parent-with-file dir "bootstrap.py"))
+      (when (and first-match dir)
+        (setq previous dir)
+        (setq dir nil))
+
       (if (not (equalp dir nil))
           (progn
             (setq previous dir)
@@ -167,3 +197,5 @@ then prompts for a file. Expects to be within a package
 (e-max-global-set-key (kbd "M-T") 'e-max-plone-find-file-in-package)
 (e-max-global-set-key (kbd "C-p b") 'e-max-plone-ido-find-buildout)
 (e-max-global-set-key (kbd "C-c f r") 'e-max-plone-reload-code)
+(e-max-global-set-key (kbd "C-c f f") 'e-max-plone-run)
+(e-max-global-set-key (kbd "C-c f t") 'e-max-plone-tests)
