@@ -105,14 +105,16 @@ then prompts for a file. Expects to be within a package
 
       (setq path root))
 
-    (setq path (replace-regexp-in-string "\/?$" "" path))
+    (setq path (replace-regexp-in-string "\/*$" "" path))
     (find-file
      (concat path "/"
              (textmate-completing-read
               "Find file: "
               (mapcar
                (lambda (e)
-                 (replace-regexp-in-string (concat path "/") "" (concat "/" e)))
+                 (replace-regexp-in-string
+                  "^\/?" ""
+                  (replace-regexp-in-string (concat path "/") "" (concat "/" e))))
                (textmate-project-files path)))))))
 
 
