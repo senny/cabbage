@@ -109,7 +109,6 @@ Follows the symlink if the target is within a /src directory."
     ;; open my/package/file.py
     (let ((expected-path (concat omelette path ".py"))
           (symbol nil))
-      (message expected-path)
       (if (file-exists-p expected-path)
           (e-max-plone--deflookup-open-file expected-path)
 
@@ -117,7 +116,6 @@ Follows the symlink if the target is within a /src directory."
         ;; open my/package/folder/__init__.py
         (setq expected-path (replace-regexp-in-string
                              "\\.py" "/__init__.py" expected-path))
-        (message expected-path)
         (if (file-exists-p expected-path)
             (e-max-plone--deflookup-open-file expected-path)
 
@@ -127,7 +125,6 @@ Follows the symlink if the target is within a /src directory."
                          (nth (- (length parts) 2) parts)))
           (setq expected-path (replace-regexp-in-string
                                "/[^/]*/__init__\\.py" "/__init__.py" expected-path))
-          (message expected-path)
           (if (file-exists-p expected-path)
               (progn
                 (e-max-plone--deflookup-open-file expected-path)
@@ -141,7 +138,6 @@ Follows the symlink if the target is within a /src directory."
             ;; open my/package/file.py
             (setq expected-path (replace-regexp-in-string
                                  "/__init__\\.py" ".py" expected-path))
-            (message expected-path)
             (if (file-exists-p expected-path)
                 (progn
                   (e-max-plone--deflookup-open-file expected-path)
