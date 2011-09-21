@@ -10,6 +10,11 @@
       ns-alternate-modifier (quote none)
       ns-command-modifier (quote meta))
 
+;; We want to use utf-8 when possible
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+
 ;; custom place to save customizations
 (set-default-font "-apple-consolas-medium-r-normal--13-130-72-72-m-130-iso10646-1")
 
