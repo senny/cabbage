@@ -13,7 +13,7 @@ else
     emaxdir=`dirname \`dirname $0\``
 fi
 
-if [[ $1 == "-f" || `git status -uno | tail -1` =~ "nothing to commit" ]]; then
+if [[ $1 == "-f" || `(cd $emaxdir && /usr/bin/env git status -uno | tail -1)` =~ "nothing to commit" ]]; then
     echo ""
 else
     echo -e "\033[1;31mERROR:\033[0;31m Cannot update: You have unstaged changes. Please commit or stash them.\033[00m"
@@ -23,13 +23,13 @@ fi
 echo -e "Updating e-max at \033[0;32m$emaxdir\033[00m ..."
 
 echo -e "$ \033[0;33mgit pull --ff-only\033[00m ..."
-/usr/bin/env git pull --ff-only
+(cd $emaxdir && /usr/bin/env git pull --ff-only)
 
 echo -e "$ \033[0;33mgit submodule init\033[00m ..."
-/usr/bin/env git submodule init
+(cd $emaxdir && /usr/bin/env git submodule init)
 
 echo -e "$ \033[0;33mgit submodule update\033[00m ..."
-/usr/bin/env git submodule update
+(cd $emaxdir && /usr/bin/env git submodule update)
 
 
 echo ""
