@@ -136,6 +136,11 @@ then prompts for a file. Expects to be within a package
     (e-max-persp (concat buildout-name "@" project-name))
     (e-max-plone-find-file-in-package buildout-path)))
 
+
+(defun e-max-plone-reload-code (opts)
+  (interactive "MOptions [-c, -z, -u, -p, -H, -P]:")
+  (shell-command (concat e-max-repository "bin/zope_reload_code.py" opts)))
+
 ;; hooks & customization
 
 (when e-max-plone-enable-po-mode
@@ -159,3 +164,4 @@ then prompts for a file. Expects to be within a package
 (e-max-global-set-key (kbd "C-c f c") 'e-max-plone-find-changelog-make-entry)
 (e-max-global-set-key (kbd "M-T") 'e-max-plone-find-file-in-package)
 (e-max-global-set-key (kbd "C-p b") 'e-max-plone-ido-find-buildout)
+(e-max-global-set-key (kbd "C-c f r") 'e-max-plone-reload-code)
