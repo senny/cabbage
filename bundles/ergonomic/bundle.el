@@ -2,6 +2,7 @@
 
 ;;;; -------------------------------------
 ;;;; Bundle
+(load (concat e-max-bundle-dir "ergonomic/enlarge"))
 
 (defun move-cursor-next-pane ()
   "Move cursor to the next pane."
@@ -13,13 +14,6 @@
   (interactive)
   (other-window -1))
 
-
-(defun e-max-ergonomic-toggle-enlarge-window ()
-  (interactive)
-  (if (= (count-windows nil) 1)
-      (jump-to-register ?w)
-    (window-configuration-to-register ?w)
-    (delete-other-windows)))
 
 (global-unset-key (kbd "C-b")) ; backward-char
 (global-unset-key (kbd "C-f")) ; forward-char
@@ -65,7 +59,8 @@
 
 (global-unset-key (kbd "C-x 1")) ; delete-other-windows
 (global-unset-key (kbd "C-x 0")) ; delete-window
-(e-max-global-set-key (kbd "M-1") 'e-max-ergonomic-toggle-enlarge-window)
+(e-max-global-set-key (kbd "M-1") 'e-max-enlargement-enlarge)
+(e-max-global-set-key (kbd "M-C-1") 'e-max-enlargement-restore)
 (e-max-global-set-key (kbd "M-0") 'delete-window)
 (e-max-global-set-key (kbd "M-2") 'split-window-vertically)
 (e-max-global-set-key (kbd "M-3") 'split-window-horizontally)
