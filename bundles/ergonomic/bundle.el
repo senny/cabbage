@@ -125,6 +125,7 @@
 (e-max-global-set-key (kbd "C-$") 'e-max-kill-buffer)
 (e-max-global-set-key (kbd "C-c i") 'indent-buffer)
 (e-max-global-set-key (kbd "C-c n") 'e-max-cleanup-buffer)
+(e-max-global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (e-max-global-set-key (kbd "C-c C-k") 'e-max-comment-or-uncomment-region-or-line)
 (e-max-global-set-key (kbd "C-c k") 'kill-compilation)
