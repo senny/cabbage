@@ -1,5 +1,6 @@
 (load (concat e-max-vendor-dir "ruby-mode"))
 (e-max-vendor 'rhtml-mode)
+(e-max-vendor 'yari)
 
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
@@ -47,6 +48,7 @@
      (when (fboundp 'rvm-use-default)
        (rvm-use-default))
 
+     (define-key ruby-mode-map (kbd "C-h r") 'yari)
      (define-key ruby-mode-map (kbd "C-c C-r g") 'rvm-open-gem)
      (define-key ruby-mode-map (kbd "RET") 'reindent-then-newline-and-indent)
      (define-key ruby-mode-map (kbd "#") 'ruby-interpolate)

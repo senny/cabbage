@@ -82,3 +82,6 @@
 	path = vendor/mode-compile
 	url = https://github.com/emacsmirror/mode-compile.git
 	ignore = untracked
+[submodule "vendor/yari"]
+	path = vendor/yari
+	url = https://github.com/hron/yari.el.git
