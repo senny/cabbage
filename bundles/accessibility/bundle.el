@@ -1,3 +1,8 @@
+(defcustom e-max-accessibility-force-vertical-split t
+  "set if you want emacs to split vertically"
+  :group 'e-max
+  :type 'boolean)
+
 (e-max-vendor 'idle-highlight-mode)
 (e-max-vendor 'popwin)
 
@@ -25,6 +30,10 @@
 
 (setq-default cursor-type '(bar . 2))
 (setq-default indicate-empty-lines t)
+
+(when e-max-accessibility-force-vertical-split
+  (setq split-height-threshold nil)
+  (setq split-width-threshold 0))
 
 ;; include path names when two buffers are equally named
 (require 'uniquify)
