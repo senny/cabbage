@@ -1,4 +1,4 @@
-(defcustom e-max-accessibility-force-vertical-split t
+(defcustom e-max-accessibility-force-side-by-side-split nil
   "set if you want emacs to split vertically"
   :group 'e-max
   :type 'boolean)
@@ -31,7 +31,7 @@
 (setq-default cursor-type '(bar . 2))
 (setq-default indicate-empty-lines t)
 
-(when e-max-accessibility-force-vertical-split
+(when e-max-accessibility-force-side-by-side-split
   (setq split-height-threshold nil)
   (setq split-width-threshold 0))
 
