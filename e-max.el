@@ -1,5 +1,9 @@
 (require 'cl)
 
+(if (not custom-file)
+    (setq custom-file (expand-file-name "~/.emacs.d/custom.el")))
+(load custom-file 'noerror)
+
 (add-to-list 'load-path e-max-repository)
 
 (load (concat e-max-repository "lib/bundles"))
