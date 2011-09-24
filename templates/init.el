@@ -5,6 +5,7 @@
                       completion
                       css
                       cucumber
+                      diff
                       ergonomic
                       erlang
                       git
