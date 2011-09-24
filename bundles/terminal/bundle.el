@@ -57,19 +57,6 @@ e-max bindings.")
 
   (multi-term-next))
 
-(defun e-max-terminal--make-bind-fun (term-fun text-fun)
-  "Creates and returns a lambda used for binding a key to, which
-will call `term-fun` when cursor is in the prompt, otherwise `text-fun`."
-  (lambda ()
-    (if (e-max-terminal--cursor-in-prompt)
-        (term-fun)
-      (text-fun))))
-
-(defun e-max-terminal--call-fun (term-fun text-fun)
-  (if (e-max-terminal--cursor-in-prompt)
-      (callf term-fun 'blubb)
-    (callf text-fun 'blubb)))
-
 ;; XXX: should be improved, especially for multi-line prompts.
 (defun e-max-terminal--cursor-in-prompt ()
   "Returns t if the cursor is somewhere at the last line of the current buffer."
