@@ -165,7 +165,7 @@ then prompts for a file. Expects to be within a package
                          (directory-files project-path nil "^[^.]")))
          (buildout-path (concat project-path "/" buildout-name "/")))
 
-    (e-max-persp (concat buildout-name "@" project-name))
+    (e-max-persp (concat project-name "/" buildout-name))
     (e-max-plone-find-file-in-package buildout-path)))
 
 
