@@ -21,6 +21,7 @@
                       yaml
 
                       ;; e-max-developer
+                      ;; terminal
                       ;; org
                       ;; plone
                       ))
