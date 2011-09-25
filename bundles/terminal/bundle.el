@@ -140,7 +140,7 @@ case when it is at the last line."
   (interactive)
   (if (e-max-terminal--input-possible-at-row)
       (term-send-raw-string "\C-A")
-    (end-of-line)))
+    (beginning-of-line)))
 
 (defun e-max-term-escape ()
   (interactive)
