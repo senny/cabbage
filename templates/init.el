@@ -12,6 +12,7 @@
                       html
                       javascript
                       lisp
+                      markdown
                       power-edit
                       project
                       python
