@@ -85,3 +85,6 @@
 [submodule "vendor/yari"]
 	path = vendor/yari
 	url = https://github.com/hron/yari.el.git
+[submodule "vendor/markdown-mode"]
+	path = vendor/markdown-mode
+	url = http://jblevins.org/git/markdown-mode.git
