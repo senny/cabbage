@@ -49,9 +49,10 @@ e-max bindings.")
           ("C-f" . isearch-forward)
 
           ;; modifying
-          ("M-d" . term-send-backspace)
+          ("M-d" . e-max-term-send-backspace)
           ("M-f" . term-send-del)
           ("<delete>" . term-send-del)
+          ("<backspace>" . e-max-term-send-backspace)
           ("M-<backspace>" . term-send-backward-kill-word)
           ("M-v" . term-paste)
           ))
@@ -141,3 +142,9 @@ case when it is at the last line."
 (defun e-max-term-escape ()
   (interactive)
   (term-send-raw-string "\033"))
+
+(defun e-max-term-send-backspace ()
+  (interactive)
+  ;; term-mode send "\C-?" as backspace by default,
+  ;; but it seems to not work properly in vim, so we fix it.
+  (term-send-raw-string "\C-H"))
