@@ -140,4 +140,4 @@ case when it is at the last line."
 
 (defun e-max-term-escape ()
   (interactive)
-  (term-send-raw-string "\e033"))
+  (term-send-raw-string "\033"))
