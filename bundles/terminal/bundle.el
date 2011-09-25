@@ -96,15 +96,15 @@ case when it is at the last line."
 
 (defun e-max-term-up ()
   (interactive)
-  (if (e-max-terminal--cursor-in-prompt)
-      (previous-line)
-    (term-send-up)))
+  (cond ((e-max-terminal--cursor-in-prompt) (previous-line))
+        ((e-max-terminal--input-possible-at-row) (term-send-up))
+        ((previous-line))))
 
 (defun e-max-term-down ()
   (interactive)
-  (if (e-max-terminal--cursor-in-prompt)
-      (next-line)
-    (term-send-down)))
+  (cond ((e-max-terminal--cursor-in-prompt) (next-line))
+        ((e-max-terminal--input-possible-at-row) (term-send-down))
+        ((next-line))))
 
 (defun e-max-term-backward-char ()
   (interactive)
