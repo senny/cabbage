@@ -31,8 +31,8 @@ e-max bindings.")
           ("C-<escape>" . e-max-term-escape)
 
           ;; movement
-          ("M-i" . previous-line)  ;; move up - but dont tell terminal
-          ("M-k" . next-line) ;; move down - dont tell terminal
+          ("M-i" . e-max-term-up)  ;; move up - but dont tell terminal
+          ("M-k" . e-max-term-down) ;; move down - dont tell terminal
           ("M-C-i" . term-send-up) ;; tell terminal to move up (history)
           ("M-C-k" . term-send-down) ;; tell terminal to move down (history)
 
@@ -75,47 +75,66 @@ e-max bindings.")
 (e-max-global-set-key (kbd "C-p t") 'e-max-terminal-open-term-persp)
 (e-max-global-set-key (kbd "C-x t") 'multi-term)
 
+(defun e-max-terminal--input-possible-at-row ()
+  "Returns t if the emacs-cursor is at a point where the shell allows
+input. This is usually the case when the emacs-cursor is at the same
+row as the terminal-cursor."
+  (eq term-current-row (- (line-number-at-pos) 1)))
+
 ;; XXX: should be improved, especially for multi-line prompts.
 (defun e-max-terminal--cursor-in-prompt ()
-  "Returns t if the cursor is somewhere at the last line of the current buffer."
+  "Returns t if the cursor is in the prompt area. This is usually the
+case when it is at the last line."
   (eq (buffer-end 1) (line-end-position 2)))
 
 
 ;; fixed binding funs
 
-(defun e-max-term-backward-char ()
+(defun e-max-term-up ()
   (interactive)
   (if (e-max-terminal--cursor-in-prompt)
+      (previous-line)
+    (term-send-up)))
+
+(defun e-max-term-down ()
+  (interactive)
+  (if (e-max-terminal--cursor-in-prompt)
+      (next-line)
+    (term-send-down)))
+
+(defun e-max-term-backward-char ()
+  (interactive)
+  (if (e-max-terminal--input-possible-at-row)
       (term-send-left)
     (backward-char)))
 
 (defun e-max-term-forward-char ()
   (interactive)
-  (if (e-max-terminal--cursor-in-prompt)
+  (if (e-max-terminal--input-possible-at-row)
       (term-send-right)
     (forward-char)))
 
 (defun e-max-term-backward-word ()
   (interactive)
-  (if (e-max-terminal--cursor-in-prompt)
+  (if (e-max-terminal--input-possible-at-row)
       (term-send-backward-word)
     (backward-word)))
 
 (defun e-max-term-forward-word ()
   (interactive)
-  (if (e-max-terminal--cursor-in-prompt)
+  (if (e-max-terminal--input-possible-at-row)
       (term-send-forward-word)
     (forward-word)))
 
 (defun e-max-term-end-of-line ()
   (interactive)
-  (if (e-max-terminal--cursor-in-prompt)
+  (if (e-max-terminal--input-possible-at-row)
       (term-send-raw-string "\C-E")
     (end-of-line)))
 
 (defun e-max-term-beginning-of-line ()
   (interactive)
-  (if (e-max-terminal--cursor-in-prompt)
+  (if (e-max-terminal--input-possible-at-row)
       (term-send-raw-string "\C-A")
     (end-of-line)))
 
