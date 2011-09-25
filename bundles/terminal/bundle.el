@@ -65,6 +65,12 @@ e-max bindings.")
                                        "C-d"
                                        ))))
 
+;; terminal bindings
+
+(e-max-global-set-key (kbd "C-p t") 'e-max-terminal-open-term-persp)
+(e-max-global-set-key (kbd "C-x t n") 'multi-term)
+(e-max-global-set-key (kbd "C-x t t") 'multi-term-dedicated-toggle)
+
 ;; funs
 
 (defun e-max-terminal-open-term-persp ()
@@ -72,9 +78,6 @@ e-max bindings.")
 
   (e-max-persp "@terminal"
                (multi-term-next)))
-
-(e-max-global-set-key (kbd "C-p t") 'e-max-terminal-open-term-persp)
-(e-max-global-set-key (kbd "C-x t") 'multi-term)
 
 (defun e-max-terminal--input-possible-at-row ()
   "Returns t if the emacs-cursor is at a point where the shell allows
