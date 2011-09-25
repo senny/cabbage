@@ -17,6 +17,10 @@
     (if (equal name (persp-name persp-curr))
         (propertize string-name 'face 'persp-selected-face))))
 
+(defun e-max-persp-main ()
+  (interactive)
+  (e-max-persp "main"))
+
 (defun persp-update-modestring ()
   "Update `persp-modestring' to reflect the current perspectives.
 Has no effect when `persp-show-modestring' is nil."
@@ -29,7 +33,8 @@ Has no effect when `persp-show-modestring' is nil."
 (defun e-max-perspective-bindings ()
   (when (e-max-bundle-active-p 'ergonomic)
     (global-set-key (kbd "C-p s") 'persp-switch)
-    (global-set-key (kbd "C-p p") 'e-max-persp-last)))
+    (global-set-key (kbd "C-p p") 'e-max-persp-last)
+    (global-set-key (kbd "C-p m") 'e-max-persp-main)))
 
 (add-hook 'e-max-initialized-hook 'e-max-perspective-bindings)
 
