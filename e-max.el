@@ -19,6 +19,8 @@
  ((string-match "apple" system-configuration)
   (load "lib/platforms/mac")))
 
+(run-hooks 'e-max-pre-bundle-hook)
+
 (dolist (bundle e-max-bundles)
   (load (concat e-max-bundle-dir (symbol-name bundle) "/bundle")))
 
