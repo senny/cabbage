@@ -16,7 +16,7 @@
 (prefer-coding-system 'utf-8)
 
 ;; custom place to save customizations
-(set-default-font "-apple-consolas-medium-r-normal--13-130-72-72-m-130-iso10646-1")
+(set-frame-font "-apple-consolas-medium-r-normal--13-130-72-72-m-130-iso10646-1")
 
 (setq mac-emulate-three-button-mouse nil)
 
