@@ -50,11 +50,13 @@
   "Check for pep8 errors and go to the first error."
   (interactive)
 
+  (e-max-vendor 'python-pep8)
+  (require 'tramp)
+
   (add-to-list 'compilation-finish-functions 'e-max-python-pep8-finished)
   (pep8))
 
 (defun e-max-python-configure-pep8 ()
-  (e-max-vendor 'python-pep8)
   (local-set-key (kbd "C-°") 'e-max-python-pep8))
 
 (add-hook 'python-mode-hook 'e-max-python-configure-pep8)
