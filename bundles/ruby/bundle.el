@@ -1,6 +1,11 @@
+;; load the latest ruby-mode to get the syntax-higlighting working
 (load (concat e-max-vendor-dir "ruby-mode"))
+
+
 (e-max-vendor 'rhtml-mode)
 (e-max-vendor 'yari)
+
+(load (concat e-max-bundle-dir "ruby/defun"))
 
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
@@ -42,6 +47,11 @@
   '(progn
      ;;;; Additional Libraries
      (e-max-vendor 'rspec-mode)
+     (setq rspec-use-rvm t)
+     (setq rspec-use-rake-flag nil)
+     (setq rspec-spec-command "rspec")
+
+
      (e-max-vendor 'rvm)
 
      ;; active the default ruby configured with rvm
@@ -75,3 +85,5 @@
     (add-to-list 'ac-ignores "end")))
 
 (add-hook 'ruby-mode-hook 'e-max-ruby-mode-hook)
+
+(global-set-key (kbd "M-q") 'e-max-ruby-execute-test)
