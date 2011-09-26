@@ -30,10 +30,5 @@
 
 (mac-use-shell-path)
 
-;; Platform-specific stuff
-(when (eq system-type 'darwin)
-  ;; Work around a bug on OS X where system-name is FQDN
-  (setq system-name (car (split-string system-name "\\."))))
-
 ;; make emacs use the clipboard
 (setq x-select-enable-clipboard t)
