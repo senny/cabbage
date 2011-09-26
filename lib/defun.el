@@ -83,7 +83,6 @@ is a comment, uncomment."
 
 
 ;; for loading libraries in from the vendor directory
-(setq e-max-vendor-dir (concat e-max-repository "vendor/"))
 (defun e-max-vendor (library)
   (let* ((file (symbol-name library))
          (normal (concat e-max-vendor-dir file))
