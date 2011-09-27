@@ -86,4 +86,4 @@
 
 (add-hook 'ruby-mode-hook 'e-max-ruby-mode-hook)
 
-(global-set-key (kbd "M-q") 'e-max-ruby-execute-test)
+(global-set-key (kbd "M-e") 'e-max-ruby-execute-test)
