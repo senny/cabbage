@@ -1,12 +1,15 @@
 (defvar e-max-plone-buildout--instance-argument-history nil)
+(defvar e-max-plone-buildout--run-persp-prefix "*fg*")
+(defvar e-max-plone-buildout--tests-persp-prefix "*tests*")
 
 
-(defun e-max-plone-run (&optional known-names)
+(defun e-max-plone-run (&optional known-names persp-prefix)
   "Searches for a known instance in the current buildout at starts it in pdb mode."
   (interactive)
 
   (catch 'exit
-    (let ((cmd (e-max-plone-buildout--get-command known-names)))
+    (let ((cmd (e-max-plone-buildout--get-command known-names))
+          (persp-prefix (or persp-prefix e-max-plone-buildout--run-persp-prefix)))
       (when (not cmd)
         (message "Could not find any buildout instance.")
         (throw 'exit nil))
@@ -16,13 +19,33 @@
         (setq args (read-string (concat script " ") args
                                 'e-max-plone-buildout--instance-argument-history))
 
-        (pdb cmd)))))
+        (if (not e-max-plone-run-in-perspective)
+            (pdb cmd)
+
+          (let ((script-name (car (last (split-string script "/")))))
+            (e-max-plone--run-pdb-in-persp cmd script-name persp-prefix)))))))
 
 (defun e-max-plone-tests ()
   "Run tests in current buildout."
   (interactive)
 
-  (e-max-plone-run e-max-plone-known-buildout-test-scripts))
+  (e-max-plone-run e-max-plone-known-buildout-test-scripts
+                   e-max-plone-buildout--tests-persp-prefix))
+
+
+(defun e-max-plone--run-pdb-in-persp (cmd script-name persp-prefix)
+  (let ((target-persp-name nil)
+        (current-persp-name (persp-name persp-curr)))
+
+    (if (eq (string-match persp-prefix current-persp-name) 0)
+        (setq target-persp-name current-persp-name)
+
+      (setq target-persp-name (concat persp-prefix current-persp-name "/" script-name)))
+    (e-max-persp target-persp-name)
+
+    (let ((new-buffer-name (concat target-persp-name "*gud*")))
+      (set-buffer (buffer-name (pdb cmd)))
+      (rename-buffer new-buffer-name))))
 
 
 (defun e-max-plone-buildout--get-command (&optional known-names)

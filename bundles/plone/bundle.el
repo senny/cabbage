@@ -37,6 +37,9 @@ optional parameters."
   :type 'plist
   :group 'e-max)
 
+(defcustom e-max-plone-run-in-perspective t
+  "Runs tests and server in another perspective.")
+
 
 ;;;; -------------------------------------
 ;;;; Bundle
