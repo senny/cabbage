@@ -6,7 +6,7 @@
 
 (defun e-max-ruby-execute-test ()
   (interactive)
-  (save-buffer)
+  (when buffer-file-name (save-buffer))
   (if (and buffer-file-name (string-match "_spec.rb$" buffer-file-name))
       (progn
         (setq e-max-ruby--last-project-root (rspec-project-root))
