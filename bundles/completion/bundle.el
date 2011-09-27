@@ -21,4 +21,4 @@
 
 ;; enable auto-complete for additional modes
 (setq ac-modes
-      (append ac-modes '(conf-unix-mode)))
+      (append ac-modes '(conf-unix-mode haml-mode)))
