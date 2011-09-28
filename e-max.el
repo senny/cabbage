@@ -23,9 +23,9 @@
 (load (concat e-max-repository "lib/variables"))
 (load (concat e-max-repository "lib/bundles"))
 (load (concat e-max-repository "lib/defun"))
+(load (concat e-max-repository "lib/setup"))
 (load (concat e-max-repository "lib/perspective"))
 (load (concat e-max-repository "lib/compilation"))
-(load (concat e-max-repository "lib/setup"))
 
 (cond
  ((string-match "nt" system-configuration)
