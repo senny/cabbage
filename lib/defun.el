@@ -46,9 +46,7 @@ returned."
     (if mark-active
         (indent-region (region-beginning)
                        (region-end))
-      (if (looking-at "\\_>")
-          (dabbrev-expand nil)
-        (indent-for-tab-command)))))
+      (indent-for-tab-command))))
 
 (defun e-max-indent-buffer ()
   "Indent each nonblank line in the buffer. See `indent-region"
