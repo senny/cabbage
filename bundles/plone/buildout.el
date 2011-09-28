@@ -40,11 +40,12 @@
     (if (eq (string-match persp-prefix current-persp-name) 0)
         (setq target-persp-name current-persp-name)
 
-      (setq target-persp-name (concat persp-prefix current-persp-name "/" script-name)))
-    (e-max-persp target-persp-name)
+      (setq target-persp-name (concat persp-prefix current-persp-name "/" script-name))
+      (e-max-persp target-persp-name))
 
     (let ((new-buffer-name (concat target-persp-name "*gud*")))
       (set-buffer (buffer-name (pdb cmd)))
+      (ignore-errors (kill-buffer new-buffer-name))
       (rename-buffer new-buffer-name))))
 
 
