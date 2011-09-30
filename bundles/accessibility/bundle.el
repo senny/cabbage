@@ -3,6 +3,11 @@
   :group 'e-max
   :type 'boolean)
 
+(defcustom e-max-accessibility-show-line-numbers nil
+  "set to t if you want to have the line-numbers on the left side of your buffers"
+  :group 'e-max
+  :type 'boolean)
+
 (e-max-vendor 'idle-highlight-mode)
 (e-max-vendor 'popwin)
 
@@ -34,6 +39,10 @@
 (when e-max-accessibility-force-side-by-side-split
   (setq split-height-threshold nil)
   (setq split-width-threshold 0))
+
+(when e-max-accessibility-show-line-numbers
+  (global-linum-mode)
+  (setq linum-format "%3d "))
 
 ;; include path names when two buffers are equally named
 (require 'uniquify)
