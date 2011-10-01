@@ -32,3 +32,24 @@
 
 (defun e-max-insert-pairs-p ()
   e-max-insert-pairs)
+
+;; API: project
+(defvar e-max-project-root-indicators
+  '("Rakefile" ".git" "Gemfile")
+  "list of file-/directory-names which indicate a root of a project")
+
+(defun e-max-project-parent-directory (a-directory)
+  "Returns the directory of which a-directory is a child"
+  (file-name-directory (directory-file-name a-directory)))
+
+(defun e-max-project-root-directory-p (a-directory)
+  "Returns t if a-directory is the root"
+  (equal a-directory (e-max-project-parent-directory a-directory)))
+
+(defun e-max-project-root (&optional directory)
+  "Finds the root directory of the project by walking the directory tree until it finds a project root indicator."
+  (let* ((directory (file-name-as-directory (or directory default-directory)))
+         (present-files (directory-files directory)))
+    (cond ((e-max-project-root-directory-p directory) nil)
+          ((> (length (intersection present-files e-max-project-root-indicators :test 'string=)) 0) directory)
+          (t (e-max-project-root (file-name-directory (directory-file-name directory)))))))
