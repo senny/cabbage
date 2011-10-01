@@ -60,4 +60,6 @@
 (global-set-key (kbd "M-<right>")  'textmate-shift-right)
 (global-set-key (kbd "M-<left>") 'textmate-shift-left)
 
-(e-max-global-set-key (kbd "TAB") 'e-max-smart-tab)
+;; Do not e-max-global-set-key TAB because this would override local
+;; bindings such as in magit.
+(global-set-key (kbd "TAB") 'e-max-smart-tab)

@@ -64,6 +64,9 @@
      (define-key ruby-mode-map (kbd "#") 'ruby-interpolate)
      (define-key ruby-mode-map (kbd "C-c , ,") 'e-max-open-spec-other-buffer)
 
+     ;; disable TAB in ruby-mode-map, so that e-max-smart-tab is used
+     (define-key ruby-mode-map (kbd "TAB") nil)
+
      ;; fix syntax highlighting for Cucumber Step Definition regexps
      (add-to-list 'ruby-font-lock-syntactic-keywords
                   '("\\(\\(\\)\\(\\)\\|Given\\|When\\|Then\\)\\s *\\(/\\)[^/\n\\\\]*\\(\\\\.[^/\n\\\\]*\\)*\\(/\\)"
