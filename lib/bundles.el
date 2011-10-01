@@ -53,3 +53,35 @@
     (cond ((e-max-project-root-directory-p directory) nil)
           ((> (length (intersection present-files e-max-project-root-indicators :test 'string=)) 0) directory)
           (t (e-max-project-root (file-name-directory (directory-file-name directory)))))))
+
+;; API: integrated testing
+(defvar e-max-testing--last-project-root nil
+  "cache for the project-root of the last executed spec-file")
+
+(defvar e-max-testing--last-spec-file nil
+  "cache for the last executed spec-file")
+
+(defvar e-max-testing--last-execute-function nil
+  "cache for the last test executing function")
+
+(defvar e-max-testing-execute-function nil
+  "set this variable to the testing function, which executes tests.
+a value of nil means, this buffer does not contain an executable test")
+(make-variable-buffer-local 'e-max-testing-execute-function)
+
+(defun e-max-testing-execute-test ()
+  (interactive)
+  (when buffer-file-name (save-buffer))
+  (cond (e-max-testing-execute-function
+         (progn
+           (setq e-max-testing--last-project-root (e-max-project-root))
+           (setq e-max-testing--last-test-file buffer-file-name)
+           (setq e-max-testing--last-execute-function e-max-testing-execute-function)
+           (funcall e-max-testing-execute-function buffer-file-name)))
+        ((and e-max-testing--last-project-root
+              e-max-testing--last-test-file
+              e-max-testing--last-execute-function)
+         (let ((default-directory e-max-testing--last-project-root))
+           (funcall e-max-testing--last-execute-function e-max-testing--last-test-file)))
+        (t
+         (message "Don't know what to do. Open an executable test and run again."))))

@@ -71,6 +71,8 @@
 (global-unset-key (kbd "M-x")) ; execute-extended-command
 (e-max-global-set-key (kbd "M-a") 'execute-extended-command)
 (e-max-global-set-key (kbd "M-q") 'shell-command)
+(e-max-global-set-key (kbd "M-e") 'e-max-testing-execute-test)
+
 
 (global-unset-key (kbd "C-d"))
 (global-unset-key (kbd "C-w"))

@@ -5,8 +5,6 @@
 (e-max-vendor 'rhtml-mode)
 (e-max-vendor 'yari)
 
-(load (concat e-max-bundle-dir "ruby/defun"))
-
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.thor$" . ruby-mode))
@@ -80,6 +78,9 @@
 (defun e-max-ruby-mode-hook ()
   (e-max--set-pairs '("(" "{" "[" "\"" "\'" "|"))
 
+  (when (and buffer-file-name (string-match "_spec.rb$" buffer-file-name))
+    (setq e-max-testing-execute-function 'rspec-run-single-file))
+
   (when (e-max-bundle-active-p 'completion)
     (setq ac-sources '(ac-source-words-in-same-mode-buffers ac-source-yasnippet))
 
@@ -87,5 +88,3 @@
     (add-to-list 'ac-ignores "end")))
 
 (add-hook 'ruby-mode-hook 'e-max-ruby-mode-hook)
-
-(global-set-key (kbd "M-e") 'e-max-ruby-execute-test)
