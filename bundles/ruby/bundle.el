@@ -79,7 +79,6 @@
 
 (defun e-max-ruby-mode-hook ()
   (e-max--set-pairs '("(" "{" "[" "\"" "\'" "|"))
-  ;; (local-set-key [return] 'ruby-reindent-then-newline-and-indent)
 
   (when (e-max-bundle-active-p 'completion)
     (setq ac-sources '(ac-source-words-in-same-mode-buffers ac-source-yasnippet))
