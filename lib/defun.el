@@ -46,7 +46,16 @@ returned."
     (if mark-active
         (indent-region (region-beginning)
                        (region-end))
-      (indent-for-tab-command))))
+
+      ;; When multiple indent positions of a line are possible (such as
+      ;; often in python code), we need to reset this-command and
+      ;; last-command so that cycling through positions is possible.
+      ;; This makes e-max-smart-tab more transparent in this case.
+      (if (eq this-command last-command)
+          (let ((this-command 'indent-for-tab-command)
+                (last-command 'indent-for-tab-command))
+            (indent-for-tab-command))
+        (indent-for-tab-command)))))
 
 (defun e-max-indent-buffer ()
   "Indent each nonblank line in the buffer. See `indent-region"
