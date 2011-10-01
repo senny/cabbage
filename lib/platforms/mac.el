@@ -1,3 +1,8 @@
+;; config
+
+(defvar exec-path-from-shell "/bin/bash"
+  "E-max uses the $PATH environment variable of this shell as exec-path.")
+
 ;; start the server to use emacsclient from the console
 (server-start)
 
@@ -24,7 +29,7 @@
   (let ((path-from-shell
          (replace-regexp-in-string
           "[[:space:]\n]*$" ""
-          (shell-command-to-string "$SHELL -l -c 'echo $PATH'"))))
+          (shell-command-to-string (concat exec-path-from-shell " -l -c 'echo $PATH'")))))
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 
