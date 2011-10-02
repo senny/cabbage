@@ -94,7 +94,7 @@ nil."
     (forward-paragraph 2)
 
     (newline)
-    (insert "* ")
+    (insert "- ")
     (newline)
     (insert (concat "  [" name "]"))
     (newline)
