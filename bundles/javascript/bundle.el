@@ -54,33 +54,35 @@
         (or (executable-find "jsl")
             (concat e-max-repository "bin/jsl-0.3.0-mac/jsl")))
 
-  (require 'flymake)
-  (defun e-max-javascript-flymake-jslint-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list e-max-javascript-lslint-executable-path
-            (list "-process" local-file))))
+  (when (executable-find e-max-javascript-lslint-executable-path)
+    (require 'flymake)
+    (defun e-max-javascript-flymake-jslint-init ()
+      (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                         'flymake-create-temp-inplace))
+             (local-file (file-relative-name
+                          temp-file
+                          (file-name-directory buffer-file-name))))
+        (list e-max-javascript-lslint-executable-path
+              (list "-process" local-file))))
 
-  (setq flymake-allowed-file-name-masks
-        (cons '(".+\\.js$"
-                e-max-javascript-flymake-jslint-init
-                flymake-simple-cleanup
-                flymake-get-real-file-name)
-              flymake-allowed-file-name-masks))
+    (setq flymake-allowed-file-name-masks
+          (cons '(".+\\.js$"
+                  e-max-javascript-flymake-jslint-init
+                  flymake-simple-cleanup
+                  flymake-get-real-file-name)
+                flymake-allowed-file-name-masks))
 
-  (setq flymake-err-line-patterns
-        (cons '("^Lint at line \\([[:digit:]]+\\) character \\([[:digit:]]+\\): \\(.+\\)$"
-                nil 1 2 3)
-              flymake-err-line-patterns))
+    (setq flymake-err-line-patterns
+          (cons '("^Lint at line \\([[:digit:]]+\\) character \\([[:digit:]]+\\): \\(.+\\)$"
+                  nil 1 2 3)
+                flymake-err-line-patterns))
 
-  (defun e-max-javascript-enable-flymake-mode ()
-    (flymake-mode t))
-  (add-hook 'js-mode-hook 'e-max-javascript-enable-flymake-mode)
+    (defun e-max-javascript-enable-flymake-mode ()
+      (if (executable-find e-max-javascript-lslint-executable-path)
+          (flymake-mode t)))
+    (add-hook 'js-mode-hook 'e-max-javascript-enable-flymake-mode)
 
-  (add-hook 'js-mode-hook 'e-max-flymake-init))
+    (add-hook 'js-mode-hook 'e-max-flymake-init)))
 
 (eval-after-load 'js
   '(progn
