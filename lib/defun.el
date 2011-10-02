@@ -138,3 +138,21 @@ is a comment, uncomment."
                                                      (concat
                                                       "find \"" directory
                                                       "\" -type f | grep -v \"/.git/\" | grep -v \"/.yardoc/\""))))))))
+
+
+(defun e-max-list-bundles ()
+  "Show available and enabled list of bundles"
+  (interactive)
+
+  (let* ((bundles (directory-files (concat e-max-repository "bundles") nil "^[^.]"))
+         (active (mapcar (lambda (e) (symbol-name e)) e-max-bundles))
+         (inactive (delq nil (mapcar (lambda (e)
+                                       (if (not (member e active))
+                                           e))
+                                     bundles))))
+
+    (message (concat
+              "e-max-bundles: \n"
+              (concat "INACTIVE: " (mapconcat 'identity inactive ", "))
+              "\n"
+              (concat "ACTIVE: " (mapconcat 'identity active ", "))))))
