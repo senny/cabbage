@@ -20,7 +20,9 @@
                                 'e-max-plone-buildout--instance-argument-history))
 
         (if (not e-max-plone-run-in-perspective)
-            (pdb cmd)
+            (progn
+              (pdb cmd)
+              (compilation-shell-minor-mode t))
 
           (let ((script-name (car (last (split-string script "/")))))
             (e-max-plone--run-pdb-in-persp cmd script-name persp-prefix)))))))
@@ -45,6 +47,7 @@
 
     (let ((new-buffer-name (concat target-persp-name "*gud*")))
       (set-buffer (buffer-name (pdb cmd)))
+      (compilation-shell-minor-mode t)
       (ignore-errors (kill-buffer new-buffer-name))
       (rename-buffer new-buffer-name))))
 
