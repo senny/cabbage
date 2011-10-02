@@ -1,9 +1,10 @@
 (defvar e-max-plone-buildout--instance-argument-history nil)
 (defvar e-max-plone-buildout--run-persp-prefix "*fg*")
 (defvar e-max-plone-buildout--tests-persp-prefix "*tests*")
+(defvar e-max-plone-buildout--compilation-fun 'pdb)
 
 
-(defun e-max-plone-run (&optional known-names persp-prefix)
+(defun e-max-plone-run (&optional known-names persp-prefix arguments)
   "Searches for a known instance in the current buildout at starts it in pdb mode."
   (interactive)
 
@@ -16,21 +17,28 @@
 
       (let* ((script (car (split-string cmd)))
              (args (mapconcat 'identity (cdr (split-string cmd " ")) " ")))
-        (setq args (read-string (concat script " ") args
-                                'e-max-plone-buildout--instance-argument-history))
+
+        (if arguments
+            (setq args arguments)
+          (setq args (read-string
+                      (concat script " ") args
+                      'e-max-plone-buildout--instance-argument-history)))
+
+        (setq cmd (concat script " " args))
 
         (if (not e-max-plone-run-in-perspective)
-            (pdb cmd)
-
+            (funcall e-max-plone-buildout--default-compilation-fun cmd)
           (let ((script-name (car (last (split-string script "/")))))
-            (e-max-plone--run-pdb-in-persp cmd script-name persp-prefix)))))))
+            (e-max-plone--run-pdb-in-persp cmd
+                                           script-name persp-prefix)))))))
 
-(defun e-max-plone-tests ()
+(defun e-max-plone-tests (&optional arguments)
   "Run tests in current buildout."
   (interactive)
 
   (e-max-plone-run e-max-plone-known-buildout-test-scripts
-                   e-max-plone-buildout--tests-persp-prefix))
+                   e-max-plone-buildout--tests-persp-prefix
+                   arguments))
 
 
 (defun e-max-plone--run-pdb-in-persp (cmd script-name persp-prefix)
@@ -44,7 +52,7 @@
       (e-max-persp target-persp-name))
 
     (let ((new-buffer-name (concat target-persp-name "*gud*")))
-      (set-buffer (buffer-name (pdb cmd)))
+      (set-buffer (buffer-name (funcall e-max-plone-buildout--default-compilation-fun cmd)))
       (ignore-errors (kill-buffer new-buffer-name))
       (rename-buffer new-buffer-name))))
 
@@ -77,3 +85,17 @@ script in this buildout"
   (gud-def gud-remove "clear %d%f:%l"  "\C-d" "Remove breakpoint at current line"))
 
 (add-hook 'pdb-mode-hook 'e-max-plone--pdb-hook)
+
+
+(defun e-max-plone--run-single-file-tests (filename)
+  (let ((e-max-plone-run-in-perspective nil)
+         (e-max-plone-buildout--default-compilation-fun 'compile)
+         (testname (file-name-sans-extension
+                    (car (last (split-string filename "/"))))))
+    (e-max-plone-tests (concat "-t " testname))))
+
+(defun e-max-plone--python-setup-testing ()
+  (when (and buffer-file-name (string-match "/tests" buffer-file-name))
+    (setq e-max-testing-execute-function
+          'e-max-plone--run-single-file-tests)))
+(add-hook 'python-mode-hook 'e-max-plone--python-setup-testing)
