@@ -20,9 +20,7 @@
                                 'e-max-plone-buildout--instance-argument-history))
 
         (if (not e-max-plone-run-in-perspective)
-            (progn
-              (pdb cmd)
-              (compilation-shell-minor-mode t))
+            (pdb cmd)
 
           (let ((script-name (car (last (split-string script "/")))))
             (e-max-plone--run-pdb-in-persp cmd script-name persp-prefix)))))))
@@ -47,7 +45,6 @@
 
     (let ((new-buffer-name (concat target-persp-name "*gud*")))
       (set-buffer (buffer-name (pdb cmd)))
-      (compilation-shell-minor-mode t)
       (ignore-errors (kill-buffer new-buffer-name))
       (rename-buffer new-buffer-name))))
 
@@ -72,3 +69,11 @@ script in this buildout"
                 (if (car (cdr inst))
                     (throw 'loop (concat path " " (car (cdr inst))))
                   (throw 'loop path))))))))
+
+
+(defun e-max-plone--pdb-hook ()
+  (compilation-shell-minor-mode t)
+  (gud-def gud-break  "break %d%f:%l"  "\C-b" "Set breakpoint at current line.")
+  (gud-def gud-remove "clear %d%f:%l"  "\C-d" "Remove breakpoint at current line"))
+
+(add-hook 'pdb-mode-hook 'e-max-plone--pdb-hook)
