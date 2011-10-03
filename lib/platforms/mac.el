@@ -1,12 +1,16 @@
 ;; config
-
-(defvar exec-path-from-shell "/bin/bash"
-  "E-max uses the $PATH environment variable of this shell as exec-path.")
-
 (defcustom e-max-mac-use-shell-path nil
   "Set this to ture, if you want Emacs to use the PATH of your bin/bash"
   :group 'e-max
   :type 'boolean)
+
+(defcustom e-max-mac-force-bash t
+  "Use bin/bash as default shell for Emacs to work around PATH issues with zsh"
+  :group 'e-max
+  :type 'boolean)
+
+(when e-max-mac-force-bash
+  (setq shell-file-name "/bin/bash"))
 
 ;; start the server to use emacsclient from the console
 (server-start)
@@ -30,17 +34,17 @@
 
 (setq mac-emulate-three-button-mouse nil)
 
-(defun mac-use-shell-path ()
+(defun e-max-mac-use-shell-path ()
   (interactive)
   (let ((path-from-shell
          (replace-regexp-in-string
           "[[:space:]\n]*$" ""
-          (shell-command-to-string (concat exec-path-from-shell " -l -c 'echo $PATH'")))))
+          (shell-command-to-string (concat shell-file-name " -l -c 'echo $PATH'")))))
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 
 (when e-max-mac-use-shell-path
-  (mac-use-shell-path))
+  (e-max-mac-use-shell-path))
 
 ;; make emacs use the clipboard
 (setq x-select-enable-clipboard t)
