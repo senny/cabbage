@@ -1,7 +1,7 @@
 (defvar e-max-plone-buildout--instance-argument-history nil)
 (defvar e-max-plone-buildout--run-persp-prefix "*fg*")
 (defvar e-max-plone-buildout--tests-persp-prefix "*tests*")
-(defvar e-max-plone-buildout--compilation-fun 'pdb)
+(defvar e-max-plone-buildout--default-compilation-fun 'pdb)
 
 
 (defun e-max-plone-run (&optional known-names persp-prefix arguments)
