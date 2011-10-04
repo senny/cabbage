@@ -4,12 +4,12 @@
 (defvar e-max-plone-buildout--default-compilation-fun 'pdb)
 
 
-(defun e-max-plone-run (&optional known-names persp-prefix arguments)
+(defun e-max-plone-run (&optional known-names persp-prefix arguments first-match)
   "Searches for a known instance in the current buildout at starts it in pdb mode."
   (interactive)
 
   (catch 'exit
-    (let ((cmd (e-max-plone-buildout--get-command known-names))
+    (let ((cmd (e-max-plone-buildout--get-command known-names first-match))
           (persp-prefix (or persp-prefix e-max-plone-buildout--run-persp-prefix)))
       (when (not cmd)
         (message "Could not find any buildout instance.")
@@ -32,13 +32,14 @@
             (e-max-plone--run-pdb-in-persp cmd
                                            script-name persp-prefix)))))))
 
-(defun e-max-plone-tests (&optional arguments)
+(defun e-max-plone-tests (&optional arguments first-match)
   "Run tests in current buildout."
   (interactive)
 
   (e-max-plone-run e-max-plone-known-buildout-test-scripts
                    e-max-plone-buildout--tests-persp-prefix
-                   arguments))
+                   arguments
+                   first-match))
 
 
 (defun e-max-plone--run-pdb-in-persp (cmd script-name persp-prefix)
@@ -57,14 +58,14 @@
       (rename-buffer new-buffer-name))))
 
 
-(defun e-max-plone-buildout--get-command (&optional known-names)
+(defun e-max-plone-buildout--get-command (&optional known-names first-match)
   "Returns the command (absolute path and arguments) of the first found instance
 script in this buildout"
 
   (let ((instances (or known-names e-max-plone-known-buildout-instances))
         (inst nil)
         (path nil)
-        (buildout-root (e-max-plone--find-buildout-root default-directory)))
+        (buildout-root (e-max-plone--find-buildout-root default-directory first-match)))
     (if buildout-root
 
         (catch 'loop
@@ -92,7 +93,7 @@ script in this buildout"
          (e-max-plone-buildout--default-compilation-fun 'compile)
          (testname (file-name-sans-extension
                     (car (last (split-string filename "/"))))))
-    (e-max-plone-tests (concat "-t " testname))))
+    (e-max-plone-tests (concat "-t " testname) t)))
 
 (defun e-max-plone--python-setup-testing ()
   (when (and buffer-file-name (string-match "/tests" buffer-file-name))
