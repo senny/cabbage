@@ -48,7 +48,7 @@
      (setq rspec-use-rvm t)
      (setq rspec-use-rake-flag nil)
      (setq rspec-spec-command "rspec")
-
+     (setq rspec-use-bundler-when-possible nil)
 
      (e-max-vendor 'rvm)
 
