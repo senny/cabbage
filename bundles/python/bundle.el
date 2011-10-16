@@ -41,10 +41,11 @@
 (add-hook 'python-mode-hook 'e-max-python-keybindings)
 
 (defun e-max-python-pep8-finished (buffer msg)
-  (pop-to-buffer buffer)
-  (next-error-follow-minor-mode t)
-  (goto-line 5)
-  (next-error-follow-mode-post-command-hook))
+  (when (eq last-command 'e-max-python-pep8)
+        (pop-to-buffer buffer)
+        (next-error-follow-minor-mode t)
+        (goto-line 5)
+        (next-error-follow-mode-post-command-hook)))
 
 (defun e-max-python-pep8 ()
   "Check for pep8 errors and go to the first error."
