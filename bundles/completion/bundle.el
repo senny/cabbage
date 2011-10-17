@@ -1,3 +1,9 @@
+(defcustom e-max-completion-always-use-autocomplete nil
+  "set it to ture if you prefer using auto-complete
+as primary completion mechanism"
+  :group 'e-max
+  :type 'boolean)
+
 (e-max-vendor 'auto-complete)
 (e-max-vendor 'smex)
 
@@ -22,3 +28,11 @@
 ;; enable auto-complete for additional modes
 (setq ac-modes
       (append ac-modes '(conf-unix-mode haml-mode)))
+
+(if e-max-completion-always-use-autocomplete
+    (progn
+      (e-max-global-set-key (kbd "C-SPC") 'auto-complete))
+  (setq ac-auto-start nil)
+  (e-max-global-set-key (kbd "C-SPC") 'dabbrev-expand))
+
+(e-max-global-set-key (kbd "M-§") 'auto-complete)
