@@ -30,7 +30,9 @@ as primary completion mechanism"
       (append ac-modes '(conf-unix-mode haml-mode)))
 
 (if e-max-completion-always-use-autocomplete
-    (progn)
-  (setq ac-auto-start nil))
+    (progn
+      (e-max-global-set-key (kbd "C-SPC") 'auto-complete))
+  (setq ac-auto-start nil)
+  (e-max-global-set-key (kbd "C-SPC") 'dabbrev-expand))
 
-(e-max-global-set-key (kbd "C-SPC") 'auto-complete)
+(e-max-global-set-key (kbd "M-§") 'auto-complete)
