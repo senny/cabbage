@@ -1,11 +1,9 @@
 (e-max-vendor 'perspective)
 
 (defmacro e-max-persp (name &rest body)
-  `(let ((initialize (not (gethash ,name perspectives-hash)))
-         (current-perspective persp-curr))
+  `(let ((initialize (not (gethash ,name perspectives-hash))))
      (persp-switch ,name)
-     (when initialize ,@body)
-     (setq persp-last current-perspective)))
+     (when initialize ,@body)))
 
 (defun e-max-persp-last ()
   (interactive)
