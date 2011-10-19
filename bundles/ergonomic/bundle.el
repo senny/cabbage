@@ -89,7 +89,6 @@
 (global-unset-key (kbd "C-_")) ; undo
 (e-max-global-set-key (kbd "M-z") 'undo)
 
-(global-unset-key (kbd "C-SPC")) ; set-mark-command
 (e-max-global-set-key (kbd "M-SPC") 'set-mark-command)
 (e-max-global-set-key (kbd "M-S-SPC") 'mark-paragraph)
 
