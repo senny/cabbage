@@ -4,6 +4,12 @@
   :type 'string
   :group 'e-max)
 
+(defcustom e-max-project-find-file-function
+  (if ido-mode 'ido-find-file 'find-file)
+  "The function which is used by the project bundle to open files"
+  :group 'e-max
+  :type 'function)
+
 (require 'recentf)
 
 (setq recentf-exclude '(".emacsregisters.el" ".ido.last")
@@ -23,8 +29,8 @@
   (let ((project-name (ido-completing-read "Project: "
                                            (directory-files e-max-project-location nil "^[^.]"))))
     (e-max-persp project-name)
-    (find-file (e-max-ido-open-find-directory-files
-                (concat e-max-project-location project-name)))))
+    (let ((default-directory (concat e-max-project-location project-name)))
+      (call-interactively e-max-project-find-file-function))))
 
 
 (global-set-key (kbd "C-x p") 'e-max-project-ido-find-project)
