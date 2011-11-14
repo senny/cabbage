@@ -40,7 +40,7 @@ fi
 echo -e "Looking for an existing emacs config in your home directory..."
 if [ -f ~/.emacs ] || [ -h ~/.emacs ]
 then
-    backupfile=`date "+~$HOME/.emacs-pre-e-max-%Y-%m-%dT%H:%M%:%S"`
+    backupfile=`date "+$HOME/.emacs-pre-e-max-%Y%m%d-%H%M%S"`
     echo -e "Found \033[0;31m~/.emacs\033[0m. Backing up to \033[0;31m$backupfile\033[0m";
     mv ~/.emacs $backupfile
 fi
