@@ -94,3 +94,6 @@
 [submodule "vendor/jump"]
 	path = vendor/jump
 	url = https://github.com/eschulte/jump.el.git
+[submodule "vendor/eclim"]
+	path = vendor/eclim
+	url = https://github.com/senny/emacs-eclim
