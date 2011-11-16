@@ -1,3 +1,7 @@
+;;
+;; Enables auto-completion in eclim using company-mode.
+;;
+
 (e-max-bundle 'eclim)
 (e-max-bundle 'company)
 

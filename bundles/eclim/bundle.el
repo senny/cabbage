@@ -1,3 +1,10 @@
+;;
+;; An eclipse-based development environment in emacs.
+;;
+;; See: http://eclim.org
+;;      https://github.com/senny/emacs-eclim
+;;
+
 (add-to-list 'load-path (concat e-max-vendor-dir "eclim/vendor/"))
 (e-max-vendor 'eclim)
 
