@@ -105,6 +105,12 @@ is a comment, uncomment."
         )
     (e-max-comment-or-uncomment-line lines)))
 
+(defun e-max-bundle (bundle)
+  "Load the given BUNDLE (which can be either a symbol or a string."
+  (load (concat e-max-bundle-dir
+                (if (symbolp bundle)
+                    (symbol-name bundle) bundle)
+                "/bundle")))
 
 ;; for loading libraries in from the vendor directory
 (defun e-max-vendor (library)
