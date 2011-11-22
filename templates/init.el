@@ -10,6 +10,7 @@
                       erlang
                       git
                       html
+                      java
                       javascript
                       lisp
                       markdown
@@ -26,7 +27,9 @@
                       ;; org
                       ;; plone
                       ;; terminal
-
+                      ;; eclim
+                      ;; eclim-auto-complete
+                      ;; eclim-company
                       ;; maximize
                       ))
 
