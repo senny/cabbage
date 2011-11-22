@@ -6,6 +6,9 @@
 
 (defun e-max-java-init ()
   "Initialize the java bundle."
+
+  (e-max-vendor 'java-mode-indent-annotations)
+
   (when e-max-java-use-eclim
     (add-to-list 'load-path (concat e-max-vendor-dir "eclim/vendor/"))
     (e-max-vendor 'eclim)
