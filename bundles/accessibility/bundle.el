@@ -1,3 +1,5 @@
+(e-max-vendor 'maxframe)
+
 (defcustom e-max-accessibility-force-side-by-side-split nil
   "set if you want emacs to split vertically"
   :group 'e-max
