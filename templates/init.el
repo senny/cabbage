@@ -10,6 +10,7 @@
                       erlang
                       git
                       html
+                      java
                       javascript
                       lisp
                       markdown
