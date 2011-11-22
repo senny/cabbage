@@ -40,7 +40,7 @@ function in the chosen completion framework."
      (e-max-vendor 'company)
      (global-company-mode)))
   (case e-max-completion-trigger
-    (1 (global-set-key [?\C- ] 'e-max-complete))
+    (1 (global-set-key (kbd "C-SPC") 'e-max-complete))
     (2 (define-key esc-map "/" 'e-max-complete))))
 
 (e-max-completion-init)
