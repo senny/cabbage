@@ -27,6 +27,16 @@
        (add-hook 'eclim-mode-hook (lambda () (add-to-list 'ac-sources 'ac-source-emacs-eclim))))
       ('company-mode
        (require 'company-emacs-eclim)
-       (company-emacs-eclim-setup)))))
+       (company-emacs-eclim-setup)))
+
+    ;; If we are using the snippets bundle, append the eclim
+    ;; yasnippets dir to the list of yasnippet directories
+    (if (and eclim-use-yasnippet (e-max-bundle-active-p 'snippets))
+        (add-hook 'e-max-initialized-hook
+                  (lambda ()
+                    (add-to-list 'yas/root-directory
+                                 (concat e-max-vendor-dir "eclim/snippets/")
+                                 t)
+                    (yas/reload-all))))))
 
 (e-max-java-init)
