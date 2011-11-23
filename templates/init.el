@@ -20,6 +20,7 @@
                       ruby
                       haml-and-sass
                       yaml
+                      snippets
 
                       ;; e-max-developer
                       ;; rails
