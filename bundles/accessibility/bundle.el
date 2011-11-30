@@ -74,7 +74,7 @@
 
 (global-set-key (kbd "<f5>") 'ns-toggle-fullscreen)
 (global-set-key (kbd "C-+") 'increase-font-size)
-(global-set-key (kbd "C-_") 'decrease-font-size)
+(global-set-key (kbd "C--") 'decrease-font-size)
 
 ;; Highlight the current line
 (global-hl-line-mode t)
