@@ -82,3 +82,12 @@
     (add-hook 'find-file-hook 'flymake-find-file-hook)))
 
 (add-hook 'python-mode-hook 'e-max-python-flymake)
+
+
+(defun e-max-python-init-snippets ()
+  (when (e-max-bundle-active-p 'snippets)
+    (add-to-list 'yas/root-directory
+                 (concat (concat e-max-bundle-dir "python/snippets")) t)
+    (yas/reload-all)))
+
+(add-hook 'python-mode-hook 'e-max-python-init-snippets)
