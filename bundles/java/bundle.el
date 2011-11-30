@@ -34,9 +34,8 @@
     (if (and eclim-use-yasnippet (e-max-bundle-active-p 'snippets))
         (add-hook 'e-max-initialized-hook
                   (lambda ()
-                    (add-to-list 'yas/root-directory
-                                 (concat e-max-vendor-dir "eclim/snippets/")
-                                 t)
-                    (yas/reload-all))))))
+                    (let ((dir (concat e-max-vendor-dir "eclim/snippets/")))
+                      (add-to-list 'yas/root-directory dir t)
+                      (yas/load-directory dir)))))))
 
 (e-max-java-init)
