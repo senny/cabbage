@@ -1,4 +1,4 @@
-#/usr/bin/env sh
+#/usr/bin/env bash
 
 if [[ `dirname $0` != /* ]]; then
   # script run with relative path (./scripts/install.sh)
@@ -23,7 +23,7 @@ fi
 echo -e "Updating e-max at \033[0;32m$emaxdir\033[00m ..."
 
 echo -e "$ \033[0;33mgit pull --ff-only\033[00m ..."
-(cd $emaxdir && /usr/bin/env git pull --ff-only)
+(cd $emaxdir && /usr/bin/env git pull --ff-only origin master)
 
 echo -e "$ \033[0;33mgit submodule init\033[00m ..."
 (cd $emaxdir && /usr/bin/env git submodule init)
