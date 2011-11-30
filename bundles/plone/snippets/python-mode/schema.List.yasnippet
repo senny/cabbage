@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: schema.List
+# --
+$1 = schema.List(
+    title=_(u'label_$1', default=u'$2'),
+    description=_(u'help_$1', default=u'$3'),
+    value_type=schema.$4(),
+    required=${5:False}$6)
+
+    $7

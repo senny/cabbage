@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: schema.Int
+# --
+$1 = schema.Int(
+    title=_(u'label_$1', default=u'$2'),
+    description=_(u'help_$1', default=u'$3'),
+    ${4:min=,
+    }${5:max=,
+    }required=${6:False}$7)
+
+    $8

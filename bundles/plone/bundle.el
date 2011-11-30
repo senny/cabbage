@@ -194,6 +194,14 @@ then prompts for a file. Expects to be within a package
 (add-hook 'python-mode-hook 'e-max-plone--python-bindings)
 
 
+(defun e-max-plone--init-snippets ()
+  (when (e-max-bundle-active-p 'snippets)
+    (add-to-list 'yas/root-directory
+                 (concat (concat e-max-bundle-dir "plone/snippets")) t)
+    (yas/reload-all)))
+
+(add-hook 'python-mode-hook 'e-max-plone--init-snippets)
+
 ;; global bindings
 
 (e-max-global-set-key (kbd "C-c f c") 'e-max-plone-find-changelog-make-entry)
