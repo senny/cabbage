@@ -49,6 +49,8 @@
 (global-unset-key (kbd "C-d")) ; delete-char
 (e-max-global-set-key (kbd "M-d") 'delete-backward-char)
 (e-max-global-set-key (kbd "M-f") 'delete-char)
+(e-max-global-set-key (kbd "M-D") 'backward-kill-word)
+(e-max-global-set-key (kbd "M-F") 'kill-word)
 (e-max-global-set-key (kbd "<delete>") 'delete-char)
 
 (global-unset-key (kbd "M-<")) ; beginning-of-buffer
