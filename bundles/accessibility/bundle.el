@@ -52,6 +52,7 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+
 (defun increase-font-size ()
   (interactive)
   (set-face-attribute 'default
@@ -59,8 +60,9 @@
                       :height
                       (ceiling (* 1.10
                                   (face-attribute 'default :height))))
-  (restore-frame)
-  (maximize-frame))
+
+  (if (e-max-bundle-active-p 'maximize)
+    (maximize-frame)))
 
 (defun decrease-font-size ()
   (interactive)
@@ -69,8 +71,9 @@
                       :height
                       (floor (* 0.9
                                 (face-attribute 'default :height))))
-  (restore-frame)
-  (maximize-frame))
+
+  (if (e-max-bundle-active-p 'maximize)
+      (maximize-frame)))
 
 (global-set-key (kbd "<f5>") 'ns-toggle-fullscreen)
 (global-set-key (kbd "C-+") 'increase-font-size)
