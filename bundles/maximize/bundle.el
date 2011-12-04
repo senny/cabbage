@@ -1,3 +1,3 @@
 (e-max-vendor 'maxframe)
-(x-maximize-frame)
+(maximize-frame)
 
