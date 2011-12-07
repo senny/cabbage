@@ -183,7 +183,7 @@ then prompts for a file. Expects to be within a package
 
   (add-to-list 'auto-mode-alist '("\\.po\\(t\\)?$" . po-mode)))
 
-(add-to-list 'auto-mode-alist '("\\.\\(z\\)?pt$" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.[zc]?pt$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.zcml$" . nxml-mode))
 
 
