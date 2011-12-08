@@ -100,3 +100,6 @@
 [submodule "vendor/maxframe"]
 	path = vendor/maxframe
 	url = https://github.com/rmm5t/maxframe.el.git
+[submodule "vendor/coffee-mode"]
+	path = vendor/coffee-mode
+	url = git://github.com/defunkt/coffee-mode.git
