@@ -32,7 +32,7 @@
                       ;; eclim-auto-complete
                       ;; eclim-company
                       ;; maximize
-                      ;; coffee
+                      ;; coffee-script
                       ))
 
 ;; see https://github.com/senny/theme-roller.el for a list of available themes
