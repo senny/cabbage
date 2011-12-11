@@ -187,6 +187,19 @@ then prompts for a file. Expects to be within a package
 (add-to-list 'auto-mode-alist '("\\.zcml$" . nxml-mode))
 
 
+(defun e-max-plone--xml-flymake ()
+  (when (and (e-max-bundle-active-p 'xml)
+             e-max-xml-flymake-enabled
+             (executable-find "xml"))
+
+      (add-to-list 'flymake-allowed-file-name-masks
+                   '("\\.[zc]?pt$" flymake-xml-init))
+      (add-to-list 'flymake-allowed-file-name-masks
+                   '("\\.zcml$" flymake-xml-init))))
+
+(add-hook 'nxml-mode-hook 'e-max-plone--xml-flymake)
+
+
 (defun e-max-plone--python-bindings ()
   (define-key python-mode-map (kbd "C-M-<return>") 'e-max-plone-goto-defition)
   (define-key python-mode-map (kbd "C-M-S-<return>") 'e-max-plone-lookup-import))
