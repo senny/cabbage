@@ -105,13 +105,6 @@ is a comment, uncomment."
         )
     (e-max-comment-or-uncomment-line lines)))
 
-(defun e-max-bundle (bundle)
-  "Load the given BUNDLE (which can be either a symbol or a string."
-  (load (concat e-max-bundle-dir
-                (if (symbolp bundle)
-                    (symbol-name bundle) bundle)
-                "/bundle")))
-
 ;; for loading libraries in from the vendor directory
 (defun e-max-vendor (library)
   (let* ((file (symbol-name library))
@@ -144,21 +137,3 @@ is a comment, uncomment."
                                                      (concat
                                                       "find \"" directory
                                                       "\" -type f | grep -v \"/.git/\" | grep -v \"/.yardoc/\""))))))))
-
-
-(defun e-max-list-bundles ()
-  "Show available and enabled list of bundles"
-  (interactive)
-
-  (let* ((bundles (directory-files (concat e-max-repository "bundles") nil "^[^.]"))
-         (active (mapcar (lambda (e) (symbol-name e)) e-max-bundles))
-         (inactive (delq nil (mapcar (lambda (e)
-                                       (if (not (member e active))
-                                           e))
-                                     bundles))))
-
-    (message (concat
-              "e-max-bundles: \n"
-              (concat "INACTIVE: " (mapconcat 'identity inactive ", "))
-              "\n"
-              (concat "ACTIVE: " (mapconcat 'identity active ", "))))))

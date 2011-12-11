@@ -85,3 +85,29 @@ a value of nil means, this buffer does not contain an executable test")
            (funcall e-max-testing--last-execute-function e-max-testing--last-test-file)))
         (t
          (message "Don't know what to do. Open an executable test and run again."))))
+
+
+(defun e-max-bundle (bundle)
+  "Load the given BUNDLE (which can be either a symbol or a string."
+  (load (concat e-max-bundle-dir
+                (if (symbolp bundle)
+                    (symbol-name bundle) bundle)
+                "/bundle")))
+
+
+(defun e-max-list-bundles ()
+  "Show available and enabled list of bundles"
+  (interactive)
+
+  (let* ((bundles (directory-files (concat e-max-repository "bundles") nil "^[^.]"))
+         (active (mapcar (lambda (e) (symbol-name e)) e-max-bundles))
+         (inactive (delq nil (mapcar (lambda (e)
+                                       (if (not (member e active))
+                                           e))
+                                     bundles))))
+
+    (message (concat
+              "e-max-bundles: \n"
+              (concat "INACTIVE: " (mapconcat 'identity inactive ", "))
+              "\n"
+              (concat "ACTIVE: " (mapconcat 'identity active ", "))))))
