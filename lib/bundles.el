@@ -92,7 +92,8 @@ a value of nil means, this buffer does not contain an executable test")
   (load (concat e-max-bundle-dir
                 (if (symbolp bundle)
                     (symbol-name bundle) bundle)
-                "/bundle")))
+                "/bundle"))
+  (add-to-list 'e-max-bundles bundle))
 
 
 (defun e-max-list-bundles ()
