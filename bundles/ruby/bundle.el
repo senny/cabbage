@@ -84,7 +84,8 @@
   (when (e-max-bundle-active-p 'completion)
     (setq ac-sources '(ac-source-words-in-same-mode-buffers ac-source-yasnippet))
 
-    (make-local-variable 'ac-ignores)
-    (add-to-list 'ac-ignores "end")))
+    (when (eq e-max-completion-framework 'auto-complete)
+      (make-local-variable 'ac-ignores)
+      (add-to-list 'ac-ignores "end"))))
 
 (add-hook 'ruby-mode-hook 'e-max-ruby-mode-hook)
