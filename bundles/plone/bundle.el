@@ -126,7 +126,7 @@ then prompts for a file. Expects to be within a package
   (let* ((root (replace-regexp-in-string
                 "\/?$" "/"
                 (or buildout-root
-                    (e-max--find-parent-with-file default-directory "src"))))
+                    (e-max-plone--find-buildout-root default-directory))))
          (srcpath (concat root "src/"))
          (path nil))
 
