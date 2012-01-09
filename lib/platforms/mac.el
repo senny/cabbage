@@ -48,3 +48,6 @@
 
 ;; make emacs use the clipboard
 (setq x-select-enable-clipboard t)
+
+;; do not use flymake gui popups, since emacs crashes on the second popup.
+(setq flymake-gui-warnings-enabled nil)
