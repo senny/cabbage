@@ -148,7 +148,12 @@ then prompts for a file. Expects to be within a package
                  (replace-regexp-in-string
                   "^\/?" ""
                   (replace-regexp-in-string (concat path "/") "" (concat "/" e))))
-               (textmate-project-files path)))))))
+
+               (let ((*textmate-gf-exclude*
+                      (replace-regexp-in-string "build"
+                                                (concat "build|" path "/src")
+                                                *textmate-gf-exclude*)))
+                 (textmate-project-files path))))))))
 
 
 (defun e-max-plone-ido-find-buildout (&optional projects-root)
