@@ -20,7 +20,11 @@ function in the chosen completion framework."
   (case e-max-completion-framework
     ('auto-complete (auto-complete))
     ('company-mode (company-complete))
-    ('nil (call-interactively 'dabbrev-expand))))
+    ('nil (if (eq this-command last-command)
+              (let ((this-command 'dabbrev-expand)
+                    (last-command 'dabbrev-expand))
+                (dabbrev-expand nil))
+            (dabbrev-expand nil)))))
 
 (defun e-max-completion-init ()
   "Initialize e-max completion"
