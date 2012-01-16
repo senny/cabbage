@@ -41,7 +41,8 @@
 (add-hook 'python-mode-hook 'e-max-python-keybindings)
 
 (defun e-max-python-pep8-finished (buffer msg)
-  (when (eq last-command 'e-max-python-pep8)
+  (when (or (eq last-command 'e-max-python-pep8)
+            (eq last-command 'e-max-python-pylint))
         (pop-to-buffer buffer)
         (next-error-follow-minor-mode t)
         (goto-line 5)
@@ -62,6 +63,22 @@
 
 (add-hook 'python-mode-hook 'e-max-python-configure-pep8)
 
+
+(defun e-max-python-pylint ()
+  "Check for pylint errors on key-press rather than using flymake."
+  (interactive)
+  (let ((command (concat (executable-find "epylint")
+                         " " buffer-file-name
+                         ;; this regexp reformats the epylint output so that it matches the pep8 output
+                         ;; XXX we could "let" python-pep8-regexp-alist instead.
+                         " | sed -e 's/\\([^:]*:[^:]*:\\)\\([^(]*(\\)\\([EW][0-9]*\\)\\(.*\\)/\\11: \\3\\2\\3\\4/'")))
+    (add-to-list 'compilation-finish-functions 'e-max-python-pep8-finished)
+    (compilation-start command 'python-pep8-mode)))
+
+(defun e-max-python-configure-pylint ()
+  (local-set-key (kbd "C-M-§") 'e-max-python-pylint))
+
+(add-hook 'python-mode-hook 'e-max-python-configure-pylint)
 
 (defun e-max-python-flymake ()
   (when (and e-max-python-pyflakes-enabled (executable-find "pyflakes"))
