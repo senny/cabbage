@@ -28,6 +28,9 @@ echo -e "$ \033[0;33mgit pull --ff-only\033[00m ..."
 echo -e "$ \033[0;33mgit submodule init\033[00m ..."
 (cd $emaxdir && /usr/bin/env git submodule init)
 
+echo -e "$ \033[0;33mgit submodule sync\033[00m ..."
+(cd $emaxdir && /usr/bin/env git submodule sync)
+
 echo -e "$ \033[0;33mgit submodule update\033[00m ..."
 (cd $emaxdir && /usr/bin/env git submodule update)
 
