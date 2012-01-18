@@ -1,4 +1,4 @@
-#/usr/bin/env sh
+#!/usr/bin/env sh
 
 if [ -f `dirname $0`/install.sh ]; then
   # already cloned manually

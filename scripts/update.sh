@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
 if [[ `dirname $0` != /* ]]; then
   # script run with relative path (./scripts/install.sh)
