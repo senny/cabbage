@@ -1,16 +1,29 @@
 ;; Configuration
 
-(defcustom e-max-javascript-jslint-enabled
-  nil
+(defcustom e-max-javascript-jslint-enabled t
   "Enable flymake with jslint"
   :type 'boolean
   :group 'e-max)
 
+(defcustom e-max-javascript-lslint-executable-path
+  (or (executable-find "jsl")
+      (concat e-max-repository "bin/jsl-0.3.0-mac/jsl"))
+  "path to the js-lint executable"
+  :type 'string
+  :group 'e-max)
 
 ;;;; -------------------------------------
 ;;;; Bundle
 (add-to-list 'auto-mode-alist '("\\.js\\(on\\)?$" . js-mode))
 
+
+;; Defuns
+
+(defun e-max-javascript-jslint-compile ()
+  (interactive)
+  (compile (format "%s -process %s" e-max-javascript-lslint-executable-path (buffer-file-name))))
+
+;; Setup
 
 (defun e-max-javascript-keybindings ()
   (local-set-key (kbd "C-§") 'flymake-goto-next-error))
@@ -50,10 +63,6 @@
 (defvar e-max-javascript-lslint-executable-path nil)
 
 (defun e-max-javascript--configure-jslint ()
-  (setq e-max-javascript-lslint-executable-path
-        (or (executable-find "jsl")
-            (concat e-max-repository "bin/jsl-0.3.0-mac/jsl")))
-
   (when (executable-find e-max-javascript-lslint-executable-path)
     (require 'flymake)
     (defun e-max-javascript-flymake-jslint-init ()
@@ -90,26 +99,6 @@
        (e-max-javascript--configure-jslint))))
 
 
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; (eval-after-load 'mode-compile
-;;   '(progn
-;;      (add-to-list 'mode-compile-modes-alist '(js-mode . (senny-jslint-compile kill-compilation)))))
-
-;; ;; Defuns
-;; (defun senny-js-send-buffer ()
-;;   (interactive)
-;;   (moz-send-region (point-min) (point-max)))
-
-;; (defun senny-jslint-compile ()
-;;   (interactive)
-;;   (compile (format "%s -process %s" *jslint-executable* (buffer-file-name))))
-
-;; (eval-after-load 'js
-;;   '(progn
-;;      (define-key js-mode-map (kbd "C-c v") 'senny-js-send-buffer)
-;;      ;; fixes problem with pretty function font-lock
-;;      (define-key js-mode-map (kbd ",") 'self-insert-command)))
-
-;; ;; Hooks
-;; (add-hook 'js-mode-hook 'run-coding-hook)
+(eval-after-load 'mode-compile
+  '(progn
+     (add-to-list 'mode-compile-modes-alist '(js-mode . (senny-jslint-compile kill-compilation)))))
