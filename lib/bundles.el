@@ -23,6 +23,7 @@
 (add-hook 'erlang-mode-hook 'e-max-clear-local-bindings)
 (add-hook 'diff-mode 'e-max-clear-local-bindings)
 (add-hook 'magit-mode 'e-max-clear-local-bindings)
+(add-hook 'html-mode-hook 'e-max-clear-local-bindings)
 
 (defun e-max-flymake-init ()
   "registered as hook in bundles ; configures flymake"
