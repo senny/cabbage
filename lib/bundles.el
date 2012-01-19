@@ -25,6 +25,9 @@
 (add-hook 'magit-mode 'e-max-clear-local-bindings)
 (add-hook 'html-mode-hook 'e-max-clear-local-bindings)
 
+(defun e-max-lisp-buffer-p ()
+  (memql major-mode '(emacs-lisp-mode lisp-mode lisp-interaction-mode)))
+
 (defun e-max-flymake-init ()
   "registered as hook in bundles ; configures flymake"
   (e-max-vendor 'flymake-point)
