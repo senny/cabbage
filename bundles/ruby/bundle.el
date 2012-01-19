@@ -1,6 +1,15 @@
+;; Configuration
+
+(defcustom e-max-ruby-automatically-insert-end t
+  "Automatically insert 'end' after ruby keywords like class and module."
+  :type 'boolean
+  :group 'e-max)
+
+;;;; -------------------------------------
+;;;; Bundle
+
 ;; load the latest ruby-mode to get the syntax-higlighting working
 (load (concat e-max-vendor-dir "ruby-mode"))
-
 
 (e-max-vendor 'rhtml-mode)
 (e-max-vendor 'yari)
@@ -41,6 +50,12 @@
     (insert "{}")
     (backward-char 1)))
 
+(defun ruby-insert-end ()
+  (interactive)
+  (insert "end")
+  (ruby-indent-line t)
+  (end-of-line))
+
 (eval-after-load 'ruby-mode
   '(progn
      ;;;; Additional Libraries
@@ -61,6 +76,10 @@
      (define-key ruby-mode-map (kbd "RET") 'reindent-then-newline-and-indent)
      (define-key ruby-mode-map (kbd "#") 'ruby-interpolate)
      (define-key ruby-mode-map (kbd "C-c , ,") 'e-max-open-spec-other-buffer)
+
+     (when e-max-ruby-automatically-insert-end
+       (load (concat e-max-bundle-dir "ruby/electric_end"))
+       (define-key ruby-mode-map " " 'e-max-ruby-electric-space))
 
      ;; disable TAB in ruby-mode-map, so that e-max-smart-tab is used
      (define-key ruby-mode-map (kbd "TAB") nil)
