@@ -13,6 +13,7 @@
 
 (e-max-vendor 'rhtml-mode)
 (e-max-vendor 'yari)
+(e-max-vendor 'inf-ruby)
 
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
