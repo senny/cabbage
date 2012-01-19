@@ -5,7 +5,7 @@
   :type 'boolean
   :group 'e-max)
 
-(defcustom e-max-javascript-lslint-executable-path
+(defcustom e-max-javascript-jslint-executable-path
   (or (executable-find "jsl")
       (concat e-max-repository "bin/jsl-0.3.0-mac/jsl"))
   "path to the js-lint executable"
@@ -21,7 +21,7 @@
 
 (defun e-max-javascript-jslint-compile ()
   (interactive)
-  (compile (format "%s -process %s" e-max-javascript-lslint-executable-path (buffer-file-name))))
+  (compile (format "%s -process %s" e-max-javascript-jslint-executable-path (buffer-file-name))))
 
 ;; Setup
 
@@ -59,11 +59,8 @@
      (e-max-javascript-fix-fontlock)))
 
 
-;; jslint
-(defvar e-max-javascript-lslint-executable-path nil)
-
 (defun e-max-javascript--configure-jslint ()
-  (when (executable-find e-max-javascript-lslint-executable-path)
+  (when (executable-find e-max-javascript-jslint-executable-path)
     (require 'flymake)
     (defun e-max-javascript-flymake-jslint-init ()
       (let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -71,7 +68,7 @@
              (local-file (file-relative-name
                           temp-file
                           (file-name-directory buffer-file-name))))
-        (list e-max-javascript-lslint-executable-path
+        (list e-max-javascript-jslint-executable-path
               (list "-process" local-file))))
 
     (setq flymake-allowed-file-name-masks
@@ -87,7 +84,7 @@
                 flymake-err-line-patterns))
 
     (defun e-max-javascript-enable-flymake-mode ()
-      (if (executable-find e-max-javascript-lslint-executable-path)
+      (if (executable-find e-max-javascript-jslint-executable-path)
           (flymake-mode t)))
     (add-hook 'js-mode-hook 'e-max-javascript-enable-flymake-mode)
 
