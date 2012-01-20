@@ -1,4 +1,4 @@
-(defun move-text-internal (arg)
+(defun e-max-move-text-internal (arg)
   (cond
    ((and mark-active transient-mark-mode)
     (if (> (point) (mark))
@@ -20,20 +20,20 @@
       (forward-line -1)))))
 
 
-(defun move-text-up (arg)
+(defun e-max-move-text-up (arg)
   "Move region (transient-mark-mode active) or current line
   arg lines up."
   (interactive "*p")
-  (move-text-internal (- arg)))
+  (e-max-move-text-internal (- arg)))
 
 
-(defun move-text-down (arg)
+(defun e-max-move-text-down (arg)
   "Move region (transient-mark-mode active) or current line
   arg lines down."
   (interactive "*p")
-  (move-text-internal arg))
+  (e-max-move-text-internal arg))
 
-(defun forward-buffer () (interactive)
+(defun e-max-forward-buffer () (interactive)
   "Opposite of backward-buffer."
   (let* ((list (reverse (buffer-list)))
          (buffer (car list)))
@@ -43,7 +43,7 @@
         (setq buffer (car list))))
     (switch-to-buffer buffer)))
 
-(defun backward-buffer () (interactive)
+(defun e-max-backward-buffer () (interactive)
   "Switch to previously selected buffer."
   (let* ((list (cdr (buffer-list)))
          (buffer (car list)))
@@ -55,11 +55,3 @@
     (switch-to-buffer buffer)))
 
 (e-max-vendor 'textmate)
-(global-set-key (kbd "M-<up>") 'move-text-up)
-(global-set-key (kbd "M-<down>") 'move-text-down)
-(global-set-key (kbd "M-<right>")  'textmate-shift-right)
-(global-set-key (kbd "M-<left>") 'textmate-shift-left)
-
-;; Do not e-max-global-set-key TAB because this would override local
-;; bindings such as in magit.
-(global-set-key (kbd "TAB") 'e-max-smart-tab)

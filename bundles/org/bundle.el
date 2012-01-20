@@ -33,8 +33,6 @@
 (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
 (add-hook 'org-mode-hook 'e-max-org-mode-hook)
 
-(global-set-key (kbd "C-p o") 'e-max-org-emacs-persp)
-
 (eval-after-load 'org
   '(progn
      (define-key org-mode-map (kbd "C-c a") 'org-agenda)

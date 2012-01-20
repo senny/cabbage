@@ -9,6 +9,3 @@
   "Opens the e-max perspective."
   (interactive)
   (e-max-persp "@e-max"))
-
-(global-set-key (kbd "C-c p") 'e-max-emdeveloper-find-e-max-config)
-(global-set-key (kbd "C-p e") 'e-max-emdeveloper-emacs-persp)

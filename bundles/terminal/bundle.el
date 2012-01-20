@@ -66,9 +66,6 @@ e-max bindings.")
                                        ))))
 
 ;; terminal bindings
-
-(when (e-max-bundle-active-p 'ergonomic)
-  (e-max-global-set-key (kbd "C-p t") 'e-max-terminal-open-term-persp))
 (e-max-global-set-key (kbd "C-x t n") 'multi-term)
 (e-max-global-set-key (kbd "C-x t t") 'multi-term-dedicated-toggle)
 

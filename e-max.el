@@ -22,6 +22,7 @@
 
 (load (concat e-max-repository "lib/variables"))
 (load (concat e-max-repository "lib/bundles/framework"))
+(load (concat e-max-repository "lib/bindings"))
 (load (concat e-max-repository "lib/defun"))
 (load (concat e-max-repository "lib/setup"))
 (load (concat e-max-repository "lib/perspective"))

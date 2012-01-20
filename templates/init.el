@@ -2,11 +2,11 @@
 
 (setq e-max-bundles '(
                       accessibility
+                      window-management
                       completion
                       css
                       cucumber
                       diff
-                      ergonomic
                       erlang
                       git
                       html

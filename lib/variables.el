@@ -10,6 +10,12 @@
   :type 'string
   :group 'e-max)
 
+(defcustom e-max-binding-theme
+  nil
+  "binding-theme name, which should be activated by default. nil disables the binding api."
+  :type 'symbol
+  :group 'e-max)
+
 (defcustom e-max-use-flymake t
   "set if you want to use flymake or not"
   :type 'boolean

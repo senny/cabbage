@@ -17,3 +17,11 @@ The following features are provided by the e-max binding API.
 * it should be possible to completely deactivate the binding api so that it's easier to switch to e-max with an existing configuration.
 
 ## How?
+
+### Theme definitions
+
+(e-max-bindings-make-theme
+ "my bindings"
+
+ ;; ...definitions...
+ )
