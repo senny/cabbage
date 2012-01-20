@@ -20,11 +20,15 @@ function in the chosen completion framework."
   (case e-max-completion-framework
     ('auto-complete (auto-complete))
     ('company-mode (company-complete))
-    ('nil (if (eq this-command last-command)
-              (let ((this-command 'dabbrev-expand)
-                    (last-command 'dabbrev-expand))
-                (dabbrev-expand nil))
-            (dabbrev-expand nil)))))
+    ('nil
+     (let ((completion-function (e-max-completion-determine-completion-function)))
+       (let ((last-command (and (eq this-command last-command) completion-function))
+             (this-command completion-function))
+         (call-interactively completion-function))))))
+
+(defun e-max-completion-determine-completion-function ()
+  (cond ((e-max-lisp-buffer-p) 'lisp-complete-symbol)
+                                      (t 'dabbrev-expand)))
 
 (defun e-max-completion-init ()
   "Initialize e-max completion"
