@@ -1,5 +1,7 @@
 (require 'cl)
 
+(load (expand-file-name "~/.emacs.d/config.el") 'noerror)
+
 (if (not custom-file)
     (setq custom-file (expand-file-name "~/.emacs.d/custom.el")))
 (load custom-file 'noerror)
@@ -14,9 +16,9 @@
       system-specific-config (expand-file-name (concat "~/.emacs.d/machines/" system-name ".el"))
       user-specific-config (expand-file-name (concat"~/.emacs.d/users/" user-login-name ".el")))
 
-(if (file-exists-p local-config) (load local-config) )
 (if (file-exists-p system-specific-config) (load system-specific-config))
 (if (file-exists-p user-specific-config) (load user-specific-config))
+(if (file-exists-p local-config) (load local-config) )
 
 (add-to-list 'load-path e-max-repository)
 

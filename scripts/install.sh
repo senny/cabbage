@@ -66,3 +66,16 @@ echo -e "\033[0;32m  $d$d   ____|        $d$d | $d$d | $d$d |$d$d  __$d$d | $d$d
 echo -e "\033[0;32m   $d$d$d$d$d$d$d\         $d$d | $d$d | $d$d |\ $d$d$d$d$d$d |$d$d  ^ $d$d\    \033[0m"
 echo -e "\033[0;32m   \_______|        \__| \__| \__| \_______|\__/  \__|   \033[0m"
 echo ""
+
+
+
+# Summary / first steps
+
+echo "The e-max installation was successful."
+echo -e  " - Your configuration is stored at \033[0;32m$confdir\033[0m"
+echo -e  " - Configure your bundles at \033[0;32m$confdir/bundles.el\033[0m"
+echo -en " - Keep your e-max up to date with the script at"
+echo -e "\033[0;32m $confdir/bin/update-e-max \033[0m"
+echo -en " - If you experience problems, feel free to create an issue at"
+echo -e  "\033[0;32m https://github.com/senny/e-max/issues \033[0m"
+echo " - Your contributions to e-max are very welcome! Send us your pull requests."
