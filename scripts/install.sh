@@ -1,62 +1,120 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+
+cloneurl="https://github.com/senny/e-max.git"
+confdir=$HOME/.emacs.d
+
+
+echo ""
+echo -e "\033[1;32mWelcome to the e-max installation wizard.\033[0m"
+echo ""
+
+# git is required
+/usr/bin/env git --version &> /dev/null
+if [[ $? -ne 0 ]]; then
+    echo -e "\033[0;31mPlease install git first. See http://git-scm.com/\033[0m"
+    exit 1
+fi
+
+echo "The installation does not require any super user previliges."
+echo "All file modifications will be within your user home ($HOME)."
+echo ""
+
 
 if [ -f `dirname $0`/install.sh ]; then
-  # already cloned manually
+    # alread cloned, since the install.sh itself is somewhere laying around
+    clone_repo=false
+
     if [[ `dirname $0` != /* ]]; then
-    # script run with relative path (./scripts/install.sh)
+        # script is run with relative path (./scripts/install.sh)
         if [[ $0 = './install.sh' ]]; then
+            # The pwd is the "scripts" repository. doing a dirname on it
+            # returns the parent.
             emaxdir=`dirname \`pwd\``
         else
-            emaxdir=`dirname \`pwd\`/\`dirname $0\` | sed -e 's/\/\.$//'`  # ../
+            # The pwd is another relative path. We concat the pwd and the
+            # script-path and remove the "install.sh". Then, remove "./"
+            # parts from the path..
+            emaxdir=`dirname \`pwd\`/\`dirname $0\` | sed -e 's/\/\.$//'`
         fi
 
     else
-    # script run with absolute path (/home/me/e-max/scripts/install.sh)
+        # script run with absolute path (/home/me/e-max/scripts/install.sh)
         emaxdir=`dirname \`dirname $0\``
     fi
 
-    echo -e "Using already cloned e-max repository at \033[0;32m$emaxdir\033[00m ..."
-    echo -e "Initializing and updating submodules at \033[0;32m$emaxdir\033[00m"
-    cd $emaxdir
-    /usr/bin/env git submodule init
-    /usr/bin/env git submodule update
+    echo -e "Your e-max repository is at \033[0;32m$emaxdir\033[0m"
 
 else
+    # If the script is run directly from curl, we are going to check out
+    # the repository to ~/.e-max.
     emaxdir=$HOME/.e-max
+    clone_repo=true
 
-    if [ -d $emaxdir ]
-    then
-        echo -e "\033[0;31mYou already have e-max installed.\033[0m You'll need to remove \033[0;31m$emaxdir\033[0m if you want to reinstall"
+    if [ -d $emaxdir ]; then
+        echo -e "\033[0;31mYou already have e-max installed at $emaxdir\033[0m"
+        echo -n "You may want to run the update script at "
+        echo -e "\033[0;31m$emaxdir/scripts/update.sh\033[0m instead."
         exit 1
+    else
+        echo -e "e-max will be installed to \033[0;32m$emaxdir\033[0m"
     fi
 
+fi
+
+
+echo -e "Your personal configuration files will be created at \033[0;32m$confdir\033[0m"
+if [ -e $confdir ]; then
+    create_backup=true
+    backupdir=`date "+$HOME/.emacs.d.old-%Y%m%d-%H%M%S"`
+    echo -n "Your current configuration files at $confdir will "
+    echo -e "be backed up to \033[0;32m$backupdir\033[0m"
+else
+    create_backup=false
+fi
+
+# User confirmation
+echo ""
+echo -e "\033[0;32mPress enter to continue (CTRL + c to cancel)\033[0m"
+(read)
+
+
+# Clone the repository (usually only on through-the-web-install)
+if $clone_repo; then
     echo -e "Cloning e-max to \033[0;32m$emaxdir\033[0m ..."
-    /usr/bin/env git clone https://github.com/senny/e-max.git $emaxdir
-    cd $emaxdir
-    /usr/bin/env git submodule init
-    /usr/bin/env git submodule update
+    /usr/bin/env git clone $cloneurl $emaxdir || exit 1
+    (cd $emaxdir && /usr/bin/env git submodule init) || exit 1
+    (cd $emaxdir && /usr/bin/env git submodule update) || exit 1
+    echo ""
 fi
 
-echo -e "Looking for an existing emacs config in your home directory..."
-if [ -f ~/.emacs ] || [ -h ~/.emacs ]
-then
-    backupfile=`date "+$HOME/.emacs-pre-e-max-%Y%m%d-%H%M%S"`
-    echo -e "Found \033[0;31m~/.emacs\033[0m. Backing up to \033[0;31m$backupfile\033[0m";
-    mv ~/.emacs $backupfile
+# Create backup
+if $create_backup; then
+    echo -e "Moving \033[0;32m$confdir\033[0m to \033[0;32m$backupdir\033[0m"
+    mv $confdir $backupdir
 fi
 
-if [ -d ~/.emacs.d ] || [ -h ~/.emacs.d ]
-then
-    backupdir=`date "+$HOME/.emacs.d-pre-e-max-%Y%m%d-%H%M%S"`
-    echo -e "Found \033[0;31m~/.emacs.d\033[0m. Backing up to \033[0;31m$backupdir\033[0m";
-    mv ~/.emacs.d $backupdir
-fi
 
-echo -e "Creating a \033[0;32m~/.emacs.d\033[0m directory, containing the emacs load file."
-mkdir ~/.emacs.d
+# Create ~/.emacs.d
+echo -e "Setting your configuration directory up (\033[0;32m$confdir\033[0m)"
+templatedir=$emaxdir/templates
 
-cat "$emaxdir/templates/init.el" | sed "s:E-MAX-DIR:$emaxdir:g" > ~/.emacs.d/init.el
+mkdir -p $confdir
+cat "$templatedir/init.el" | sed "s:E-MAX-DIR:$emaxdir:g" > $confdir/init.el
+cp -r $templatedir/emacs.d/* $confdir
 
+userfile="users/`whoami`.el"
+mkdir -p $confdir/users
+cp $templatedir/username.el $confdir/$userfile
+
+machinefile="machines/`hostname -s`.el"
+mkdir -p $confdir/machines
+cp $templatedir/machine.el $confdir/$machinefile
+
+mkdir -p $confdir/bin
+ln -s $emaxdir/scripts/update.sh $confdir/bin/update-e-max
+
+
+# ASCII logo
 echo ""
 d="\033[0;34mX\033[0;32m"
 echo -e "\033[0;32m  $d$d$d$d$d$d\          $d$d$d$d$d$d\ $d$d$d$d\   $d$d$d$d$d$d\  $d$d\   $d$d\     \033[0m"
