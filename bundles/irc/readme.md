@@ -1,7 +1,7 @@
 # irc bundle
 
 This bundle integrates the built-in irc client
-[erc](http://www.emacswiki.org/emacs/ERC) into emacs.
+[erc](http://www.emacswiki.org/emacs/ERC) into e-max.
 
 ## Features
 
