@@ -16,12 +16,35 @@ The following features are provided by the e-max binding API.
 * e-max ships with a set of pre-defined "binding-themes". You can put your own themes into (~/.emacs.d/bindings)
 * it should be possible to completely deactivate the binding api so that it's easier to switch to e-max with an existing configuration.
 
+## ToDo
+
+* support local-bindings / mode-specific bindings
+* allow themes to have dependent-themes to combine or extend existing themes
+
 ## How?
 
-### Theme definitions
-
+;;;; define your color-theme
 (e-max-bindings-make-theme
  "my bindings"
 
- ;; ...definitions...
+ ;; sticky bindings are always active. They can't bi hidden by local-keymaps
+ (sticky "M-j" backward-char)
+
+ ;; global bindings are globally defined but can be hidden behind local-keymaps
+ (global "TAB" e-max-smart-tab)
  )
+
+;;;; set the color-theme you want
+(setq e-max-binding-theme "ergonomic")
+
+;;;; you can also activate any theme with
+(e-max-bindings-activate)
+
+;;;; if you don't want to use the bindings API at all
+(setq e-max-binding-theme nil)
+;;;; you can also disable the bindings-api anytime you want
+(e-max-bindings-deactivate)
+
+## Internals
+
+sticky bindings are stored in a separate keymap. They are added to the variable `emulation-mode-map-alists` when activated.

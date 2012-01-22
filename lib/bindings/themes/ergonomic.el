@@ -1,8 +1,8 @@
 (e-max-bindings-make-theme
  "ergonomic"
 
- (unset "C-p")
- (unset "C-r")
+ ;; (unset "C-p")
+ ;; (unset "C-r")
 
  (sticky "M-j" backward-char)
  (sticky "M-l" forward-char)
@@ -104,7 +104,7 @@
  (sticky "M-<down>" move-text-down)
  (sticky "M-<right>" textmate-shift-right)
  (sticky "M-<left>" textmate-shift-left)
-)
+ )
 
 ;; MISSING BINDINGS
 ;; (when (fboundp 'recentf-ido-find-file)
