@@ -126,3 +126,23 @@ structure:
 
 `e-max-project-location` defaults to "~/Projects/" (currently requires
 `project`-bundle).
+
+
+## Snippets
+
+The bundles adds additional snippets for python buffers:
+
+* `I`: Creates a zope interface class.
+* `Izs`: Creates a zope schema interface class.
+* `zope.schema` fields:
+ * `schema.Bool`
+ * `schema.Choice`
+ * `schema.Date`
+ * `schema.Int`
+ * `schema.List`
+ * `schema.Text`
+ * `schema.TextLine`
+* `description`: Creates a translated description (use within a
+  zope.schema field definition).
+* `label`: Creates a translated label.
+* `title`: Creates a translated title.
