@@ -91,7 +91,7 @@
  (sticky "C-<return>" e-max-duplicate-line)
  (sticky "C-c C-k" e-max-comment-or-uncomment-region-or-line)
  (sticky "C-c k" kill-compilation)
- (sticky "C-f" isearch-forward-regexp)
+ (global "C-f" isearch-forward-regexp)
  (sticky "C-c i" indent-buffer)
  (sticky "C-c n" e-max-cleanup-buffer)
  (sticky "C-x C-b" ibuffer)
@@ -104,6 +104,12 @@
  (sticky "M-<down>" move-text-down)
  (sticky "M-<right>" textmate-shift-right)
  (sticky "M-<left>" textmate-shift-left)
+
+ (ruby-mode "C-h r" yari)
+ (isearch-mode "C-f" isearch-repeat-forward)
+
+ (python-mode "RET" newline-and-indent)
+ (python-mode "C-c f s" e-max-python--sort-lines-at-point)
  )
 
 ;; MISSING BINDINGS
