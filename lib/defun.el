@@ -137,3 +137,38 @@ is a comment, uncomment."
                                                      (concat
                                                       "find \"" directory
                                                       "\" -type f | grep -v \"/.git/\" | grep -v \"/.yardoc/\""))))))))
+
+(defun e-max-debug ()
+  (interactive)
+  (pop-to-buffer "*e-max: Debug*")
+  (delete-region (point-min) (point-max))
+  (let ((e-max-revision (shell-command-to-string
+                         (concat "cd " e-max-repository " && git log -1 --pretty=\"%H\" ")))
+        (active-modes))
+    (mapc (lambda (mode) (condition-case nil
+                             (if (and (symbolp mode) (symbol-value mode))
+                                 (add-to-list 'active-modes mode))
+                           (error nil) ))
+          minor-mode-list)
+
+    (insert (concat "==================== DEBUG OUTPUT ====================\n\n"))
+
+    (insert (concat "== General\n"))
+    (insert "\t- Emacs version: ")
+    (emacs-version t)
+    (newline)
+    (insert "\t- operating system: " (symbol-name system-type))
+    (newline)
+
+    (insert (concat "\n== e-max\n"))
+    (insert (concat "\t- revision: " e-max-revision))
+    (insert "\t- active bundles: ")
+    (princ e-max-bundles (current-buffer))
+    (newline)
+
+    (insert (concat "\n== Emacs"))
+    (insert (concat "\n\t- active-minor-modes: "))
+    (princ active-modes (current-buffer))
+
+    (insert (concat "\n\t- pre-command-hook: "))
+    (princ pre-command-hook (current-buffer))))
