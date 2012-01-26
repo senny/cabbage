@@ -1,6 +1,6 @@
 ;; Configuration
 
-(defcustom e-max-javascript-jslint-enabled t
+(defcustom e-max-javascript-jslint-enabled nil
   "Enable flymake with jslint"
   :type 'boolean
   :group 'e-max)
