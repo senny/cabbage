@@ -33,6 +33,12 @@
 
 (add-hook 'python-mode-hook 'e-max-python--default-config)
 
+(defun e-max-python-keybindings ()
+  (local-set-key (kbd "RET") 'newline-and-indent)
+  (local-set-key (kbd "C-c f s") 'e-max-python--sort-lines-at-point))
+
+(add-hook 'python-mode-hook 'e-max-python-keybindings)
+
 (defun e-max-python-pep8-finished (buffer msg)
   (when (or (eq last-command 'e-max-python-pep8)
             (eq last-command 'e-max-python-pylint))

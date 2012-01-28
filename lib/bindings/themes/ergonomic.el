@@ -1,8 +1,8 @@
 (e-max-bindings-make-theme
  "ergonomic"
 
- ;; (unset "C-p")
- ;; (unset "C-r")
+ (unset "C-p")
+ (unset "C-r")
 
  (sticky "M-j" backward-char)
  (sticky "M-l" forward-char)
@@ -45,6 +45,7 @@
  (sticky "M-S" move-cursor-previous-pane)
 
  (sticky "C-o" find-file)
+ (sticky "C-x f" 'recentf-ido-find-file)
  (sticky "C-c r" revert-buffer)
 
  (sticky "M-a" execute-extended-command)
@@ -105,26 +106,12 @@
  (sticky "M-<right>" textmate-shift-right)
  (sticky "M-<left>" textmate-shift-left)
 
- (ruby-mode "C-h r" yari)
- (isearch-mode "C-f" isearch-repeat-forward)
+ (isearch-mode-map "C-f" isearch-repeat-forward)
+ (isearch-mode-map "M-v" isearch-yank-kill)
+ (isearch-mode-map "M-w" isearch-query-replace)
+ (isearch-mode-map "M-o" isearch-yank-word)
+ (isearch-mode-map "M-l" isearch-yank-char)
+ (isearch-mode-map "M-j" isearch-del-char)
+ (isearch-mode-map "M-u" isearch-delete-char)
 
- (python-mode "RET" newline-and-indent)
- (python-mode "C-c f s" e-max-python--sort-lines-at-point)
  )
-
-;; MISSING BINDINGS
-;; (when (fboundp 'recentf-ido-find-file)
-;;   (e-max-global-set-key (kbd "C-x f") 'recentf-ido-find-file))
-
-;; ;;;; isearch
-;; (define-key isearch-mode-map (kbd "M-s") 'move-cursor-next-pane)
-;; (define-key isearch-mode-map (kbd "M-v") 'isearch-yank-kill)
-;; (define-key isearch-mode-map (kbd "M-w") 'isearch-query-replace)
-;; (define-key isearch-mode-map (kbd "M-o") 'isearch-yank-word)
-;; (define-key isearch-mode-map (kbd "M-l") 'isearch-yank-char)
-;; (define-key isearch-mode-map (kbd "M-j") 'isearch-delete-char)
-;; (define-key isearch-mode-map (kbd "M-u") 'isearch-delete-char)
-;; (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
-;; ;; TODO: find a suitable binding to use the search ring
-;; ;; (define-key isearch-mode-map (kbd "C-i") 'isearch-ring-retreat)
-;; ;; (define-key isearch-mode-map (kbd "C-k") 'isearch-ring-advance)

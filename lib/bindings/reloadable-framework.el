@@ -1,13 +1,7 @@
 (defvar e-max--globaly-bound-keys-alist '())
 
-(defvar e-max-bindings-api-is-active nil
-  "This variable holds the state if the binding-api is active or not")
-
 (defvar e-max-bindings-themes-store (make-hash-table :test 'equal)
   "this variable holds the configuration data for every registered binding theme.")
-
-(defvar e-max-bindings-registerd-themes '()
-  "list of registered binding-theme names")
 
 (defvar e-max-bindings-tracked-modes '()
   "")
@@ -18,14 +12,13 @@
 (defun e-max-bindings-track-mode (mode)
   (when (not (member mode e-max-bindings-tracked-modes))
     (add-to-list 'e-max-bindings-tracked-modes mode)
-    (let* ((mode-name (symbol-name mode))
-          (variable-name (intern (concat "e-max-bindings-is-" mode-name)))
-          (hook-name (intern (concat mode-name "-hook"))))
+    (lexical-let* ((mode-name (symbol-name mode))
+                   (variable-name (intern (concat "e-max-bindings-is-" mode-name)))
+                   (hook-name (intern (concat mode-name "-hook"))))
       (set variable-name nil)
       (make-variable-buffer-local variable-name)
-
       (add-hook hook-name (lambda ()
-                            (setq variable-name t)
+                            (set variable-name t)
                             )))))
 
 (defun e-max-bindings-deactivate ()
