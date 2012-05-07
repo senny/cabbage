@@ -8,6 +8,7 @@
   "Initialize the java bundle."
 
   (e-max-vendor 'java-mode-indent-annotations)
+  (add-hook 'java-mode-hook 'java-mode-indent-annotations-setup)
 
   (when e-max-java-use-eclim
     (add-to-list 'load-path (concat e-max-vendor-dir "eclim/vendor/"))
