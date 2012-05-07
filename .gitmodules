@@ -102,7 +102,10 @@
 	url = https://github.com/rmm5t/maxframe.el.git
 [submodule "vendor/coffee-mode"]
 	path = vendor/coffee-mode
-	url = git://github.com/defunkt/coffee-mode.git
+	url = https://github.com/defunkt/coffee-mode.git
 [submodule "vendor/inf-ruby"]
 	path = vendor/inf-ruby
 	url = https://github.com/nonsequitur/inf-ruby.git
+[submodule "vendor/less-css-mode"]
+	path = vendor/less-css-mode
+	url = https://github.com/purcell/less-css-mode.git

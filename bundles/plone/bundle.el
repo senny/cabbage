@@ -131,10 +131,12 @@ then prompts for a file. Expects to be within a package
          (path nil))
 
     (if (file-accessible-directory-p srcpath)
-        (setq path (concat srcpath
-                           (ido-completing-read
-                            "Package: "
-                            (directory-files srcpath nil "^[^.]"))))
+        (setq path (expand-file-name
+                    (concat srcpath
+                            (ido-completing-read
+                             "Package: "
+                             (append (list "..")
+                                     (directory-files srcpath nil "^[^.]"))))))
 
       (setq path root))
 
