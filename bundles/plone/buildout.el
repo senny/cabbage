@@ -2,6 +2,10 @@
 (defvar e-max-plone-buildout--run-persp-prefix "*fg*")
 (defvar e-max-plone-buildout--tests-persp-prefix "*tests*")
 (defvar e-max-plone-buildout--default-compilation-fun 'pdb)
+(defcustom e-max-plone-buildout--use-local-pep8 nil
+  "Use pep8 executable from buildout when there is one."
+  :type 'boolean
+  :group 'e-max)
 
 
 (defun e-max-plone-run (&optional known-names persp-prefix arguments first-match)
@@ -90,9 +94,9 @@ script in this buildout"
 
 (defun e-max-plone--run-single-file-tests (filename)
   (let ((e-max-plone-run-in-perspective nil)
-         (e-max-plone-buildout--default-compilation-fun 'compile)
-         (testname (file-name-sans-extension
-                    (car (last (split-string filename "/"))))))
+        (e-max-plone-buildout--default-compilation-fun 'compile)
+        (testname (file-name-sans-extension
+                   (car (last (split-string filename "/"))))))
     (e-max-plone-tests (concat "-t " testname) t)))
 
 (defun e-max-plone--python-setup-testing ()
@@ -100,3 +104,34 @@ script in this buildout"
     (setq e-max-testing-execute-function
           'e-max-plone--run-single-file-tests)))
 (add-hook 'python-mode-hook 'e-max-plone--python-setup-testing)
+
+
+(defun e-max-plone--load-local-configuration ()
+  (when e-max-plone-buildout--use-local-pep8
+
+    (defadvice python-pep8 (around python-pep8-around)
+      (let* ((ori-command python-pep8-command)
+             (python-pep8-command
+              (or
+               (e-max-plone-buildout--get-command '(("bin/pep8" "")) t)
+               ori-command)))
+
+        ad-do-it))
+
+    (defun e-max-plone--pep8-package ()
+      (interactive)
+      (when buffer-file-name (save-buffer))
+      (e-max-vendor 'python-pep8)
+      (require 'tramp)
+
+      (let* ((command (e-max-plone-buildout--get-command '(("bin/pep8" "--absolute")) t)))
+        (when command
+          (add-to-list 'compilation-finish-functions 'e-max-python-pep8-finished)
+          (compilation-start command 'python-pep8-mode))
+
+        (message "No bin/pep8 found.")))
+
+    (e-max-global-set-key (kbd "C-c f p") 'e-max-plone--pep8-package)))
+
+
+(add-hook 'e-max-initialized-hook 'e-max-plone--load-local-configuration)
