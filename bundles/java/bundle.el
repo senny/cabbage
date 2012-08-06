@@ -25,7 +25,9 @@
     (case e-max-completion-framework
       ('auto-complete
        (require 'ac-emacs-eclim-source)
-       (add-hook 'eclim-mode-hook (lambda () (add-to-list 'ac-sources 'ac-source-emacs-eclim))))
+       (add-hook 'eclim-mode-hook (lambda ()
+                                    (add-to-list 'ac-sources 'ac-source-emacs-eclim)
+                                    (add-to-list 'ac-sources 'ac-source-emacs-eclim-c-dot))))
       ('company-mode
        (require 'company-emacs-eclim)
        (company-emacs-eclim-setup)))
