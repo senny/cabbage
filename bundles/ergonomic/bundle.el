@@ -127,6 +127,7 @@
 
 (e-max-global-set-key (kbd "C-c C-k") 'e-max-comment-or-uncomment-region-or-line)
 (e-max-global-set-key (kbd "C-c k") 'kill-compilation)
+(e-max-global-set-key (kbd "C-c w") 'remove-trailing-whitespace-mode)
 
 ;;;; Searching
 

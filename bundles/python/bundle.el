@@ -42,11 +42,13 @@
 
 (defun e-max-python-pep8-finished (buffer msg)
   (when (or (eq last-command 'e-max-python-pep8)
-            (eq last-command 'e-max-python-pylint))
-        (pop-to-buffer buffer)
-        (next-error-follow-minor-mode t)
-        (goto-line 5)
-        (next-error-follow-mode-post-command-hook)))
+            (eq last-command 'e-max-python-pylint)
+            (eq last-command 'e-max-plone--pep8-package))
+    (pop-to-buffer buffer)
+    (next-error-follow-minor-mode t)
+    (goto-line 5)
+    (next-error-follow-mode-post-command-hook)
+    (compile-goto-error)))
 
 (defun e-max-python-pep8 ()
   "Check for pep8 errors and go to the first error."
