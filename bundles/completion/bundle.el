@@ -36,6 +36,7 @@ function in the chosen completion framework."
     ('auto-complete
      ;; auto-complete-init
      (message "loading auto-complete")
+     (e-max-vendor 'popup)
      (e-max-vendor 'auto-complete)
      (require 'auto-complete-config)
      (ac-config-default)
