@@ -109,3 +109,6 @@
 [submodule "vendor/less-css-mode"]
 	path = vendor/less-css-mode
 	url = https://github.com/purcell/less-css-mode.git
+[submodule "vendor/popup"]
+	path = vendor/popup
+	url = https://github.com/m2ym/popup-el.git
