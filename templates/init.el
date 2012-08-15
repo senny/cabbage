@@ -2,6 +2,7 @@
 
 (setq e-max-bundles '(
                       accessibility
+                      rect-mark
                       completion
                       css
                       cucumber
