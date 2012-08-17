@@ -93,6 +93,10 @@ nil."
     (beginning-of-buffer)
     (forward-paragraph 2)
 
+    ;; Remove "- Nothing changed yet", if it is there.
+    (mark-paragraph)
+    (replace-string "\n- Nothing changed yet.\n" "")
+
     (newline)
     (insert "- ")
     (newline)
