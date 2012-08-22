@@ -93,6 +93,12 @@ a value of nil means, this buffer does not contain an executable test")
 
 (defun e-max-bundle (bundle)
   "Load the given BUNDLE (which can be either a symbol or a string."
+
+  (interactive (list (make-symbol
+                      (ido-completing-read
+                       "Bundle: "
+                       (directory-files (concat e-max-repository "bundles") nil "^[^.]")))))
+
   (load (concat e-max-bundle-dir
                 (if (symbolp bundle)
                     (symbol-name bundle) bundle)
