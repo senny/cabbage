@@ -97,7 +97,7 @@ a value of nil means, this buffer does not contain an executable test")
   (interactive (list (make-symbol
                       (ido-completing-read
                        "Bundle: "
-                       (directory-files (concat e-max-repository "bundles") nil "^[^.]")))))
+                       (e-max-bundles--list-available)))))
 
   (load (concat e-max-bundle-dir
                 (if (symbolp bundle)
@@ -110,7 +110,7 @@ a value of nil means, this buffer does not contain an executable test")
   "Show available and enabled list of bundles"
   (interactive)
 
-  (let* ((bundles (directory-files (concat e-max-repository "bundles") nil "^[^.]"))
+  (let* ((bundles (e-max-bundles--list-available))
          (active (mapcar (lambda (e) (symbol-name e)) e-max-bundles))
          (inactive (delq nil (mapcar (lambda (e)
                                        (if (not (member e active))
@@ -122,3 +122,6 @@ a value of nil means, this buffer does not contain an executable test")
               (concat "INACTIVE: " (mapconcat 'identity inactive ", "))
               "\n"
               (concat "ACTIVE: " (mapconcat 'identity active ", "))))))
+
+(defun e-max-bundles--list-available ()
+  (directory-files (concat e-max-repository "bundles") nil "^[^.]"))
