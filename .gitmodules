@@ -112,3 +112,7 @@
 [submodule "vendor/popup"]
 	path = vendor/popup
 	url = https://github.com/m2ym/popup-el.git
+
+[submodule "vendor/emacs-jabber"]
+	path = vendor/emacs-jabber
+	url = https://github.com/Abrahanfer/emacs-jabber.git
