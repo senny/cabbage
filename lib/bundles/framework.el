@@ -1,4 +1,5 @@
 (defvar cabbage--globaly-bound-keys-alist '())
+(defvar cabbage--deprecated-bundles '("terminal"))
 
 (defun cabbage-bundle-active-p (bundle-name)
   (member bundle-name cabbage-bundles))
@@ -91,7 +92,7 @@ a value of nil means, this buffer does not contain an executable test")
          (message "Don't know what to do. Open an executable test and run again."))))
 
 
-(defun cabbage-bundle (bundle)
+(defun cabbage-load-bundle (bundle)
   "Load the given BUNDLE (which can be either a symbol or a string."
 
   (interactive (list (make-symbol
@@ -99,12 +100,20 @@ a value of nil means, this buffer does not contain an executable test")
                        "Bundle: "
                        (cabbage-bundles--list-available)))))
 
-  (load (concat cabbage-bundle-dir
-                (if (symbolp bundle)
-                    (symbol-name bundle) bundle)
-                "/bundle"))
-  (add-to-list 'cabbage-bundles bundle))
+  (let ((bundle-name (cabbage--bundle-name bundle)))
+    (when (member bundle-name cabbage--deprecated-bundles)
+      (warn (concat "the bundle '" bundle-name "' is deprecated. We are planning to remove the bundle in future versions of cabbage")))
+    (load (cabbage--bundle-path bundle))
+    (add-to-list 'cabbage-bundles bundle)))
 
+(defun cabbage--bundle-name (symbol-or-string)
+  (if (symbolp symbol-or-string)
+      (symbol-name bundle) symbol-or-string))
+
+(defun cabbage--bundle-path (bundle-name)
+  (concat cabbage-bundle-dir
+          (cabbage--bundle-name bundle-name)
+          "/bundle"))
 
 (defun cabbage-list-bundles ()
   "Show available and enabled list of bundles"
