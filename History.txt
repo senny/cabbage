@@ -1,7 +1,0 @@
-== In Git
-
-=== New Features
-
-* (2012-08-15) tonini: add rect-mark bundle
-
-=== Bugfixes
