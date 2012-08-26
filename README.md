@@ -12,7 +12,7 @@ We want to get e-max working under as many different circumstances as possible. 
 
 ### Automatic installer
 
-    $ bash < <(curl -s https://raw.github.com/senny/e-max/master/scripts/install.sh)
+    $ /usr/bin/env bash -c "$(curl -fsSL https://raw.github.com/senny/e-max/master/scripts/install.sh)"
 
 ### Developer installation
 
