@@ -1,3 +1,20 @@
+
+```shell
+
+                                      $$\       $$\                                     
+                                      $$ |      $$ |                                    
+                   $$$$$$$\  $$$$$$\  $$$$$$$\  $$$$$$$\   $$$$$$\   $$$$$$\   $$$$$$\  
+                  $$  _____| \____$$\ $$  __$$\ $$  __$$\  \____$$\ $$  __$$\ $$  __$$\ 
+                  $$ /       $$$$$$$ |$$ |  $$ |$$ |  $$ | $$$$$$$ |$$ /  $$ |$$$$$$$$ |
+                  $$ |      $$  __$$ |$$ |  $$ |$$ |  $$ |$$  __$$ |$$ |  $$ |$$   ____|
+                  \$$$$$$$\ \$$$$$$$ |$$$$$$$  |$$$$$$$  |\$$$$$$$ |\$$$$$$$ |\$$$$$$$\ 
+                   \_______| \_______|\_______/ \_______/  \_______| \____$$ | \_______|
+                                                                    $$\   $$ |          
+                                                                    \$$$$$$  |          
+                                                                     \______/           
+```
+
+
 ## Overview
 
 cabbage helps you to manage your emacs configuration and allows you to stay in sync with other fellow emacs users. It is designed to be a community-driven framework to build your emacs configuration. The ultimate goal of cabbage is to provide a hassle-free, fast and robust emacs setup.
