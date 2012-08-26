@@ -1,4 +1,4 @@
-(cabbage-bundle 'xml)
+(cabbage-load-bundle 'xml)
 
 
 (add-to-list 'auto-mode-alist '("\\.html$" . nxml-mode))

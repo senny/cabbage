@@ -39,7 +39,7 @@
 (run-hooks 'cabbage-pre-bundle-hook)
 
 (dolist (bundle cabbage-bundles)
-  (cabbage-bundle bundle))
+  (cabbage-load-bundle bundle))
 
 ;; TODO: load this earlier and debug the weird error
 (load (concat cabbage-repository "lib/themes"))
