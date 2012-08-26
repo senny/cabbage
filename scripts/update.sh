@@ -34,7 +34,6 @@ echo -e "$ \033[0;33mgit submodule sync\033[00m ..."
 echo -e "$ \033[0;33mgit submodule update\033[00m ..."
 (cd $emaxdir && /usr/bin/env git submodule update)
 
-
 echo ""
 d="\033[0;34m$\033[0;32m"
 echo -e "\033[0;32m                      $d$d\       $d$d\\033[0m"
@@ -48,4 +47,11 @@ echo -e "\033[0;32m   \_______| \_______|\_______/ \_______/  \_______| \____$d$
 echo -e "\033[0;32m                                                    $d$d\   $d$d |\033[0m"
 echo -e "\033[0;32m                                                    \\\\$d$d$d$d$d$d  |\033[0m"
 echo -e "\033[0;32m                                                     \______/\033[0m"
+echo ""
+
+
+echo ""
+echo "CHANGELOG:"
+echo ""
+(cd $emaxdir && git --no-pager log --format="%C(blue)%h%Creset %s [%C(red)%an%Creset, %C(cyan)%cr%Creset] %C(bold reverse)%N%Creset%n        %b%n" --first-parent `cat .git/ORIG_HEAD`..HEAD)
 echo ""
