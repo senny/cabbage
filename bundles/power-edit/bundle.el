@@ -54,12 +54,12 @@
     (bury-buffer)
     (switch-to-buffer buffer)))
 
-(e-max-vendor 'textmate)
+(cabbage-vendor 'textmate)
 (global-set-key (kbd "M-<up>") 'move-text-up)
 (global-set-key (kbd "M-<down>") 'move-text-down)
 (global-set-key (kbd "M-<right>")  'textmate-shift-right)
 (global-set-key (kbd "M-<left>") 'textmate-shift-left)
 
-;; Do not e-max-global-set-key TAB because this would override local
+;; Do not cabbage-global-set-key TAB because this would override local
 ;; bindings such as in magit.
-(global-set-key (kbd "TAB") 'e-max-smart-tab)
+(global-set-key (kbd "TAB") 'cabbage-smart-tab)

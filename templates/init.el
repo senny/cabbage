@@ -1,2 +1,2 @@
-(setq e-max-repository (expand-file-name "E-MAX-DIR/"))
-(load (concat e-max-repository "e-max"))
+(setq cabbage-repository (expand-file-name "CABBAGE-DIR/"))
+(load (concat cabbage-repository "cabbage"))

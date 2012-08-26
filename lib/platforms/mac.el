@@ -1,15 +1,15 @@
 ;; config
-(defcustom e-max-mac-use-shell-path nil
+(defcustom cabbage-mac-use-shell-path nil
   "Set this to ture, if you want Emacs to use the PATH of your bin/bash"
-  :group 'e-max
+  :group 'cabbage
   :type 'boolean)
 
-(defcustom e-max-mac-force-bash t
+(defcustom cabbage-mac-force-bash t
   "Use bin/bash as default shell for Emacs to work around PATH issues with zsh"
-  :group 'e-max
+  :group 'cabbage
   :type 'boolean)
 
-(when e-max-mac-force-bash
+(when cabbage-mac-force-bash
   (setq shell-file-name "/bin/bash"))
 
 ;; start the server to use emacsclient from the console
@@ -34,7 +34,7 @@
 
 (setq mac-emulate-three-button-mouse nil)
 
-(defun e-max-mac-use-shell-path ()
+(defun cabbage-mac-use-shell-path ()
   (interactive)
   (let ((path-from-shell
          (replace-regexp-in-string
@@ -43,8 +43,8 @@
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 
-(when e-max-mac-use-shell-path
-  (e-max-mac-use-shell-path))
+(when cabbage-mac-use-shell-path
+  (cabbage-mac-use-shell-path))
 
 ;; make emacs use the clipboard
 (setq x-select-enable-clipboard t)

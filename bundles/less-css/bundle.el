@@ -1,2 +1,2 @@
-(e-max-vendor 'less-css-mode)
+(cabbage-vendor 'less-css-mode)
 

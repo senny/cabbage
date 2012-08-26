@@ -1,4 +1,4 @@
-(load (concat e-max-vendor-dir "rect-mark"))
+(load (concat cabbage-vendor-dir "rect-mark"))
 
 (defun rectangle-replace-string (from-string to-string delimited startcol endcol)
   "Search and replace a rectangle."
@@ -28,9 +28,9 @@
     startcol endcol from-string to-string)))
 
 
-(e-max-global-set-key (kbd "C-x r M-SPC") 'rm-set-mark)
-(e-max-global-set-key (kbd "C-x r M-x")   'rm-kill-region)
-(e-max-global-set-key (kbd "C-x r M-c")   'rm-kill-ring-save)
-(e-max-global-set-key (kbd "C-x r M-r")   'rectangle-replace-string)
-(e-max-global-set-key (kbd "C-x r s")     'string-rectangle)
-(e-max-global-set-key (kbd "C-x r <down-mouse-1>") 'rm-mouse-drag-region)
+(cabbage-global-set-key (kbd "C-x r M-SPC") 'rm-set-mark)
+(cabbage-global-set-key (kbd "C-x r M-x")   'rm-kill-region)
+(cabbage-global-set-key (kbd "C-x r M-c")   'rm-kill-ring-save)
+(cabbage-global-set-key (kbd "C-x r M-r")   'rectangle-replace-string)
+(cabbage-global-set-key (kbd "C-x r s")     'string-rectangle)
+(cabbage-global-set-key (kbd "C-x r <down-mouse-1>") 'rm-mouse-drag-region)

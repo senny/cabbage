@@ -1,2 +1,2 @@
-(e-max-vendor 'jump)
-(e-max-vendor 'rinari)
+(cabbage-vendor 'jump)
+(cabbage-vendor 'rinari)

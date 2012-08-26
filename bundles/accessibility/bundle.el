@@ -1,17 +1,17 @@
-(e-max-vendor 'maxframe)
+(cabbage-vendor 'maxframe)
 
-(defcustom e-max-accessibility-force-side-by-side-split nil
+(defcustom cabbage-accessibility-force-side-by-side-split nil
   "set if you want emacs to split vertically"
-  :group 'e-max
+  :group 'cabbage
   :type 'boolean)
 
-(defcustom e-max-accessibility-show-line-numbers nil
+(defcustom cabbage-accessibility-show-line-numbers nil
   "set to t if you want to have the line-numbers on the left side of your buffers"
-  :group 'e-max
+  :group 'cabbage
   :type 'boolean)
 
-(e-max-vendor 'idle-highlight-mode)
-(e-max-vendor 'popwin)
+(cabbage-vendor 'idle-highlight-mode)
+(cabbage-vendor 'popwin)
 
 (when window-system
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
@@ -40,11 +40,11 @@
 (setq-default cursor-type '(bar . 2))
 (setq-default indicate-empty-lines t)
 
-(when e-max-accessibility-force-side-by-side-split
+(when cabbage-accessibility-force-side-by-side-split
   (setq split-height-threshold nil)
   (setq split-width-threshold 0))
 
-(when e-max-accessibility-show-line-numbers
+(when cabbage-accessibility-show-line-numbers
   (global-linum-mode)
   (setq linum-format "%3d "))
 
@@ -63,7 +63,7 @@
                       (ceiling (* 1.10
                                   (face-attribute 'default :height))))
 
-  (if (e-max-bundle-active-p 'maximize)
+  (if (cabbage-bundle-active-p 'maximize)
     (maximize-frame)))
 
 (defun decrease-font-size ()
@@ -74,7 +74,7 @@
                       (floor (* 0.9
                                 (face-attribute 'default :height))))
 
-  (if (e-max-bundle-active-p 'maximize)
+  (if (cabbage-bundle-active-p 'maximize)
       (maximize-frame)))
 
 (global-set-key (kbd "<f5>") 'ns-toggle-fullscreen)

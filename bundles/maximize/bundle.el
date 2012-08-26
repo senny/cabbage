@@ -1,3 +1,3 @@
-(e-max-vendor 'maxframe)
+(cabbage-vendor 'maxframe)
 (maximize-frame)
 

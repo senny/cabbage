@@ -1,5 +1,5 @@
-(defvar e-max-pre-bundle-hook nil
-  "A hook which is run before the `e-max' bundles will be loaded.")
+(defvar cabbage-pre-bundle-hook nil
+  "A hook which is run before the `cabbage' bundles will be loaded.")
 
-(defvar e-max-initialized-hook nil
-  "A hook that's run after `e-max' has been initialized.")
+(defvar cabbage-initialized-hook nil
+  "A hook that's run after `cabbage' has been initialized.")

@@ -11,14 +11,14 @@
 is to be inserted."
   :type 'regexp :group 'ruby-electric)
 
-(defun e-max-ruby-electric-code-at-point-p()
-  (and e-max-ruby-automatically-insert-end
+(defun cabbage-ruby-electric-code-at-point-p()
+  (and cabbage-ruby-automatically-insert-end
        (let* ((properties (text-properties-at (point))))
          (and (null (memq 'font-lock-string-face properties))
               (null (memq 'font-lock-comment-face properties))))))
 
-(defun e-max-ruby-electric-space-can-be-expanded-p()
-  (if (e-max-ruby-electric-code-at-point-p)
+(defun cabbage-ruby-electric-space-can-be-expanded-p()
+  (if (cabbage-ruby-electric-code-at-point-p)
       (let* ((ruby-electric-keywords-re
               (concat ruby-electric-simple-keywords-re "\\s-$"))
              (ruby-electric-single-keyword-in-line-re
@@ -32,10 +32,10 @@ is to be inserted."
                      (beginning-of-line)
                      (looking-at ruby-electric-single-keyword-in-line-re))))))))
 
-(defun e-max-ruby-electric-space (arg)
+(defun cabbage-ruby-electric-space (arg)
   (interactive "P")
   (self-insert-command (prefix-numeric-value arg))
-  (if (e-max-ruby-electric-space-can-be-expanded-p)
+  (if (cabbage-ruby-electric-space-can-be-expanded-p)
       (save-excursion
         (ruby-indent-line t)
         (newline)

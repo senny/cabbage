@@ -1,18 +1,18 @@
 
-(defcustom e-max-java-use-eclim t
+(defcustom cabbage-java-use-eclim t
   "Use eclim for managing java files."
   :type 'boolean
-  :group 'e-max)
+  :group 'cabbage)
 
-(defun e-max-java-init ()
+(defun cabbage-java-init ()
   "Initialize the java bundle."
 
-  (e-max-vendor 'java-mode-indent-annotations)
+  (cabbage-vendor 'java-mode-indent-annotations)
   (add-hook 'java-mode-hook 'java-mode-indent-annotations-setup)
 
-  (when e-max-java-use-eclim
-    (add-to-list 'load-path (concat e-max-vendor-dir "eclim/vendor/"))
-    (e-max-vendor 'eclim)
+  (when cabbage-java-use-eclim
+    (add-to-list 'load-path (concat cabbage-vendor-dir "eclim/vendor/"))
+    (cabbage-vendor 'eclim)
 
     (setq eclim-interactive-completion-function 'ido-completing-read)
 
@@ -22,7 +22,7 @@
 
     (global-eclim-mode t)
 
-    (case e-max-completion-framework
+    (case cabbage-completion-framework
       ('auto-complete
        (require 'ac-emacs-eclim-source)
        (add-hook 'eclim-mode-hook (lambda ()
@@ -34,11 +34,11 @@
 
     ;; If we are using the snippets bundle, append the eclim
     ;; yasnippets dir to the list of yasnippet directories
-    (if (and eclim-use-yasnippet (e-max-bundle-active-p 'snippets))
-        (add-hook 'e-max-initialized-hook
+    (if (and eclim-use-yasnippet (cabbage-bundle-active-p 'snippets))
+        (add-hook 'cabbage-initialized-hook
                   (lambda ()
-                    (let ((dir (concat e-max-vendor-dir "eclim/snippets/")))
+                    (let ((dir (concat cabbage-vendor-dir "eclim/snippets/")))
                       (add-to-list 'yas/root-directory dir t)
                       (yas/load-directory dir)))))))
 
-(e-max-java-init)
+(cabbage-java-init)

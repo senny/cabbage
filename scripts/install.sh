@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-cloneurl="https://github.com/senny/e-max.git"
+cloneurl="https://github.com/senny/cabbage.git"
 confdir=$HOME/.emacs.d
 
 
 echo ""
-echo -e "\033[1;32mWelcome to the e-max installation wizard.\033[0m"
+echo -e "\033[1;32mWelcome to the cabbage installation wizard.\033[0m"
 echo ""
 
 # git is required
@@ -38,25 +38,25 @@ if [ -f `dirname $0`/install.sh ]; then
         fi
 
     else
-        # script run with absolute path (/home/me/e-max/scripts/install.sh)
+        # script run with absolute path (/home/me/cabbage/scripts/install.sh)
         emaxdir=`dirname \`dirname $0\``
     fi
 
-    echo -e "Your e-max repository is at \033[0;32m$emaxdir\033[0m"
+    echo -e "Your cabbage repository is at \033[0;32m$emaxdir\033[0m"
 
 else
     # If the script is run directly from curl, we are going to check out
-    # the repository to ~/.e-max.
-    emaxdir=$HOME/.e-max
+    # the repository to ~/.cabbage.
+    emaxdir=$HOME/.cabbage
     clone_repo=true
 
     if [ -d $emaxdir ]; then
-        echo -e "\033[0;31mYou already have e-max installed at $emaxdir\033[0m"
+        echo -e "\033[0;31mYou already have cabbage installed at $emaxdir\033[0m"
         echo -n "You may want to run the update script at "
         echo -e "\033[0;31m$emaxdir/scripts/update.sh\033[0m instead."
         exit 1
     else
-        echo -e "e-max will be installed to \033[0;32m$emaxdir\033[0m"
+        echo -e "cabbage will be installed to \033[0;32m$emaxdir\033[0m"
     fi
 
 fi
@@ -80,7 +80,7 @@ echo -e "\033[0;32mPress enter to continue (CTRL + c to cancel)\033[0m"
 
 # Clone the repository (usually only on through-the-web-install)
 if $clone_repo; then
-    echo -e "Cloning e-max to \033[0;32m$emaxdir\033[0m ..."
+    echo -e "Cloning cabbage to \033[0;32m$emaxdir\033[0m ..."
     /usr/bin/env git clone $cloneurl $emaxdir || exit 1
     (cd $emaxdir && /usr/bin/env git submodule init) || exit 1
     (cd $emaxdir && /usr/bin/env git submodule update) || exit 1
@@ -99,7 +99,7 @@ echo -e "Setting your configuration directory up (\033[0;32m$confdir\033[0m)"
 templatedir=$emaxdir/templates
 
 mkdir -p $confdir
-cat "$templatedir/init.el" | sed "s:E-MAX-DIR:$emaxdir:g" > $confdir/init.el
+cat "$templatedir/init.el" | sed "s:CABBAGE-DIR:$emaxdir:g" > $confdir/init.el
 cp -r $templatedir/emacs.d/* $confdir
 
 userfile="users/`whoami`.el"
@@ -111,29 +111,34 @@ mkdir -p $confdir/machines
 cp $templatedir/machine.el $confdir/$machinefile
 
 mkdir -p $confdir/bin
-ln -s $emaxdir/scripts/update.sh $confdir/bin/update-e-max
+ln -s $emaxdir/scripts/update.sh $confdir/bin/update-cabbage
 
 
 # ASCII logo
 echo ""
-d="\033[0;34mX\033[0;32m"
-echo -e "\033[0;32m  $d$d$d$d$d$d\          $d$d$d$d$d$d\ $d$d$d$d\   $d$d$d$d$d$d\  $d$d\   $d$d\     \033[0m"
-echo -e "\033[0;32m  $d$d  __$d$d\ $d$d$d$d$d$d\ $d$d  _$d$d  _$d$d\  \____$d$d\  $d$d\ $d$d  |   \033[0m"
-echo -e "\033[0;32m  $d$d$d$d$d$d$d$d |\______|$d$d / $d$d / $d$d | $d$d$d$d$d$d$d |  $d$d$d$d  /    \033[0m"
-echo -e "\033[0;32m  $d$d   ____|        $d$d | $d$d | $d$d |$d$d  __$d$d | $d$d  $d$d<     \033[0m"
-echo -e "\033[0;32m   $d$d$d$d$d$d$d\         $d$d | $d$d | $d$d |\ $d$d$d$d$d$d |$d$d  ^ $d$d\    \033[0m"
-echo -e "\033[0;32m   \_______|        \__| \__| \__| \_______|\__/  \__|   \033[0m"
+d="\033[0;34m$\033[0;32m"
+echo -e "\033[0;32m                      $d$d\       $d$d\\033[0m"
+echo -e "\033[0;32m                      $d$d |      $d$d |\033[0m"
+echo -e "\033[0;32m   $d$d$d$d$d$d$d\  $d$d$d$d$d$d\  $d$d$d$d$d$d$d\  $d$d$d$d$d$d$d\   $d$d$d$d$d$d\   $d$d$d$d$d$d\   $d$d$d$d$d$d\\033[0m"
+echo -e "\033[0;32m  $d$d  _____| \____$d$d\ $d$d  __$d$d\ $d$d  __$d$d\  \____$d$d\ $d$d  __$d$d\ $d$d  __$d$d\\033[0m"
+echo -e "\033[0;32m  $d$d /       $d$d$d$d$d$d$d |$d$d |  $d$d |$d$d |  $d$d | $d$d$d$d$d$d$d |$d$d /  $d$d |$d$d$d$d$d$d$d$d |\033[0m"
+echo -e "\033[0;32m  $d$d |      $d$d  __$d$d |$d$d |  $d$d |$d$d |  $d$d |$d$d  __$d$d |$d$d |  $d$d |$d$d   ____|\033[0m"
+echo -e "\033[0;32m  \\\\$d$d$d$d$d$d$d\ \\\\$d$d$d$d$d$d$d |$d$d$d$d$d$d$d  |$d$d$d$d$d$d$d  |\\\\$d$d$d$d$d$d$d |\\\\$d$d$d$d$d$d$d |\\\\$d$d$d$d$d$d$d\\033[0m"
+echo -e "\033[0;32m   \_______| \_______|\_______/ \_______/  \_______| \____$d$d | \_______|\033[0m"
+echo -e "\033[0;32m                                                    $d$d\   $d$d |\033[0m"
+echo -e "\033[0;32m                                                    \\\\$d$d$d$d$d$d  |\033[0m"
+echo -e "\033[0;32m                                                     \______/\033[0m"
 echo ""
 
 
 
 # Summary / first steps
 
-echo "The e-max installation was successful."
+echo "The cabbage installation was successful."
 echo -e  " - Your configuration is stored at \033[0;32m$confdir\033[0m"
 echo -e  " - Configure your bundles at \033[0;32m$confdir/bundles.el\033[0m"
-echo -en " - Keep your e-max up to date with the script at"
-echo -e "\033[0;32m $confdir/bin/update-e-max \033[0m"
+echo -en " - Keep your cabbage up to date with the script at"
+echo -e "\033[0;32m $confdir/bin/update-cabbage \033[0m"
 echo -en " - If you experience problems, feel free to create an issue at"
-echo -e  "\033[0;32m https://github.com/senny/e-max/issues \033[0m"
-echo " - Your contributions to e-max are very welcome! Send us your pull requests."
+echo -e  "\033[0;32m https://github.com/senny/cabbage/issues \033[0m"
+echo " - Your contributions to cabbage are very welcome! Send us your pull requests."

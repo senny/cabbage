@@ -1,9 +1,9 @@
-(e-max-vendor 'yaml-mode)
+(cabbage-vendor 'yaml-mode)
 
 (add-to-list 'auto-mode-alist '("\\.ya?ml$" . yaml-mode))
 
 ;; Hooks
-(defun e-max-yaml-hook ()
-  (e-max--set-pairs '("(" "\"" "\'" "{")))
+(defun cabbage-yaml-hook ()
+  (cabbage--set-pairs '("(" "\"" "\'" "{")))
 
-(add-hook 'yaml-mode-hook 'e-max-yaml-hook)
+(add-hook 'yaml-mode-hook 'cabbage-yaml-hook)

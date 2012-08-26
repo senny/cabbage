@@ -1,10 +1,10 @@
 ;; Configuration
 
-(defcustom e-max-python-pyflakes-enabled
+(defcustom cabbage-python-pyflakes-enabled
   t
   "Enable flymake with pyflakes in python mode"
   :type 'boolean
-  :group 'e-max)
+  :group 'cabbage)
 
 
 ;;;; -------------------------------------
@@ -13,7 +13,7 @@
 
 ;; helpers
 
-(defun e-max-python--sort-lines-at-point ()
+(defun cabbage-python--sort-lines-at-point ()
   "Sorts lines of the block at point. Used for sorting python imports."
   (interactive)
   (mark-paragraph)
@@ -22,51 +22,51 @@
 
 ;; hooks
 
-(defun e-max-python-set-pairs ()
-  (e-max--set-pairs '("(" "{" "[" "\"" "\'" "`")))
+(defun cabbage-python-set-pairs ()
+  (cabbage--set-pairs '("(" "{" "[" "\"" "\'" "`")))
 
-(add-hook 'python-mode-hook 'e-max-python-set-pairs)
+(add-hook 'python-mode-hook 'cabbage-python-set-pairs)
 
 
-(defun e-max-python--default-config ()
+(defun cabbage-python--default-config ()
   (set (make-local-variable 'tab-width) 4))
 
-(add-hook 'python-mode-hook 'e-max-python--default-config)
+(add-hook 'python-mode-hook 'cabbage-python--default-config)
 
 
-(defun e-max-python-keybindings ()
+(defun cabbage-python-keybindings ()
   (local-set-key (kbd "RET") 'newline-and-indent)
-  (local-set-key (kbd "C-c f s") 'e-max-python--sort-lines-at-point))
+  (local-set-key (kbd "C-c f s") 'cabbage-python--sort-lines-at-point))
 
-(add-hook 'python-mode-hook 'e-max-python-keybindings)
+(add-hook 'python-mode-hook 'cabbage-python-keybindings)
 
-(defun e-max-python-pep8-finished (buffer msg)
-  (when (or (eq last-command 'e-max-python-pep8)
-            (eq last-command 'e-max-python-pylint)
-            (eq last-command 'e-max-plone--pep8-package))
+(defun cabbage-python-pep8-finished (buffer msg)
+  (when (or (eq last-command 'cabbage-python-pep8)
+            (eq last-command 'cabbage-python-pylint)
+            (eq last-command 'cabbage-plone--pep8-package))
     (pop-to-buffer buffer)
     (next-error-follow-minor-mode t)
     (goto-line 5)
     (next-error-follow-mode-post-command-hook)
     (compile-goto-error)))
 
-(defun e-max-python-pep8 ()
+(defun cabbage-python-pep8 ()
   "Check for pep8 errors and go to the first error."
   (interactive)
 
-  (e-max-vendor 'python-pep8)
+  (cabbage-vendor 'python-pep8)
   (require 'tramp)
 
-  (add-to-list 'compilation-finish-functions 'e-max-python-pep8-finished)
+  (add-to-list 'compilation-finish-functions 'cabbage-python-pep8-finished)
   (pep8))
 
-(defun e-max-python-configure-pep8 ()
-  (local-set-key (kbd "C-°") 'e-max-python-pep8))
+(defun cabbage-python-configure-pep8 ()
+  (local-set-key (kbd "C-°") 'cabbage-python-pep8))
 
-(add-hook 'python-mode-hook 'e-max-python-configure-pep8)
+(add-hook 'python-mode-hook 'cabbage-python-configure-pep8)
 
 
-(defun e-max-python-pylint ()
+(defun cabbage-python-pylint ()
   "Check for pylint errors on key-press rather than using flymake."
   (interactive)
   (let ((command (concat (executable-find "epylint")
@@ -74,18 +74,18 @@
                          ;; this regexp reformats the epylint output so that it matches the pep8 output
                          ;; XXX we could "let" python-pep8-regexp-alist instead.
                          " | sed -e 's/\\([^:]*:[^:]*:\\)\\([^(]*(\\)\\([EW][0-9]*\\)\\(.*\\)/\\11: \\3\\2\\3\\4/'")))
-    (add-to-list 'compilation-finish-functions 'e-max-python-pep8-finished)
+    (add-to-list 'compilation-finish-functions 'cabbage-python-pep8-finished)
     (compilation-start command 'python-pep8-mode)))
 
-(defun e-max-python-configure-pylint ()
-  (local-set-key (kbd "C-M-§") 'e-max-python-pylint))
+(defun cabbage-python-configure-pylint ()
+  (local-set-key (kbd "C-M-§") 'cabbage-python-pylint))
 
-(add-hook 'python-mode-hook 'e-max-python-configure-pylint)
+(add-hook 'python-mode-hook 'cabbage-python-configure-pylint)
 
-(defun e-max-python-flymake ()
-  (when (and e-max-python-pyflakes-enabled (executable-find "pyflakes"))
+(defun cabbage-python-flymake ()
+  (when (and cabbage-python-pyflakes-enabled (executable-find "pyflakes"))
     (when (load "flymake" t)
-      (e-max-flymake-init)
+      (cabbage-flymake-init)
 
       (defun flymake-pyflakes-init ()
         (let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -100,13 +100,13 @@
 
     (flymake-find-file-hook)))
 
-(add-hook 'python-mode-hook 'e-max-python-flymake)
+(add-hook 'python-mode-hook 'cabbage-python-flymake)
 
 
-(defun e-max-python-init-snippets ()
-  (when (e-max-bundle-active-p 'snippets)
+(defun cabbage-python-init-snippets ()
+  (when (cabbage-bundle-active-p 'snippets)
     (add-to-list 'yas/root-directory
-                 (concat (concat e-max-bundle-dir "python/snippets")) t)
+                 (concat (concat cabbage-bundle-dir "python/snippets")) t)
     (yas/reload-all)))
 
-(add-hook 'python-mode-hook 'e-max-python-init-snippets)
+(add-hook 'python-mode-hook 'cabbage-python-init-snippets)

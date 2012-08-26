@@ -20,15 +20,15 @@
 (if (file-exists-p user-specific-config) (load user-specific-config))
 (if (file-exists-p local-config) (load local-config) )
 
-(add-to-list 'load-path e-max-repository)
+(add-to-list 'load-path cabbage-repository)
 
-(load (concat e-max-repository "lib/variables"))
-(load (concat e-max-repository "lib/bundles/framework"))
-(load (concat e-max-repository "lib/defun"))
-(load (concat e-max-repository "lib/setup"))
-(load (concat e-max-repository "lib/perspective"))
-(load (concat e-max-repository "lib/compilation"))
-(load (concat e-max-repository "lib/modes"))
+(load (concat cabbage-repository "lib/variables"))
+(load (concat cabbage-repository "lib/bundles/framework"))
+(load (concat cabbage-repository "lib/defun"))
+(load (concat cabbage-repository "lib/setup"))
+(load (concat cabbage-repository "lib/perspective"))
+(load (concat cabbage-repository "lib/compilation"))
+(load (concat cabbage-repository "lib/modes"))
 
 (cond
  ((string-match "nt" system-configuration)
@@ -36,12 +36,12 @@
  ((string-match "apple" system-configuration)
   (load "lib/platforms/mac")))
 
-(run-hooks 'e-max-pre-bundle-hook)
+(run-hooks 'cabbage-pre-bundle-hook)
 
-(dolist (bundle e-max-bundles)
-  (e-max-bundle bundle))
+(dolist (bundle cabbage-bundles)
+  (cabbage-bundle bundle))
 
 ;; TODO: load this earlier and debug the weird error
-(load (concat e-max-repository "lib/themes"))
+(load (concat cabbage-repository "lib/themes"))
 
-(run-hooks 'e-max-initialized-hook)
+(run-hooks 'cabbage-initialized-hook)

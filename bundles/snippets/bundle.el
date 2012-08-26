@@ -5,16 +5,16 @@
 ;; ones with yas/new-snippet
 ;;
 
-(e-max-vendor 'yasnippet-bundle)
+(cabbage-vendor 'yasnippet-bundle)
 
-(defvar e-max-snippets--default-directory
+(defvar cabbage-snippets--default-directory
   (expand-file-name "~/.emacs.d/snippets/")
   "Default snippets directory.")
 
-(if (not (file-exists-p e-max-snippets--default-directory))
-    (make-directory e-max-snippets--default-directory))
+(if (not (file-exists-p cabbage-snippets--default-directory))
+    (make-directory cabbage-snippets--default-directory))
 
-(setq yas/root-directory (list e-max-snippets--default-directory
-                               (concat e-max-bundle-dir "snippets/")))
+(setq yas/root-directory (list cabbage-snippets--default-directory
+                               (concat cabbage-bundle-dir "snippets/")))
 (yas/initialize)
 (yas/reload-all)

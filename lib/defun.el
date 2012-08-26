@@ -1,12 +1,12 @@
-(defun e-max--set-pairs (pairs)
+(defun cabbage--set-pairs (pairs)
   "Sets up handling of pair characters."
-  (when (e-max-insert-pairs-p)
+  (when (cabbage-insert-pairs-p)
     (mapcar (lambda (pair)
               (local-set-key pair 'skeleton-pair-insert-maybe))
             pairs)
     (setq skeleton-pair t)))
 
-(defun e-max--find-parent-with-file (path filename)
+(defun cabbage--find-parent-with-file (path filename)
   "Traverse PATH upwards until we find FILENAME in the dir.
 If we find it return the path of that dir, othwise nil is
 returned."
@@ -16,25 +16,25 @@ returned."
       ;; Make sure we do not go into infinite recursion
       (if (string-equal path parent-dir)
           nil
-        (e-max--find-parent-with-file parent-dir filename)))))
+        (cabbage--find-parent-with-file parent-dir filename)))))
 
-(defun e-max--expand-symlinks-recursively (path)
+(defun cabbage--expand-symlinks-recursively (path)
   "Follows symlinks of path and every parent directory."
   (let* ((realpath (or (file-symlink-p path) path))
          (parent (replace-regexp-in-string
                   "\/$" ""
                   (file-name-directory (directory-file-name realpath)))))
     (if (not (equal parent ""))
-        (concat (e-max--expand-symlinks-recursively parent)
+        (concat (cabbage--expand-symlinks-recursively parent)
                 (substring realpath (length parent)))
       realpath)))
 
-(defun e-max-kill-buffer ()
+(defun cabbage-kill-buffer ()
   (interactive)
   (kill-buffer (buffer-name)))
 
 ;; Taken from: http://www.emacswiki.org/emacs/TabCompletion#toc2
-(defun e-max-smart-tab ()
+(defun cabbage-smart-tab ()
   "This smart tab is minibuffer compliant: it acts as usual in
     the minibuffer. Else, if mark is active, indents region. Else if
     point is at the end of a symbol, expands it. Else indents the
@@ -50,32 +50,32 @@ returned."
       ;; When multiple indent positions of a line are possible (such as
       ;; often in python code), we need to reset this-command and
       ;; last-command so that cycling through positions is possible.
-      ;; This makes e-max-smart-tab more transparent in this case.
+      ;; This makes cabbage-smart-tab more transparent in this case.
       (if (eq this-command last-command)
           (let ((this-command 'indent-for-tab-command)
                 (last-command 'indent-for-tab-command))
             (indent-for-tab-command))
         (indent-for-tab-command)))))
 
-(defun e-max-indent-buffer ()
+(defun cabbage-indent-buffer ()
   "Indent each nonblank line in the buffer. See `indent-region"
   (interactive)
   (indent-region (point-min) (point-max)))
 
-(defun e-max-untabify-buffer ()
+(defun cabbage-untabify-buffer ()
   "Convert all tabs in the buffer to multiple spaces. See `untabify`."
   (interactive)
   (untabify (point-min) (point-max)))
 
-(defun e-max-cleanup-buffer ()
+(defun cabbage-cleanup-buffer ()
   "Perform task such as auto-indent, untabify and delete trailing whitespace
 on the current buffer."
   (interactive)
-  (e-max-indent-buffer)
-  (e-max-untabify-buffer)
+  (cabbage-indent-buffer)
+  (cabbage-untabify-buffer)
   (delete-trailing-whitespace))
 
-(defun e-max-duplicate-line ()
+(defun cabbage-duplicate-line ()
   "duplicate the current line on the line below it."
   (interactive)
   (beginning-of-line)
@@ -85,7 +85,7 @@ on the current buffer."
   (beginning-of-line)
   (indent-according-to-mode))
 
-(defun e-max-comment-or-uncomment-line (&optional lines)
+(defun cabbage-comment-or-uncomment-line (&optional lines)
   "Comment current line. Argument gives the number of lines
 forward to comment"
   (interactive "P")
@@ -93,7 +93,7 @@ forward to comment"
    (line-beginning-position)
    (line-end-position lines)))
 
-(defun e-max-comment-or-uncomment-region-or-line (&optional lines)
+(defun cabbage-comment-or-uncomment-region-or-line (&optional lines)
   "If the line or region is not a comment, comments region
 if mark is active, line otherwise. If the line or region
 is a comment, uncomment."
@@ -103,12 +103,12 @@ is a comment, uncomment."
           (comment-or-uncomment-region (mark) (point))
         (comment-or-uncomment-region (point) (mark))
         )
-    (e-max-comment-or-uncomment-line lines)))
+    (cabbage-comment-or-uncomment-line lines)))
 
 ;; for loading libraries in from the vendor directory
-(defun e-max-vendor (library)
+(defun cabbage-vendor (library)
   (let* ((file (symbol-name library))
-         (normal (concat e-max-vendor-dir file))
+         (normal (concat cabbage-vendor-dir file))
          (suffix (concat normal ".el")))
     (cond
      ((file-directory-p normal)
@@ -121,13 +121,13 @@ is a comment, uncomment."
       (require library)))))
 
 
-(defun e-max-next-line ()
+(defun cabbage-next-line ()
   "Inserts an indented newline after the current line and moves the point to it."
   (interactive)
   (end-of-line)
   (newline-and-indent))
 
-(defun e-max-ido-open-find-directory-files (directory)
+(defun cabbage-ido-open-find-directory-files (directory)
   (let ((directory (concat (replace-regexp-in-string "\/?$" "" (expand-file-name directory)) "/")))
     (concat directory (ido-completing-read (concat directory ": ")
                                            (mapcar (lambda (path)
@@ -138,12 +138,12 @@ is a comment, uncomment."
                                                       "find \"" directory
                                                       "\" -type f | grep -v \"/.git/\" | grep -v \"/.yardoc/\""))))))))
 
-(defun e-max-debug ()
+(defun cabbage-debug ()
   (interactive)
-  (pop-to-buffer "*e-max: Debug*")
+  (pop-to-buffer "*cabbage: Debug*")
   (delete-region (point-min) (point-max))
-  (let ((e-max-revision (shell-command-to-string
-                         (concat "cd " e-max-repository " && git log -1 --pretty=\"%H\" ")))
+  (let ((cabbage-revision (shell-command-to-string
+                         (concat "cd " cabbage-repository " && git log -1 --pretty=\"%H\" ")))
         (active-modes))
     (mapc (lambda (mode) (condition-case nil
                              (if (and (symbolp mode) (symbol-value mode))
@@ -160,10 +160,10 @@ is a comment, uncomment."
     (insert "\t- operating system: " (symbol-name system-type))
     (newline)
 
-    (insert (concat "\n== e-max\n"))
-    (insert (concat "\t- revision: " e-max-revision))
+    (insert (concat "\n== cabbage\n"))
+    (insert (concat "\t- revision: " cabbage-revision))
     (insert "\t- active bundles: ")
-    (princ e-max-bundles (current-buffer))
+    (princ cabbage-bundles (current-buffer))
     (newline)
 
     (insert (concat "\n== Emacs"))

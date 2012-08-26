@@ -1,10 +1,10 @@
 ;; Configuration
 
-(defcustom e-max-xml-flymake-enabled
+(defcustom cabbage-xml-flymake-enabled
   t
   "Enable flymake for xml mode."
   :type 'boolean
-  :group 'e-max)
+  :group 'cabbage)
 
 
 ;;;; -------------------------------------
@@ -26,23 +26,23 @@
 ;; enable automatic closing of tags
 (setq nxml-slash-auto-complete-flag t)
 
-(defun e-max-xml-set-pairs ()
-  (e-max--set-pairs '("{" "[" "\"" "\'")))
+(defun cabbage-xml-set-pairs ()
+  (cabbage--set-pairs '("{" "[" "\"" "\'")))
 
-(add-hook 'nxml-mode-hook 'e-max-xml-set-pairs)
+(add-hook 'nxml-mode-hook 'cabbage-xml-set-pairs)
 
-(defun e-max-xml-flymake ()
-  (when (and e-max-xml-flymake-enabled (executable-find "xml"))
+(defun cabbage-xml-flymake ()
+  (when (and cabbage-xml-flymake-enabled (executable-find "xml"))
     (when (load "flymake" t)
-      (e-max-flymake-init)
+      (cabbage-flymake-init)
 
       (flymake-find-file-hook))))
 
-(add-hook 'nxml-mode-hook 'e-max-xml-flymake)
+(add-hook 'nxml-mode-hook 'cabbage-xml-flymake)
 
 ;; Rebind '>', so that it automatically inserts a closing xml tag (if
 ;; appropriate)
-(defun e-max-nxml-end-tag ()
+(defun cabbage-nxml-end-tag ()
   (interactive)
   (if (eq (face-at-point) 'default)
       (condition-case nil
@@ -54,7 +54,7 @@
 (add-hook 'nxml-mode-hook
           (lambda ()
             ;; rebind > to close the current tag
-            (define-key nxml-mode-map ">" 'e-max-nxml-end-tag)))
+            (define-key nxml-mode-map ">" 'cabbage-nxml-end-tag)))
 
 
 
