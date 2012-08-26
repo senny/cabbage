@@ -1,11 +1,11 @@
-(e-max-vendor 'haml-mode)
-(e-max-vendor 'sass-mode)
-(e-max-vendor 'scss-mode)
+(cabbage-vendor 'haml-mode)
+(cabbage-vendor 'sass-mode)
+(cabbage-vendor 'scss-mode)
 
 (setq scss-compile-at-save nil)
 
-(defun e-max-haml-mode-hook ()
-  (e-max--set-pairs '("(" "{" "[" "\"" "\'" "|")))
+(defun cabbage-haml-mode-hook ()
+  (cabbage--set-pairs '("(" "{" "[" "\"" "\'" "|")))
 
-(add-hook 'haml-mode-hook 'e-max-haml-mode-hook)
+(add-hook 'haml-mode-hook 'cabbage-haml-mode-hook)
 

@@ -1,3 +1,3 @@
-(e-max-vendor 'company)
+(cabbage-vendor 'company)
 
 (global-company-mode t)

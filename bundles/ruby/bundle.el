@@ -1,19 +1,19 @@
 ;; Configuration
 
-(defcustom e-max-ruby-automatically-insert-end t
+(defcustom cabbage-ruby-automatically-insert-end t
   "Automatically insert 'end' after ruby keywords like class and module."
   :type 'boolean
-  :group 'e-max)
+  :group 'cabbage)
 
 ;;;; -------------------------------------
 ;;;; Bundle
 
 ;; load the latest ruby-mode to get the syntax-higlighting working
-(load (concat e-max-vendor-dir "ruby-mode"))
+(load (concat cabbage-vendor-dir "ruby-mode"))
 
-(e-max-vendor 'rhtml-mode)
-(e-max-vendor 'yari)
-(e-max-vendor 'inf-ruby)
+(cabbage-vendor 'rhtml-mode)
+(cabbage-vendor 'yari)
+(cabbage-vendor 'inf-ruby)
 
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
@@ -31,7 +31,7 @@
 ;; We never want to edit Rubinius bytecode
 (add-to-list 'completion-ignored-extensions ".rbc")
 
-(defun e-max-open-spec-other-buffer ()
+(defun cabbage-open-spec-other-buffer ()
   (interactive)
   (when (featurep 'rspec-mode)
     (let ((source-buffer (current-buffer))
@@ -60,13 +60,13 @@
 (eval-after-load 'ruby-mode
   '(progn
      ;;;; Additional Libraries
-     (e-max-vendor 'rspec-mode)
+     (cabbage-vendor 'rspec-mode)
      (setq rspec-use-rvm t)
      (setq rspec-use-rake-flag nil)
      (setq rspec-spec-command "rspec")
      (setq rspec-use-bundler-when-possible nil)
 
-     (e-max-vendor 'rvm)
+     (cabbage-vendor 'rvm)
 
      ;; active the default ruby configured with rvm
      (when (fboundp 'rvm-use-default)
@@ -76,13 +76,13 @@
      (define-key ruby-mode-map (kbd "C-c C-r g") 'rvm-open-gem)
      (define-key ruby-mode-map (kbd "RET") 'reindent-then-newline-and-indent)
      (define-key ruby-mode-map (kbd "#") 'ruby-interpolate)
-     (define-key ruby-mode-map (kbd "C-c , ,") 'e-max-open-spec-other-buffer)
+     (define-key ruby-mode-map (kbd "C-c , ,") 'cabbage-open-spec-other-buffer)
 
-     (when e-max-ruby-automatically-insert-end
-       (load (concat e-max-bundle-dir "ruby/electric_end"))
-       (define-key ruby-mode-map " " 'e-max-ruby-electric-space))
+     (when cabbage-ruby-automatically-insert-end
+       (load (concat cabbage-bundle-dir "ruby/electric_end"))
+       (define-key ruby-mode-map " " 'cabbage-ruby-electric-space))
 
-     ;; disable TAB in ruby-mode-map, so that e-max-smart-tab is used
+     ;; disable TAB in ruby-mode-map, so that cabbage-smart-tab is used
      (define-key ruby-mode-map (kbd "TAB") nil)
 
      ;; fix syntax highlighting for Cucumber Step Definition regexps
@@ -92,20 +92,20 @@
                     (6 (7 . ?/))))
      ))
 
-(when (e-max-flymake-active-p)
-  (load (concat e-max-bundle-dir "ruby/flymake")))
+(when (cabbage-flymake-active-p)
+  (load (concat cabbage-bundle-dir "ruby/flymake")))
 
-(defun e-max-ruby-mode-hook ()
-  (e-max--set-pairs '("(" "{" "[" "\"" "\'" "|"))
+(defun cabbage-ruby-mode-hook ()
+  (cabbage--set-pairs '("(" "{" "[" "\"" "\'" "|"))
 
   (when (and buffer-file-name (string-match "_spec.rb$" buffer-file-name))
-    (setq e-max-testing-execute-function 'rspec-run-single-file))
+    (setq cabbage-testing-execute-function 'rspec-run-single-file))
 
-  (when (e-max-bundle-active-p 'completion)
+  (when (cabbage-bundle-active-p 'completion)
     (setq ac-sources '(ac-source-words-in-same-mode-buffers ac-source-yasnippet))
 
-    (when (eq e-max-completion-framework 'auto-complete)
+    (when (eq cabbage-completion-framework 'auto-complete)
       (make-local-variable 'ac-ignores)
       (add-to-list 'ac-ignores "end"))))
 
-(add-hook 'ruby-mode-hook 'e-max-ruby-mode-hook)
+(add-hook 'ruby-mode-hook 'cabbage-ruby-mode-hook)

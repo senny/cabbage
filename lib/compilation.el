@@ -1,1 +1,1 @@
-(e-max-vendor 'mode-compile)
+(cabbage-vendor 'mode-compile)

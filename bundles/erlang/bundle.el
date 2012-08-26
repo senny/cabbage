@@ -7,12 +7,12 @@
     (setq erlang-root-dir erlang-dir)
     (setq exec-path (cons erlang-bin-dir exec-path))
 
-    (defun e-max-erlang-mode-hook ()
+    (defun cabbage-erlang-mode-hook ()
       (require 'erlang-flymake)
       (local-set-key (kbd "C-c C-l") 'erlang-compile))
 
     ;; customizations
     (eval-after-load 'erlang
-      (add-hook 'erlang-mode-hook 'e-max-erlang-mode-hook))
+      (add-hook 'erlang-mode-hook 'cabbage-erlang-mode-hook))
 
     (require 'erlang-start)))

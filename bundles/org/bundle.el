@@ -1,13 +1,13 @@
-(defcustom e-max-org-files
+(defcustom cabbage-org-files
   nil
   "the directory, where your org-mode files are located"
-  :group 'e-max
+  :group 'cabbage
   :type 'string)
 
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
-(when e-max-org-files
-  (setq org-agenda-files (directory-files e-max-org-files t "^[^.].*")))
+(when cabbage-org-files
+  (setq org-agenda-files (directory-files cabbage-org-files t "^[^.].*")))
 
 (setq org-log-done t
       org-clock-persist t
@@ -16,13 +16,13 @@
 
 (org-clock-persistence-insinuate)
 
-(defun e-max-org-emacs-persp ()
+(defun cabbage-org-emacs-persp ()
   (interactive)
-  (e-max-persp "@org"
+  (cabbage-persp "@org"
                (find-file (first org-agenda-files))))
 
-(defun e-max-org-mode-hook ()
-  (e-max--set-pairs '("(" "{" "[" "\""))
+(defun cabbage-org-mode-hook ()
+  (cabbage--set-pairs '("(" "{" "[" "\""))
   (auto-fill-mode 1))
 
 (defun org-summary-todo (n-done n-not-done)
@@ -31,9 +31,9 @@
     (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
 
 (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
-(add-hook 'org-mode-hook 'e-max-org-mode-hook)
+(add-hook 'org-mode-hook 'cabbage-org-mode-hook)
 
-(global-set-key (kbd "C-p o") 'e-max-org-emacs-persp)
+(global-set-key (kbd "C-p o") 'cabbage-org-emacs-persp)
 
 (eval-after-load 'org
   '(progn

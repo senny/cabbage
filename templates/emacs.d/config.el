@@ -1,6 +1,6 @@
-(setq e-max-bundles
+(setq cabbage-bundles
       ;; The bundles listed here are enabled on emacs start.
-      ;; Full list of bundles: https://github.com/senny/e-max/wiki/Bundles
+      ;; Full list of bundles: https://github.com/senny/cabbage/wiki/Bundles
 
       '(
         accessibility
@@ -25,7 +25,7 @@
         yaml
         snippets
 
-        ;; e-max-developer
+        ;; cabbage-developer
         ;; rails
         ;; latex
         ;; org
@@ -42,4 +42,4 @@
 
 ;; Configure your favorite color theme.
 ;; Available themes: https://github.com/senny/theme-roller.el/tree/master/themes
-(setq e-max-theme 'color-theme-lazy)
+(setq cabbage-theme 'color-theme-lazy)

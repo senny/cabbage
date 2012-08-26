@@ -22,18 +22,18 @@ The python bundle configures emacs for
 
 # Configuration options
 
-* `e-max-python-pyflakes-enabled`: if `t` and there is a `pyflakes`
+* `cabbage-python-pyflakes-enabled`: if `t` and there is a `pyflakes`
   executable somewhere in `PATH` it enables flymake for python files
-  using pyflakes. There is also a global `e-max-use-flymake`
+  using pyflakes. There is also a global `cabbage-use-flymake`
   configuration.
 
 
 # Functions
 
-* `e-max-python-pep8` (`C-°`): Validate the current buffer with pep8
+* `cabbage-python-pep8` (`C-°`): Validate the current buffer with pep8
   and display a grep-like buffer with errors.
 
-* `e-max-python-pylint` (`C-M-§`): Validate the current buffer with
+* `cabbage-python-pylint` (`C-M-§`): Validate the current buffer with
   pylint and display a grep-like buffer with errors.
 
 

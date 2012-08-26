@@ -1,43 +1,43 @@
-(defcustom e-max-completion-framework nil
+(defcustom cabbage-completion-framework nil
   "Decide which completion framework (if any) you prefer to
   use with emacs."
-  :group 'e-max
+  :group 'cabbage
   :type '(choice (const :tag "none" nil)
                  (const :tag "auto-complete" auto-complete)
                  (const :tag "company-mode" company-mode)))
 
-(defcustom e-max-completion-trigger 1
+(defcustom cabbage-completion-trigger 1
   "Key binding that triggers completion."
-  :group 'e-max
+  :group 'cabbage
   :type '(choice (const :tag "None" nil)
                  (const :tag "Ctrl+Space" 1)
                  (const :tag "Alt-/" 2)))
 
-(defun e-max-complete ()
+(defun cabbage-complete ()
   (interactive)
   "Common completion function that calls the corresponding
 function in the chosen completion framework."
-  (case e-max-completion-framework
+  (case cabbage-completion-framework
     ('auto-complete (auto-complete))
     ('company-mode (company-complete))
     ('nil
-     (let ((completion-function (e-max-completion-determine-completion-function)))
+     (let ((completion-function (cabbage-completion-determine-completion-function)))
        (let ((last-command (and (eq this-command last-command) completion-function))
              (this-command completion-function))
          (call-interactively completion-function))))))
 
-(defun e-max-completion-determine-completion-function ()
-  (cond ((e-max-lisp-buffer-p) 'lisp-complete-symbol)
+(defun cabbage-completion-determine-completion-function ()
+  (cond ((cabbage-lisp-buffer-p) 'lisp-complete-symbol)
                                       (t 'dabbrev-expand)))
 
-(defun e-max-completion-init ()
-  "Initialize e-max completion"
-  (case e-max-completion-framework
+(defun cabbage-completion-init ()
+  "Initialize cabbage completion"
+  (case cabbage-completion-framework
     ('auto-complete
      ;; auto-complete-init
      (message "loading auto-complete")
-     (e-max-vendor 'popup)
-     (e-max-vendor 'auto-complete)
+     (cabbage-vendor 'popup)
+     (cabbage-vendor 'auto-complete)
      (require 'auto-complete-config)
      (ac-config-default)
      (setq ac-ignore-case nil)
@@ -46,24 +46,24 @@ function in the chosen completion framework."
      (setq ac-modes (append ac-modes '(conf-unix-mode haml-mode))))
     ('company-mode
      ;; company-mode init
-     (e-max-vendor 'company)
+     (cabbage-vendor 'company)
      (global-company-mode)))
-  (case e-max-completion-trigger
-    (1 (global-set-key (kbd "C-SPC") 'e-max-complete))
-    (2 (define-key esc-map "/" 'e-max-complete))))
+  (case cabbage-completion-trigger
+    (1 (global-set-key (kbd "C-SPC") 'cabbage-complete))
+    (2 (define-key esc-map "/" 'cabbage-complete))))
 
-(e-max-completion-init)
+(cabbage-completion-init)
 
-(e-max-vendor 'smex)
+(cabbage-vendor 'smex)
 
 ;;;; Smex Completion for M-x
 (smex-initialize)
 
-(defun e-max-smex-bind-keys ()
-  (when (e-max-bundle-active-p 'ergonomic)
+(defun cabbage-smex-bind-keys ()
+  (when (cabbage-bundle-active-p 'ergonomic)
     (global-unset-key (kbd "M-a"))
     (global-set-key (kbd "M-a") 'smex)))
-(add-hook 'e-max-initialized-hook 'e-max-smex-bind-keys)
+(add-hook 'cabbage-initialized-hook 'cabbage-smex-bind-keys)
 
 ;;;; Global IDO Completion
 (ido-everywhere t)

@@ -1,16 +1,16 @@
 ;; Configuration
 
-(defcustom e-max-javascript-jslint-enabled nil
+(defcustom cabbage-javascript-jslint-enabled nil
   "Enable flymake with jslint"
   :type 'boolean
-  :group 'e-max)
+  :group 'cabbage)
 
-(defcustom e-max-javascript-jslint-executable-path
+(defcustom cabbage-javascript-jslint-executable-path
   (or (executable-find "jsl")
-      (concat e-max-repository "bin/jsl-0.3.0-mac/jsl"))
+      (concat cabbage-repository "bin/jsl-0.3.0-mac/jsl"))
   "path to the js-lint executable"
   :type 'string
-  :group 'e-max)
+  :group 'cabbage)
 
 ;;;; -------------------------------------
 ;;;; Bundle
@@ -19,30 +19,30 @@
 
 ;; Defuns
 
-(defun e-max-javascript-jslint-compile ()
+(defun cabbage-javascript-jslint-compile ()
   (interactive)
-  (compile (format "%s -process %s" e-max-javascript-jslint-executable-path (buffer-file-name))))
+  (compile (format "%s -process %s" cabbage-javascript-jslint-executable-path (buffer-file-name))))
 
 ;; Setup
 
-(defun e-max-javascript-keybindings ()
+(defun cabbage-javascript-keybindings ()
   (local-set-key (kbd "C-§") 'flymake-goto-next-error))
-(add-hook 'js-mode-hook 'e-max-javascript-keybindings)
+(add-hook 'js-mode-hook 'cabbage-javascript-keybindings)
 
 
-(defun e-max-javascript-configure-indenting ()
+(defun cabbage-javascript-configure-indenting ()
   (setq js-indent-level 2
         javascript-indent-level 2
         js-auto-indent-flag nil))
-(add-hook 'js-mode-hook 'e-max-javascript-configure-indenting)
+(add-hook 'js-mode-hook 'cabbage-javascript-configure-indenting)
 
 
-(defun e-max-javascript-set-pairs ()
-  (e-max--set-pairs '("(" "{" "[" "\"" "'")))
-(add-hook 'js-mode-hook 'e-max-javascript-set-pairs)
+(defun cabbage-javascript-set-pairs ()
+  (cabbage--set-pairs '("(" "{" "[" "\"" "'")))
+(add-hook 'js-mode-hook 'cabbage-javascript-set-pairs)
 
 
-(defun e-max-javascript-fix-fontlock ()
+(defun cabbage-javascript-fix-fontlock ()
   (font-lock-add-keywords
    'js-mode
    '(("\\<\\(FIX\\|TODO\\|FIXME\\|HACK\\|REFACTOR\\):"
@@ -56,24 +56,24 @@
 
 (eval-after-load 'js
   '(progn
-     (e-max-javascript-fix-fontlock)))
+     (cabbage-javascript-fix-fontlock)))
 
 
-(defun e-max-javascript--configure-jslint ()
-  (when (executable-find e-max-javascript-jslint-executable-path)
+(defun cabbage-javascript--configure-jslint ()
+  (when (executable-find cabbage-javascript-jslint-executable-path)
     (require 'flymake)
-    (defun e-max-javascript-flymake-jslint-init ()
+    (defun cabbage-javascript-flymake-jslint-init ()
       (let* ((temp-file (flymake-init-create-temp-buffer-copy
                          'flymake-create-temp-inplace))
              (local-file (file-relative-name
                           temp-file
                           (file-name-directory buffer-file-name))))
-        (list e-max-javascript-jslint-executable-path
+        (list cabbage-javascript-jslint-executable-path
               (list "-process" local-file))))
 
     (setq flymake-allowed-file-name-masks
           (cons '(".+\\.js$"
-                  e-max-javascript-flymake-jslint-init
+                  cabbage-javascript-flymake-jslint-init
                   flymake-simple-cleanup
                   flymake-get-real-file-name)
                 flymake-allowed-file-name-masks))
@@ -83,17 +83,17 @@
                   nil 1 2 3)
                 flymake-err-line-patterns))
 
-    (defun e-max-javascript-enable-flymake-mode ()
-      (if (executable-find e-max-javascript-jslint-executable-path)
+    (defun cabbage-javascript-enable-flymake-mode ()
+      (if (executable-find cabbage-javascript-jslint-executable-path)
           (flymake-mode t)))
-    (add-hook 'js-mode-hook 'e-max-javascript-enable-flymake-mode)
+    (add-hook 'js-mode-hook 'cabbage-javascript-enable-flymake-mode)
 
-    (add-hook 'js-mode-hook 'e-max-flymake-init)))
+    (add-hook 'js-mode-hook 'cabbage-flymake-init)))
 
 (eval-after-load 'js
   '(progn
-     (when e-max-javascript-jslint-enabled
-       (e-max-javascript--configure-jslint))))
+     (when cabbage-javascript-jslint-enabled
+       (cabbage-javascript--configure-jslint))))
 
 
 (eval-after-load 'mode-compile

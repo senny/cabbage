@@ -1,11 +1,11 @@
-(defcustom e-max-theme 'color-theme-lazy
+(defcustom cabbage-theme 'color-theme-lazy
   "The default theme-roller theme."
   :type 'symbol
-  :group 'e-max)
+  :group 'cabbage)
 
-(load (concat e-max-vendor-dir "color-theme.el"))
-(e-max-vendor 'theme-roller)
+(load (concat cabbage-vendor-dir "color-theme.el"))
+(cabbage-vendor 'theme-roller)
 
-(setq theme-roller-default-theme e-max-theme)
+(setq theme-roller-default-theme cabbage-theme)
 
 (theme-roller-activate)

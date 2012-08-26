@@ -1,4 +1,4 @@
-(e-max-vendor 'markdown-mode)
+(cabbage-vendor 'markdown-mode)
 
 (add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
@@ -8,8 +8,8 @@
 (add-to-list 'auto-mode-alist '("\\.mdwn$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.text$" . markdown-mode))
 
-(defun e-max-markdown-mode-hook ()
-  (e-max--set-pairs '("(" "{" "[" "\""))
+(defun cabbage-markdown-mode-hook ()
+  (cabbage--set-pairs '("(" "{" "[" "\""))
   (auto-fill-mode 1))
 
-(add-hook 'markdown-mode-hook 'e-max-markdown-mode-hook)
+(add-hook 'markdown-mode-hook 'cabbage-markdown-mode-hook)

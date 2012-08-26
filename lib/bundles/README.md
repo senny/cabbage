@@ -1,4 +1,4 @@
-# e-max: Bundles API
+# cabbage: Bundles API
 
 ## What ?
 

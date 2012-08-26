@@ -9,7 +9,7 @@ if [[ `dirname $0` != /* ]]; then
     fi
 
 else
-  # script run with absolute path (/home/me/e-max/scripts/install.sh)
+  # script run with absolute path (/home/me/cabbage/scripts/install.sh)
     emaxdir=`dirname \`dirname $0\``
 fi
 
@@ -20,7 +20,7 @@ else
     exit 1
 fi
 
-echo -e "Updating e-max at \033[0;32m$emaxdir\033[00m ..."
+echo -e "Updating cabbage at \033[0;32m$emaxdir\033[00m ..."
 
 echo -e "$ \033[0;33mgit pull --ff-only\033[00m ..."
 (cd $emaxdir && /usr/bin/env git pull --ff-only origin master)
