@@ -136,7 +136,7 @@ echo ""
 
 echo "The cabbage installation was successful."
 echo -e  " - Your configuration is stored at \033[0;32m$confdir\033[0m"
-echo -e  " - Configure your bundles at \033[0;32m$confdir/bundles.el\033[0m"
+echo -e  " - Configure your bundles at \033[0;32m$confdir/config.el\033[0m"
 echo -en " - Keep your cabbage up to date with the script at"
 echo -e "\033[0;32m $confdir/bin/update-cabbage \033[0m"
 echo -en " - If you experience problems, feel free to create an issue at"
