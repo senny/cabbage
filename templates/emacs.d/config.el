@@ -30,7 +30,6 @@
         ;; latex
         ;; org
         ;; plone
-        ;; terminal
         ;; eclim
         ;; eclim-auto-complete
         ;; eclim-company
