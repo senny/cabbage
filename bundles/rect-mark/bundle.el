@@ -1,6 +1,6 @@
 (load (concat cabbage-vendor-dir "rect-mark"))
 
-(defun rectangle-replace-string (from-string to-string delimited startcol endcol)
+(defun cabbage-rectangle-replace-string (from-string to-string delimited startcol endcol)
   "Search and replace a rectangle."
   (interactive
    (progn (barf-if-buffer-read-only)
@@ -27,10 +27,23 @@
          (replace-string from-string to-string t startpoint endpoint)))
     startcol endcol from-string to-string)))
 
+(defun cabbage-kill-region-or-rm-kill-region-executor ()
+  "Use rm-kill-region if rect-mark is active."
+  (interactive)
+  (if rm-mark-active
+      (call-interactively 'rm-kill-region)
+    (call-interactively 'kill-region)))
+
+(defun cabbage-kill-ring-save-or-rm-kill-ring-save-executor ()
+  "Use rm-king-region-save if rect-mark is active."
+  (interactive)
+  (if rm-mark-active
+      (call-interactively 'rm-kill-ring-save)
+    (call-interactively 'kill-ring-save)))
 
 (cabbage-global-set-key (kbd "C-x r M-SPC") 'rm-set-mark)
-(cabbage-global-set-key (kbd "C-x r M-x")   'rm-kill-region)
-(cabbage-global-set-key (kbd "C-x r M-c")   'rm-kill-ring-save)
-(cabbage-global-set-key (kbd "C-x r M-r")   'rectangle-replace-string)
+(cabbage-global-set-key (kbd "M-x")  'cabbage-kill-region-or-rm-kill-region-executor)
+(cabbage-global-set-key (kbd "M-c")  'cabbage-kill-ring-save-or-rm-kill-ring-save-executor)
+(cabbage-global-set-key (kbd "C-x r M-r")   'cabbage-replace-replace-string)
 (cabbage-global-set-key (kbd "C-x r s")     'string-rectangle)
 (cabbage-global-set-key (kbd "C-x r <down-mouse-1>") 'rm-mouse-drag-region)
