@@ -2,65 +2,98 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Cabbage by tonini</title>
+      <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <title>Cabbage by tonini</title>
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Cabbage</h1>
-        <p>get the maximum out of emacs</p>
+        <link rel="stylesheet" href="stylesheets/styles.css">
+          <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+              <!--[if lt IE 9]>
+                  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+                  <![endif]-->
+            </head>
+            <body>
+              <div class="wrapper">
+                <div id="actions">
+                  <ul>
+                      <li><a href="https://github.com/senny/cabbage/zipball/master">Download <strong>ZIP File</strong></a></li>
+                      <li><a href="https://github.com/senny/cabbage/tarball/master">Download <strong>TAR Ball</strong></a></li>
+                      <li><a href="https://github.com/senny/cabbage">View On <strong>GitHub</strong></a></li>
+                    </ul>
+                </div>
+                <section>
+                  <div id="header">
+                    <div id="logo">
+                      <img src="images/cabbage_logo.png" />
+                    </div>
+                    <p>get the maximum out of emacs</p>
 
-        <p class="view"><a href="https://github.com/tonini/cabbage">View the Project on GitHub <small>tonini/cabbage</small></a></p>
 
+                  </div>
+                  <h3>Overview</h3>
 
-        <ul>
-          <li><a href="https://github.com/tonini/cabbage/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/tonini/cabbage/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/tonini/cabbage">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>Welcome to GitHub Pages.</h3>
+                  <p>cabbage helps you to manage your emacs configuration and allows you to stay in sync with other fellow emacs users. It is designed to be a community-driven framework to build your emacs configuration. The ultimate goal of cabbage is to provide a hassle-free, fast and robust emacs setup.</p>
+                  <p>Share your opinions in our <a href="https://groups.google.com/forum/#!forum/emacs-cabbage" target="_blank">Google Group</a></p>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+                  <!-- <pre><code>$ cd your_repo_root/repo_name -->
+                  <!-- $ git fetch origin -->
+                  <!-- $ git checkout gh-pages -->
+                  <!-- </code></pre> -->
+                  <h3>Requirements</h3>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+                  <p>We want to get cabbage working under as many different circumstances as possible. We are aiming to make the configuration as platform-/emacs-version independent as possible. So all you need to use cabbage is Emacs.</p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+                  <h3>Install</h3>
 
-<h3>Designer Templates</h3>
+                  <h4>Automatic Installer</h4>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+                  <pre><code>$ /usr/bin/env bash -c "$(curl -fsSL https://raw.github.com/senny/cabbage/master/scripts/install.sh)"</code></pre>
 
-<h3>Rather Drive Stick?</h3>
+                  <h4>Developer installation</h4>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+                  <pre><code>$ git clone https://github.com/senny/cabbage.git
+$ cd cabbage
+$ ./scripts/install.sh</code></pre>
 
-<h3>Authors and Contributors</h3>
+                  <h3>Installation on Windows</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+                  <p><ol>
+                    <li>You need to have emacs and git installed</li>
+                    <li>Clone the cabbage repository with git:
+                    <code>git clone https://github.com/senny/cabbage.git</code>
+                    </li>
+                    <li>Pull down the submodules: cd the cabbage directory, then run <code>git submodule init &amp;&amp; git submodule update</code>
+                    </li>
+                    <li>Create a .emacs.d directory in your %HOME% folder</li>
+                    <li>Copy the file templates/init.el from cabbage to %HOME%/.emacs.d/init.el</li>
+                    <li>Replace "CABBAGE-DIR/" in the init.el with the path to the cabbage checkout</li>
+                    <li>If you are familiar with batch scripts, please write us a install.bat which does that ;-)</li>
+                  </ol></p>
 
-<h3>Support or Contact</h3>
+                  <h3>Bundles</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/tonini">tonini</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
-</html>
+                  <p>cabbage fundamental organization are bundles. You can eneable and disable the configuration on a per bundle basis. The bundles live in cabbage/bundles. The active bundles are configured in your ~/.emacs.d/init.el file in the cabbage-bundles variable. The following bundles are supported currently:</p>
+                  <p>
+                    <ul>
+                      <li>ergonomic (use ergonomic keybindings to use emacs more efficently)</li>
+                      <li>accessibility (make emacs behave the way you expect it and get distractions out of the way)</li>
+                      <li>git (git handling with magit)</li>
+                      <li>lisp (to write elisp)</li>
+                      <li>python (to write python)</li>
+                      <li>projects (simple projects management stuff)</li>
+                    </ul>
+                  </p>
+
+                  <h3>Your Bundles are welcome too!</h3>
+
+                  <p>if you got a peace of emacs functionality, that you think might be usefull for other people, please package it up in a bundle and open a pull-request.</p>
+
+                </section>
+                <footer>
+
+                </footer>
+              </div>
+              <script src="javascripts/scale.fix.js"></script>
+
+            </body>
+          </html>

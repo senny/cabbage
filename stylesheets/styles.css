@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
 
 body {
-  padding:50px;
+  padding:0 50px 50px 50px;
   font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   color:#777;
   font-weight:300;
@@ -65,7 +65,7 @@ code, pre {
 
 pre {
   padding:8px 15px;
-  background: #f8f8f8;  
+  background: #f8f8f8;
   border-radius:5px;
   border:1px solid #e5e5e5;
   overflow-x: auto;
@@ -95,18 +95,21 @@ img {
   max-width:100%;
 }
 
-header {
-  width:270px;
-  float:left;
-  position:fixed;
+#logo {
+  padding-top: 80px;
 }
 
-header ul {
+#actions {
+  width: 750px;
+}
+
+#actions ul {
+  float: right;
   list-style:none;
   height:40px;
-  
+
   padding:0;
-  
+
   background: #eee;
   background: -moz-linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#dddddd));
@@ -114,21 +117,21 @@ header ul {
   background: -o-linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
   background: -ms-linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
   background: linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
-  
+
   border-radius:5px;
   border:1px solid #d2d2d2;
   box-shadow:inset #fff 0 1px 0, inset rgba(0,0,0,0.03) 0 -1px 0;
   width:270px;
 }
 
-header li {
+#actions li {
   width:89px;
   float:left;
   border-right:1px solid #d2d2d2;
   height:40px;
 }
 
-header ul a {
+#actions ul a {
   line-height:1;
   font-size:11px;
   color:#999;
@@ -143,25 +146,24 @@ strong {
   font-weight:700;
 }
 
-header ul li + li {
+#actions ul li + li {
   width:88px;
   border-left:1px solid #fff;
 }
 
-header ul li + li + li {
+#actions ul li + li + li {
   border-right:none;
   width:89px;
 }
 
-header ul a strong {
+#actions ul a strong {
   font-size:14px;
   display:block;
   color:#222;
 }
 
 section {
-  width:500px;
-  float:right;
+  width:750px;
   padding-bottom:50px;
 }
 
@@ -177,40 +179,38 @@ hr {
 }
 
 footer {
-  width:270px;
-  float:left;
-  position:fixed;
+  width:750px;
   bottom:50px;
 }
 
 @media print, screen and (max-width: 960px) {
-  
+
   div.wrapper {
     width:auto;
     margin:0;
   }
-  
+
   header, section, footer {
     float:none;
     position:static;
     width:auto;
   }
-  
+
   header {
     padding-right:320px;
   }
-  
+
   section {
     border:1px solid #e5e5e5;
     border-width:1px 0;
     padding:20px 0;
     margin:0 0 20px;
   }
-  
+
   header a small {
     display:inline;
   }
-  
+
   header ul {
     position:absolute;
     right:50px;
@@ -222,15 +222,15 @@ footer {
   body {
     word-wrap:break-word;
   }
-  
+
   header {
     padding:0;
   }
-  
+
   header ul, header p.view {
     position:static;
   }
-  
+
   pre, code {
     word-wrap:normal;
   }
@@ -240,7 +240,7 @@ footer {
   body {
     padding:15px;
   }
-  
+
   header ul {
     display:none;
   }
