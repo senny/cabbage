@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+@import url(http://fonts.googleapis.com/css?family=Josefin+Sans);
 
 body {
   padding:0 50px 50px 50px;
@@ -10,6 +11,13 @@ body {
 h1, h2, h3, h4, h5, h6 {
   color:#222;
   margin:0 0 20px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+h3 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 36px;
+  font-weight: 400;
 }
 
 p, ul, ol, table, pre, dl {
@@ -30,6 +38,11 @@ h2 {
 
 h3, h4, h5, h6 {
   color:#494949;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: 400;
 }
 
 a {
@@ -93,6 +106,16 @@ th {
 
 img {
   max-width:100%;
+}
+
+.clearfix {
+  clear: both;
+}
+
+#slogan {
+  font-style: italic;
+  padding: 10px 0 5px 0;
+  float: right;
 }
 
 #logo {
