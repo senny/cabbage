@@ -200,9 +200,11 @@ hr {
   background:#e5e5e5;
   height:1px;
   margin:0 0 20px;
+  width: 750px;
 }
 
 footer {
+  text-align: center;
   width:750px;
   bottom:50px;
 }
