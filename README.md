@@ -1,4 +1,3 @@
-
 ```shell
 
                                       $$\       $$\                                     
@@ -63,7 +62,7 @@ The following bundles are supported currently:
 
 ### Your Bundles are welcome too!
 
-if you got a peace of emacs functionality, that you think might be usefull for other people, please package it up in a bundle and open a
+if you got a pice of emacs functionality, that you think might be usefull for other people, please package it up in a bundle and open a
 pull-request.
 
 ## Contributing
