@@ -6,7 +6,7 @@ Configures emacs for coding LaTeX.
 ## Features
 
 * Configures [flymake](http://flymake.sourceforge.net/) validation
-  using [chktex](http://baruch.ev-en.org/proj/chktex/).
+  using [chktex](http://www.nongnu.org/chktex/).
 
 * Adds bindings for converting a LaTeX file to a PDF and display it.
 
