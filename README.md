@@ -1,16 +1,16 @@
 ```shell
 
-                                      $$\       $$\                                     
-                                      $$ |      $$ |                                    
-                   $$$$$$$\  $$$$$$\  $$$$$$$\  $$$$$$$\   $$$$$$\   $$$$$$\   $$$$$$\  
-                  $$  _____| \____$$\ $$  __$$\ $$  __$$\  \____$$\ $$  __$$\ $$  __$$\ 
+                                      $$\       $$\
+                                      $$ |      $$ |
+                   $$$$$$$\  $$$$$$\  $$$$$$$\  $$$$$$$\   $$$$$$\   $$$$$$\   $$$$$$\
+                  $$  _____| \____$$\ $$  __$$\ $$  __$$\  \____$$\ $$  __$$\ $$  __$$\
                   $$ /       $$$$$$$ |$$ |  $$ |$$ |  $$ | $$$$$$$ |$$ /  $$ |$$$$$$$$ |
                   $$ |      $$  __$$ |$$ |  $$ |$$ |  $$ |$$  __$$ |$$ |  $$ |$$   ____|
-                  \$$$$$$$\ \$$$$$$$ |$$$$$$$  |$$$$$$$  |\$$$$$$$ |\$$$$$$$ |\$$$$$$$\ 
+                  \$$$$$$$\ \$$$$$$$ |$$$$$$$  |$$$$$$$  |\$$$$$$$ |\$$$$$$$ |\$$$$$$$\
                    \_______| \_______|\_______/ \_______/  \_______| \____$$ | \_______|
-                                                                    $$\   $$ |          
-                                                                    \$$$$$$  |          
-                                                                     \______/           
+                                                                    $$\   $$ |
+                                                                    \$$$$$$  |
+                                                                     \______/
 ```
 
 
@@ -50,7 +50,7 @@ We want to get cabbage working under as many different circumstances as possible
 ## Bundles
 
 cabbage fundamental organization are bundles. You can eneable and disable the configuration on a per bundle basis.
-The bundles live in cabbage/bundles. The active bundles are configured in your ~/.emacs.d/init.el file in the `cabbage-bundles` variable.
+The bundles live in cabbage/bundles. The active bundles are configured in your ~/.emacs.d/config.el file in the `cabbage-bundles` variable.
 The following bundles are supported currently:
 
 * ergonomic (use ergonomic keybindings to use emacs more efficently)
