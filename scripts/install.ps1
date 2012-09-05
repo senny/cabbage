@@ -83,6 +83,21 @@ Copy-Item "$templateDir/machine.el" "$confDir/machines/$hostname.el"
 #New-Item "$confDir/bin"
 #Write-Output "$cabbageDir/scripts/update.ps1" > "$confDir/bin/update-cabbage"
 
-Write-Host -ForegroundColor Green "Your Cabbage directory is: $cabbageDir"
 
+Write-Host
+Write-Host -ForegroundColor Cyan '                      $$\       $$\'
+Write-Host -ForegroundColor Cyan '                      $$ |      $$ |'
+Write-Host -ForegroundColor Cyan '   $$$$$$$\  $$$$$$\  $$$$$$$\  $$$$$$$\   $$$$$$\   $$$$$$\   $$$$$$'
+Write-Host -ForegroundColor Cyan '  $$  _____| \____$$\ $$  __$$\ $$  __$$\  \____$$\ $$  __$$\ $$  __$$'
+Write-Host -ForegroundColor Cyan '  $$ /       $$$$$$$ |$$ |  $$ |$$ |  $$ | $$$$$$$ |$$ /  $$ |$$$$$$$$ |'
+Write-Host -ForegroundColor Cyan '  $$ |      $$  __$$ |$$ |  $$ |$$ |  $$ |$$  __$$ |$$ |  $$ |$$   ____|'
+Write-Host -ForegroundColor Cyan '  \$$$$$$$\ \$$$$$$$ |$$$$$$$  |$$$$$$$  |\$$$$$$$ |\$$$$$$$ |\$$$$$$$'
+Write-Host -ForegroundColor Cyan '   \_______| \_______|\_______/ \_______/  \_______| \____$$ | \_______|'
+Write-Host -ForegroundColor Cyan '                                                    $$\   $$ |'
+Write-Host -ForegroundColor Cyan '                                                    \$$$$$$  |'
+Write-Host -ForegroundColor Cyan '                                                     \______/'
+Write-Host
 
+Write-Host -ForegroundColor Green "Cabbage installation complete"
+Write-Host -ForegroundColor Green "Your Cabbage directory is:"
+Write-Host -ForegroundColor Green "  $cabbageDir"
