@@ -67,3 +67,6 @@ function in the chosen completion framework."
 
 ;;;; Global IDO Completion
 (ido-everywhere t)
+
+(cabbage-vendor 'ido-ubiquitous)
+(ido-ubiquitous t)

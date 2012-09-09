@@ -116,3 +116,6 @@
 [submodule "vendor/emacs-jabber"]
 	path = vendor/emacs-jabber
 	url = https://github.com/Abrahanfer/emacs-jabber.git
+[submodule "vendor/ido-ubiquitous"]
+	path = vendor/ido-ubiquitous
+	url = git://github.com/DarwinAwardWinner/ido-ubiquitous.git
