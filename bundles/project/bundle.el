@@ -32,10 +32,4 @@
     (let ((default-directory (concat cabbage-project-location project-name)))
       (call-interactively cabbage-project-find-file-function))))
 
-
-(global-set-key (kbd "C-x p") 'cabbage-project-ido-find-project)
-
-
 (cabbage-vendor 'textmate)
-(global-set-key (kbd "M-t") 'textmate-goto-file)
-(global-set-key (kbd "M-w") 'textmate-goto-symbol)

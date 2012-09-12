@@ -33,8 +33,6 @@
 (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
 (add-hook 'org-mode-hook 'cabbage-org-mode-hook)
 
-(global-set-key (kbd "C-p o") 'cabbage-org-emacs-persp)
-
 (eval-after-load 'org
   '(progn
      (define-key org-mode-map (kbd "C-c a") 'org-agenda)

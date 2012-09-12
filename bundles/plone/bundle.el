@@ -225,12 +225,3 @@ then prompts for a file. Expects to be within a package
     (yas/reload-all)))
 
 (add-hook 'python-mode-hook 'cabbage-plone--init-snippets)
-
-;; global bindings
-
-(cabbage-global-set-key (kbd "C-c f c") 'cabbage-plone-find-changelog-make-entry)
-(cabbage-global-set-key (kbd "M-T") 'cabbage-plone-find-file-in-package)
-(cabbage-global-set-key (kbd "C-p b") 'cabbage-plone-ido-find-buildout)
-(cabbage-global-set-key (kbd "C-c f r") 'cabbage-plone-reload-code)
-(cabbage-global-set-key (kbd "C-c f f") 'cabbage-plone-run)
-(cabbage-global-set-key (kbd "C-c f t") 'cabbage-plone-tests)

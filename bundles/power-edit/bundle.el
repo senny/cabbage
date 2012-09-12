@@ -55,10 +55,6 @@
     (switch-to-buffer buffer)))
 
 (cabbage-vendor 'textmate)
-(global-set-key (kbd "M-<up>") 'move-text-up)
-(global-set-key (kbd "M-<down>") 'move-text-down)
-(global-set-key (kbd "M-<right>")  'textmate-shift-right)
-(global-set-key (kbd "M-<left>") 'textmate-shift-left)
 
 ;; Do not cabbage-global-set-key TAB because this would override local
 ;; bindings such as in magit.

@@ -155,7 +155,9 @@
 ;; (define-key isearch-mode-map (kbd "C-i") 'isearch-ring-retreat)
 ;; (define-key isearch-mode-map (kbd "C-k") 'isearch-ring-advance)
 
-;; rect-mark bindings
+;;;; Global bindings for cabbage bundles
+
+;; rect-mark bundle bindings
 (when (cabbage-bundle-active-p 'rect-mark)
   (cabbage-global-set-key (kbd "C-x r M-SPC") 'rm-set-mark)
   (cabbage-global-set-key (kbd "M-x") 'cabbage-kill-region-or-rm-kill-region-executor)
@@ -163,3 +165,65 @@
   (cabbage-global-set-key (kbd "C-x r M-r") 'cabbage-replace-replace-string)
   (cabbage-global-set-key (kbd "C-x r s") 'string-rectangle)
   (cabbage-global-set-key (kbd "C-x r <down-mouse-1>") 'rm-mouse-drag-region))
+
+;; irc bundle bindings
+(when (cabbage-bundle-active-p 'irc)
+  (cabbage-global-set-key (kbd "C-p i") 'cabbage-erc))
+
+;; jabber bundle bindings
+(when (cabbage-bundle-active-p 'jabber)
+  (cabbage-global-set-key (kbd "C-p j") 'cabbage-jabber))
+
+;; plone bundle bindings
+(when (cabbage-bundle-active-p 'plone)
+  (cabbage-global-set-key (kbd "C-c f c") 'cabbage-plone-find-changelog-make-entry)
+  (cabbage-global-set-key (kbd "M-T") 'cabbage-plone-find-file-in-package)
+  (cabbage-global-set-key (kbd "C-p b") 'cabbage-plone-ido-find-buildout)
+  (cabbage-global-set-key (kbd "C-c f r") 'cabbage-plone-reload-code)
+  (cabbage-global-set-key (kbd "C-c f f") 'cabbage-plone-run)
+  (cabbage-global-set-key (kbd "C-c f t") 'cabbage-plone-tests)
+  (cabbage-global-set-key (kbd "C-c f p") 'cabbage-plone--pep8-package))
+
+;; cabbage-developer bundle bindings
+(when (cabbage-bundle-active-p 'cabbage-developer)
+  (cabbage-global-set-key (kbd "C-c p") 'cabbage-emdeveloper-find-cabbage-config)
+  (cabbage-global-set-key (kbd "C-p e") 'cabbage-emdeveloper-emacs-persp))
+
+;; textmate bundle bindings
+(when (cabbage-bundle-active-p 'textmate)
+  (cabbage-global-set-key (kbd "M-<up>") 'move-text-up)
+  (cabbage-global-set-key (kbd "M-<down>") 'move-text-down)
+  (cabbage-global-set-key (kbd "M-<right>")  'textmate-shift-right)
+  (cabbage-global-set-key (kbd "M-<left>") 'textmate-shift-left))
+
+;; accessibility bundle bindings
+(when (cabbage-bundle-active-p 'accessibility)
+  (cabbage-global-set-key (kbd "<f5>") 'ns-toggle-fullscreen)
+  (cabbage-global-set-key (kbd "C-+") 'increase-font-size)
+  (cabbage-global-set-key (kbd "C--") 'decrease-font-size)
+  (cabbage-global-set-key (kbd "C-c C-w") 'whitespace-mode))
+
+;; project bundle bindings
+(when (cabbage-bundle-active-p 'project)
+  (cabbage-global-set-key (kbd "M-t") 'textmate-goto-file)
+  (cabbage-global-set-key (kbd "M-w") 'textmate-goto-symbol)
+  (cabbage-global-set-key (kbd "C-x p") 'cabbage-project-ido-find-project))
+
+;; terminal bundle bindings
+(when (cabbage-bundle-active-p 'terminal)
+  (cabbage-global-set-key (kbd "C-p t") 'cabbage-terminal-open-term-persp)
+  (cabbage-global-set-key (kbd "C-x t n") 'multi-term)
+  (cabbage-global-set-key (kbd "C-x t t") 'multi-term-dedicated-toggle))
+
+;; org bundle bindings
+(when (cabbage-bundle-active-p 'org)
+  (cabbage-global-set-key (kbd "C-p o") 'cabbage-org-emacs-persp))
+
+;; git bundle bindings
+(when (cabbage-bundle-active-p 'git)
+  (cabbage-global-set-key (kbd "C-x g") 'magit-status))
+
+;; completion bundle bindings
+(when (cabbage-bundle-active-p 'completion)
+  (global-unset-key (kbd "M-a"))
+  (cabbage-global-set-key (kbd "M-a") 'smex))

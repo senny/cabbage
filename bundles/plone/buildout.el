@@ -130,8 +130,7 @@ script in this buildout"
           (compilation-start command 'python-pep8-mode))
 
         (message "No bin/pep8 found.")))
-
-    (cabbage-global-set-key (kbd "C-c f p") 'cabbage-plone--pep8-package)))
+    ))
 
 
 (add-hook 'cabbage-initialized-hook 'cabbage-plone--load-local-configuration)

@@ -1,4 +1,3 @@
-
 (defun cabbage-erc ()
   "Start erc in a seperate perspective."
   (interactive)
@@ -9,5 +8,3 @@
     (if (erc-server-buffer)
         (erc-cmd-RECONNECT)
       (call-interactively 'erc))))
-
-(cabbage-global-set-key (kbd "C-p i") 'cabbage-erc)
