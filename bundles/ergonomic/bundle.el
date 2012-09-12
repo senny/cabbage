@@ -154,3 +154,12 @@
 ;; TODO: find a suitable binding to use the search ring
 ;; (define-key isearch-mode-map (kbd "C-i") 'isearch-ring-retreat)
 ;; (define-key isearch-mode-map (kbd "C-k") 'isearch-ring-advance)
+
+;; rect-mark bindings
+(when (cabbage-bundle-active-p 'rect-mark)
+  (cabbage-global-set-key (kbd "C-x r M-SPC") 'rm-set-mark)
+  (cabbage-global-set-key (kbd "M-x") 'cabbage-kill-region-or-rm-kill-region-executor)
+  (cabbage-global-set-key (kbd "M-c") 'cabbage-kill-ring-save-or-rm-kill-ring-save-executor)
+  (cabbage-global-set-key (kbd "C-x r M-r") 'cabbage-replace-replace-string)
+  (cabbage-global-set-key (kbd "C-x r s") 'string-rectangle)
+  (cabbage-global-set-key (kbd "C-x r <down-mouse-1>") 'rm-mouse-drag-region))

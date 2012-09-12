@@ -40,10 +40,3 @@
   (if rm-mark-active
       (call-interactively 'rm-kill-ring-save)
     (call-interactively 'kill-ring-save)))
-
-(cabbage-global-set-key (kbd "C-x r M-SPC") 'rm-set-mark)
-(cabbage-global-set-key (kbd "M-x")  'cabbage-kill-region-or-rm-kill-region-executor)
-(cabbage-global-set-key (kbd "M-c")  'cabbage-kill-ring-save-or-rm-kill-ring-save-executor)
-(cabbage-global-set-key (kbd "C-x r M-r")   'cabbage-replace-replace-string)
-(cabbage-global-set-key (kbd "C-x r s")     'string-rectangle)
-(cabbage-global-set-key (kbd "C-x r <down-mouse-1>") 'rm-mouse-drag-region)
