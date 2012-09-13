@@ -41,6 +41,28 @@
       (switch-to-buffer source-buffer)
       (pop-to-buffer other-buffer))))
 
+(defun cabbage-ruby-toggle-symbol-or-string ()
+  (interactive)
+  (let* ((bounds (bounds-of-thing-at-point 'symbol))
+         (beginning (car bounds))
+         (end (cdr bounds))
+         (leading-char (char-before beginning)))
+    (cond
+     ((char-equal leading-char ?:)
+      (save-excursion
+        (beginning-of-thing 'symbol)
+        (delete-backward-char 1)
+        (insert-char ?' 1)
+        (end-of-thing 'symbol)
+        (insert-char ?' 1)))
+     (t
+      (save-excursion
+        (beginning-of-thing 'symbol)
+        (delete-backward-char 1)
+        (insert-char ?: 1)
+        (end-of-thing 'symbol)
+        (delete-forward-char 1))))))
+
 (defun ruby-interpolate ()
   "In a double quoted string, interpolate."
   (interactive)
