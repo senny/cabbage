@@ -36,27 +36,36 @@ We want to get cabbage working under as many different circumstances as possible
     $ cd cabbage
     $ ./scripts/install.sh
 
-### Installation on Windows
+### Installation on Windows (PowerShell)
+
+If you don't yet have PowerShell; it is part of the Windows Management Framework and you can get it from the Microsoft download center: [Windows Management Framework 3.0](http://www.microsoft.com/en-us/download/details.aspx?id=34595)
 
 All tested and developed with GNU Emacs 24.1.1 from http://ftp.gnu.org/gnu/emacs/windows/.
 If you're using another Emacs version under windows, your configuration directories might not match.
 If this is the case, please report the issue and we will try to fix it.
 
-#### Using PowerShell
-
-If you don't yet have PowerShell; it is part of the Windows Management Framework and you can get it from the Microsoft download center: [Windows Management Framework 3.0](http://www.microsoft.com/en-us/download/details.aspx?id=34595)
+#### Automatic installation
 
     > (new-object Net.WebClient).DownloadString("https://raw.github.com/senny/cabbage/master/scripts/install.ps1") | iex
 
-#### Developer install with PowerShell
+#### Developer installation
 
 	> git clone https://github.com/senny/cabbage.git
 	> cd cabbage
 	> ./scripts/install.ps1
 
-#### Without PowerShell
+#### Updating an existing installation
 
-Seriously, if you're not using PowerShell under Windows, you're probably doing it wrong. Here is however the manual installation instruction.
+1. Go to your cabbage directory
+2. Execute the installation script again
+
+```
+./scripts/install.ps1
+```
+
+### Manual installation on Windows
+
+Seriously, if you're not using PowerShell under Windows, you're probably doing it wrong. Here are however the manual installation instructions.
 
 1. You need to have emacs and git installed
 2. Clone the cabbage repository with git:
