@@ -1,4 +1,5 @@
-(setq feature-default-i18n-file (concat cabbage-vendor-dir "feature-mode/i18n.yml"))
+(setq feature-default-i18n-file
+      (concat (cabbage-vendor-library-dir 'feature-mode) "i18n.yml"))
 (setq feature-cucumber-command "bundle exec cucumber {feature}")
 
 (cabbage-vendor 'feature-mode)

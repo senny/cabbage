@@ -106,19 +106,19 @@ is a comment, uncomment."
     (cabbage-comment-or-uncomment-line lines)))
 
 ;; for loading libraries in from the vendor directory
+(defun cabbage-vendor-library-dir (vendor)
+  "Returns the vendor's directory, nil if vendor directory does not exists"
+  (let ((vendor-name (symbol-name vendor)))
+    (car (cabbage-filter 'file-directory-p
+                         (mapcar (lambda (vendor-dir)
+                                   (concat vendor-dir vendor-name "/"))
+                                 cabbage-vendor-dirs)))))
+
 (defun cabbage-vendor (library)
-  (let* ((file (symbol-name library))
-         (normal (concat cabbage-vendor-dir file))
-         (suffix (concat normal ".el")))
-    (cond
-     ((file-directory-p normal)
-      (add-to-list 'load-path normal)
-      (require library))
-     ((file-directory-p suffix)
-      (add-to-list 'load-path suffix)
-      (require library))
-     ((file-exists-p suffix)
-      (require library)))))
+  (let* ((library-dir (cabbage-vendor-library-dir library)))
+    (when (and library-dir (file-directory-p library-dir))
+      (add-to-list 'load-path library-dir)
+      (require library))))
 
 
 (defun cabbage-next-line ()
@@ -137,6 +137,10 @@ is a comment, uncomment."
                                                      (concat
                                                       "find \"" directory
                                                       "\" -type f | grep -v \"/.git/\" | grep -v \"/.yardoc/\""))))))))
+
+(defun cabbage-filter (condp lst)
+  (delq nil
+        (mapcar (lambda (x) (and (funcall condp x) x)) lst)))
 
 (defun cabbage-debug ()
   (interactive)
@@ -172,3 +176,8 @@ is a comment, uncomment."
 
     (insert (concat "\n\t- pre-command-hook: "))
     (princ pre-command-hook (current-buffer))))
+
+(defun cabbage-load-bundle-dependencies (dependencies)
+  (let ((current-dir (file-name-directory load-file-name)))
+    (dolist (dependency dependencies)
+      (load (concat current-dir dependency)))))

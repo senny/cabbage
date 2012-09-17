@@ -16,13 +16,13 @@
       system-specific-config (expand-file-name (concat "~/.emacs.d/machines/" system-name ".el"))
       user-specific-config (expand-file-name (concat"~/.emacs.d/users/" user-login-name ".el")))
 
+(load (concat cabbage-repository "lib/variables"))
 (if (file-exists-p system-specific-config) (load system-specific-config))
 (if (file-exists-p user-specific-config) (load user-specific-config))
 (if (file-exists-p local-config) (load local-config) )
 
 (add-to-list 'load-path cabbage-repository)
 
-(load (concat cabbage-repository "lib/variables"))
 (load (concat cabbage-repository "lib/bundles/framework"))
 (load (concat cabbage-repository "lib/defun"))
 (load (concat cabbage-repository "lib/setup"))

@@ -35,3 +35,6 @@ When setting to t remove-trailing-whitespace-mode will be activated."
       `((".*" . ,cabbage-backup-dir)))
 (setq auto-save-file-name-transforms
       `((".*" ,cabbage-backup-dir t)))
+
+(dolist (vendor-dir cabbage-vendor-dirs)
+  (add-to-list 'load-path vendor-dir))

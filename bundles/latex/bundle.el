@@ -31,7 +31,7 @@
 ;; flymake
 
 (when (and cabbage-latex-enable-flymake (cabbage-flymake-active-p))
-  (load (concat cabbage-bundle-dir "latex/flymake.el")))
+  (cabbage-load-bundle-dependencies '("flymake.el")))
 
 
 ;; funs

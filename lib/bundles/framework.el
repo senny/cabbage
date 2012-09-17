@@ -103,17 +103,23 @@ a value of nil means, this buffer does not contain an executable test")
   (let ((bundle-name (cabbage--bundle-name bundle)))
     (when (member bundle-name cabbage--deprecated-bundles)
       (warn (concat "the bundle '" bundle-name "' is deprecated. We are planning to remove the bundle in future versions of cabbage")))
-    (load (cabbage--bundle-path bundle))
-    (add-to-list 'cabbage-bundles bundle)))
+    (cabbage--load-bundle-internal bundle)))
+
+(defun cabbage--load-bundle-internal (bundle)
+  (add-to-list 'cabbage-bundles bundle)
+  (dolist (bundle-path (cabbage--bundle-path bundle))
+    (load bundle-path t)))
 
 (defun cabbage--bundle-name (symbol-or-string)
   (if (symbolp symbol-or-string)
       (symbol-name bundle) symbol-or-string))
 
-(defun cabbage--bundle-path (bundle-name)
-  (concat cabbage-bundle-dir
-          (cabbage--bundle-name bundle-name)
-          "/bundle"))
+(defun cabbage--bundle-path (bundle)
+  (mapcar (lambda (bundle-repository)
+            (concat bundle-repository
+                    (cabbage--bundle-name bundle)
+                    "/bundle"))
+          cabbage-bundle-dirs))
 
 (defun cabbage-list-bundles ()
   "Show available and enabled list of bundles"
@@ -133,4 +139,7 @@ a value of nil means, this buffer does not contain an executable test")
               (concat "ACTIVE: " (mapconcat 'identity active ", "))))))
 
 (defun cabbage-bundles--list-available ()
-  (directory-files (concat cabbage-repository "bundles") nil "^[^.]"))
+  (sort (reduce 'union (mapcar (lambda (repository)
+                                 (directory-files repository nil "^[^.]"))
+                               cabbage-bundle-dirs))
+        (lambda (bundle1 bundle2) (string< bundle1 bundle2))))
