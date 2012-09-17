@@ -44,6 +44,8 @@ If this is the case, please report the issue and we will try to fix it.
 
 #### Using PowerShell
 
+If you don't yet have PowerShell; it is part of the Windows Management Framework and you can get it from the Microsoft download center: [Windows Management Framework 3.0](http://www.microsoft.com/en-us/download/details.aspx?id=34595)
+
     > (new-object Net.WebClient).DownloadString("https://raw.github.com/senny/cabbage/master/scripts/install.ps1") | iex
 
 #### Developer install with PowerShell
