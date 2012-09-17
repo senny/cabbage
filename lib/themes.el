@@ -3,7 +3,7 @@
   :type 'symbol
   :group 'cabbage)
 
-(load (concat cabbage-vendor-dir "color-theme.el"))
+(cabbage-vendor 'color-theme)
 (cabbage-vendor 'theme-roller)
 
 (setq theme-roller-default-theme cabbage-theme)

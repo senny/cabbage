@@ -101,12 +101,3 @@
     (flymake-find-file-hook)))
 
 (add-hook 'python-mode-hook 'cabbage-python-flymake)
-
-
-(defun cabbage-python-init-snippets ()
-  (when (cabbage-bundle-active-p 'snippets)
-    (add-to-list 'yas/root-directory
-                 (concat (concat cabbage-bundle-dir "python/snippets")) t)
-    (yas/reload-all)))
-
-(add-hook 'python-mode-hook 'cabbage-python-init-snippets)

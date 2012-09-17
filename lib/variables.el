@@ -1,12 +1,12 @@
-(defcustom cabbage-bundle-dir
-  (concat cabbage-repository "bundles/")
-  "directory where the cabbage bundles are located"
-  :type 'string
+(defcustom cabbage-bundle-dirs
+  (list (concat cabbage-repository "bundles/"))
+  "directories where the cabbage bundles are located"
+  :type 'list
   :group 'cabbage)
 
-(defcustom cabbage-vendor-dir
-  (concat cabbage-repository "vendor/")
-  "directory where the cabbage vendored libraries are located"
+(defcustom cabbage-vendor-dirs
+  (list (concat cabbage-repository "vendor/"))
+  "directories where the cabbage vendored libraries are located"
   :type 'string
   :group 'cabbage)
 
