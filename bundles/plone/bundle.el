@@ -46,8 +46,7 @@ optional parameters."
 
 ;; dependencies
 (cabbage-vendor 'textmate)
-(load (concat cabbage-bundle-dir "plone/lookup"))
-(load (concat cabbage-bundle-dir "plone/buildout"))
+(cabbage-load-bundle-dependencies '("lookup" "buildout"))
 
 ;; add additional files / directories to execlude from textmate-goto-file
 (when (not (string-match "eggs" *textmate-gf-exclude*))
@@ -231,7 +230,6 @@ then prompts for a file. Expects to be within a package
   (define-key python-mode-map (kbd "C-M-S-<return>") 'cabbage-plone-lookup-import))
 
 (add-hook 'python-mode-hook 'cabbage-plone--python-bindings)
-
 
 (defun cabbage-plone--init-snippets ()
   (when (cabbage-bundle-active-p 'snippets)

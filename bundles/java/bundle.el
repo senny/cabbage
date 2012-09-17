@@ -11,7 +11,8 @@
   (add-hook 'java-mode-hook 'java-mode-indent-annotations-setup)
 
   (when cabbage-java-use-eclim
-    (add-to-list 'load-path (concat cabbage-vendor-dir "eclim/vendor/"))
+    (add-to-list 'load-path (concat (cabbage-vendor-library-dir 'eclim)
+                                    "vendor/"))
     (cabbage-vendor 'eclim)
 
     (setq eclim-interactive-completion-function 'ido-completing-read)
@@ -37,7 +38,8 @@
     (if (and eclim-use-yasnippet (cabbage-bundle-active-p 'snippets))
         (add-hook 'cabbage-initialized-hook
                   (lambda ()
-                    (let ((dir (concat cabbage-vendor-dir "eclim/snippets/")))
+                    (let ((dir (concat (cabbage-vendor-library-dir 'eclim)
+                                       "snippets/")))
                       (add-to-list 'yas/root-directory dir t)
                       (yas/load-directory dir)))))))
 

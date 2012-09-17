@@ -1,4 +1,4 @@
-(load (concat cabbage-vendor-dir "rect-mark"))
+(cabbage-vendor 'rect-mark)
 
 (defun cabbage-rectangle-replace-string (from-string to-string delimited startcol endcol)
   "Search and replace a rectangle."
