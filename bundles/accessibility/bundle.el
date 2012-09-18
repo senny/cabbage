@@ -77,10 +77,5 @@
   (if (cabbage-bundle-active-p 'maximize)
       (maximize-frame)))
 
-(global-set-key (kbd "<f5>") 'ns-toggle-fullscreen)
-(global-set-key (kbd "C-+") 'increase-font-size)
-(global-set-key (kbd "C--") 'decrease-font-size)
-(global-set-key (kbd "C-c C-w") 'whitespace-mode)
-
 ;; Highlight the current line
 (global-hl-line-mode t)

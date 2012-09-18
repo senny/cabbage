@@ -59,11 +59,5 @@ function in the chosen completion framework."
 ;;;; Smex Completion for M-x
 (smex-initialize)
 
-(defun cabbage-smex-bind-keys ()
-  (when (cabbage-bundle-active-p 'ergonomic)
-    (global-unset-key (kbd "M-a"))
-    (global-set-key (kbd "M-a") 'smex)))
-(add-hook 'cabbage-initialized-hook 'cabbage-smex-bind-keys)
-
 ;;;; Global IDO Completion
 (ido-everywhere t)

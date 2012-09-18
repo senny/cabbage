@@ -9,6 +9,3 @@
   "Opens the cabbage perspective."
   (interactive)
   (cabbage-persp "@cabbage"))
-
-(global-set-key (kbd "C-c p") 'cabbage-emdeveloper-find-cabbage-config)
-(global-set-key (kbd "C-p e") 'cabbage-emdeveloper-emacs-persp)

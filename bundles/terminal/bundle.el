@@ -65,13 +65,6 @@ cabbage bindings.")
                                        "C-d"
                                        ))))
 
-;; terminal bindings
-
-(when (cabbage-bundle-active-p 'ergonomic)
-  (cabbage-global-set-key (kbd "C-p t") 'cabbage-terminal-open-term-persp))
-(cabbage-global-set-key (kbd "C-x t n") 'multi-term)
-(cabbage-global-set-key (kbd "C-x t t") 'multi-term-dedicated-toggle)
-
 ;; funs
 
 (defun cabbage-terminal-open-term-persp ()
