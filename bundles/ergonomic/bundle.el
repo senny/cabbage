@@ -189,8 +189,8 @@
   (cabbage-global-set-key (kbd "C-c p") 'cabbage-emdeveloper-find-cabbage-config)
   (cabbage-global-set-key (kbd "C-p e") 'cabbage-emdeveloper-emacs-persp))
 
-;; textmate bundle bindings
-(when (cabbage-bundle-active-p 'textmate)
+;; power-edit bundle bindings
+(when (cabbage-bundle-active-p 'power-edit)
   (cabbage-global-set-key (kbd "M-<up>") 'move-text-up)
   (cabbage-global-set-key (kbd "M-<down>") 'move-text-down)
   (cabbage-global-set-key (kbd "M-<right>")  'textmate-shift-right)
