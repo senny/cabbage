@@ -24,7 +24,7 @@ orig_head=`(cd $emaxdir && cat .git/ORIG_HEAD)`
 
 echo -e "Updating cabbage at \033[0;32m$emaxdir\033[00m ..."
 
-echo -e "$ \033[0;33mgit pull --ff-only\033[00m ..."
+echo -e "$ \033[0;33mgit pull --ff-only origin master\033[00m ..."
 (cd $emaxdir && /usr/bin/env git pull --ff-only origin master)
 
 echo -e "$ \033[0;33mgit submodule init\033[00m ..."
