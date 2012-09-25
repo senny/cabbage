@@ -20,6 +20,8 @@ else
     exit 1
 fi
 
+orig_head=`(cd $emaxdir && cat .git/ORIG_HEAD)`
+
 echo -e "Updating cabbage at \033[0;32m$emaxdir\033[00m ..."
 
 echo -e "$ \033[0;33mgit pull --ff-only\033[00m ..."
@@ -53,5 +55,9 @@ echo ""
 echo ""
 echo "CHANGELOG:"
 echo ""
-(cd $emaxdir && git --no-pager log --format="%C(blue)%h%Creset %s [%C(red)%an%Creset, %C(cyan)%cr%Creset] %C(bold reverse)%N%Creset%n        %b%n" --first-parent `cat .git/ORIG_HEAD`..HEAD)
+if [[ $orig_head == `(cd $emaxdir && cat .git/ORIG_HEAD)` ]]; then
+    echo "  Nothing changed."
+else
+    (cd $emaxdir && git --no-pager log --format="%C(blue)%h%Creset %s [%C(red)%an%Creset, %C(cyan)%cr%Creset] %C(bold reverse)%N%Creset%n        %b%n" --first-parent `cat .git/ORIG_HEAD`..HEAD)
+fi
 echo ""
