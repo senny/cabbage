@@ -61,3 +61,7 @@ function in the chosen completion framework."
 
 ;;;; Global IDO Completion
 (ido-everywhere t)
+
+(cabbage-vendor 'ido-ubiquitous)
+(add-to-list 'ido-ubiquitous-command-exceptions 'ucs-insert)
+(ido-ubiquitous t)
