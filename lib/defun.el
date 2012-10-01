@@ -176,8 +176,3 @@ is a comment, uncomment."
 
     (insert (concat "\n\t- pre-command-hook: "))
     (princ pre-command-hook (current-buffer))))
-
-(defun cabbage-load-bundle-dependencies (dependencies)
-  (let ((current-dir (file-name-directory load-file-name)))
-    (dolist (dependency dependencies)
-      (load (concat current-dir dependency)))))
