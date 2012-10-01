@@ -143,3 +143,9 @@ a value of nil means, this buffer does not contain an executable test")
                                  (directory-files repository nil "^[^.]"))
                                cabbage-bundle-dirs))
         (lambda (bundle1 bundle2) (string< bundle1 bundle2))))
+
+(defun cabbage-load-bundle-dependencies (dependencies)
+  (let ((current-dir (file-name-directory (or buffer-file-name
+                                              load-file-name))))
+    (dolist (dependency dependencies)
+      (load (concat current-dir dependency)))))
