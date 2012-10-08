@@ -55,6 +55,7 @@
     (switch-to-buffer buffer)))
 
 (cabbage-vendor 'textmate)
+(cabbage-vendor 'ace-jump-mode)
 
 ;; Do not cabbage-global-set-key TAB because this would override local
 ;; bindings such as in magit.
