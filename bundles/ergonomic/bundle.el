@@ -191,6 +191,7 @@
 
 ;; power-edit bundle bindings
 (when (cabbage-bundle-active-p 'power-edit)
+  (cabbage-global-set-key (kbd "C-c SPC") 'ace-jump-mode)
   (cabbage-global-set-key (kbd "M-<up>") 'move-text-up)
   (cabbage-global-set-key (kbd "M-<down>") 'move-text-down)
   (cabbage-global-set-key (kbd "M-<right>")  'textmate-shift-right)
