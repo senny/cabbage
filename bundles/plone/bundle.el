@@ -204,10 +204,10 @@ then prompts for a file. Expects to be within a package
              cabbage-xml-flymake-enabled
              (executable-find "xml"))
 
-      (add-to-list 'flymake-allowed-file-name-masks
-                   '("\\.[zc]?pt$" flymake-xml-init))
-      (add-to-list 'flymake-allowed-file-name-masks
-                   '("\\.zcml$" flymake-xml-init))))
+    (add-to-list 'flymake-allowed-file-name-masks
+                 '("\\.[zc]?pt$" flymake-xml-init))
+    (add-to-list 'flymake-allowed-file-name-masks
+                 '("\\.zcml$" flymake-xml-init))))
 
 (add-hook 'nxml-mode-hook 'cabbage-plone--xml-flymake)
 
