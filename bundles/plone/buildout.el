@@ -134,3 +134,31 @@ script in this buildout"
 
 
 (add-hook 'cabbage-initialized-hook 'cabbage-plone--load-local-configuration)
+
+
+(defun cabbage-plone--find-instance-port ()
+  "Returns the zope port of the first instance found in the current context."
+  (let ((cmd (concat "grep -r '^\\W*address' " buildout-root "parts/instance*/etc/zope.conf | sed -e 's/^.*[ :]\\([0-9]\\{1,\\}\\)/\\1/' | head -n 1")))
+    (replace-regexp-in-string "\n" "" (shell-command-to-string cmd))))
+
+
+(defun cabbage-plone--make-request (path callback &optional cbargs)
+  "Makes a request to the current zope."
+  (let ((buildout-root (cabbage-plone--find-buildout-root default-directory)))
+    (if (eq buildout-root nil)
+        (message "Buildout not found.")
+      (let* ((port (cabbage-plone--find-instance-port))
+             (url (url-generic-parse-url
+                   (concat "http://localhost:" port "/" path))))
+
+        (url-retrieve url callback cbargs)))))
+
+
+(defun cabbage-plone--read-json-from-request ()
+  "Reads json from a request.
+Should be called from within the url-retrieve callback."
+  (save-excursion
+    (goto-char (point-min))
+    (delete-region (point-min) (search-forward "\n\n"))
+    (let ((json-object-type 'hash-table))
+      (json-read))))
