@@ -2,7 +2,7 @@
 
 ;;;; -------------------------------------
 ;;;; Bundle
-(cabbage-load-bundle-dependencies '("enlarge"))
+(cabbage-load-bundle-dependencies "ergonomic" '("enlarge"))
 
 (defun move-cursor-next-pane ()
   "Move cursor to the next pane."

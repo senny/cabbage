@@ -46,7 +46,7 @@ optional parameters."
 
 ;; dependencies
 (cabbage-vendor 'textmate)
-(cabbage-load-bundle-dependencies '("lookup" "buildout"))
+(cabbage-load-bundle-dependencies "plone" '("lookup" "buildout"))
 
 ;; add additional files / directories to execlude from textmate-goto-file
 (when (not (string-match "eggs" *textmate-gf-exclude*))
