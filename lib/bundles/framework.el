@@ -114,12 +114,14 @@ a value of nil means, this buffer does not contain an executable test")
   (if (symbolp symbol-or-string)
       (symbol-name bundle) symbol-or-string))
 
-(defun cabbage--bundle-path (bundle)
-  (mapcar (lambda (bundle-repository)
-            (concat bundle-repository
-                    (cabbage--bundle-name bundle)
-                    "/bundle"))
-          cabbage-bundle-dirs))
+(defun cabbage--bundle-path (bundle &optional filename)
+  (let ((name (or filename "bundle")))
+    (mapcar (lambda (bundle-repository)
+              (concat bundle-repository
+                      (cabbage--bundle-name bundle)
+                      "/"
+                      name))
+            cabbage-bundle-dirs)))
 
 (defun cabbage-list-bundles ()
   "Show available and enabled list of bundles"
@@ -144,8 +146,7 @@ a value of nil means, this buffer does not contain an executable test")
                                cabbage-bundle-dirs))
         (lambda (bundle1 bundle2) (string< bundle1 bundle2))))
 
-(defun cabbage-load-bundle-dependencies (dependencies)
-  (let ((current-dir (file-name-directory (or buffer-file-name
-                                              load-file-name))))
-    (dolist (dependency dependencies)
-      (load (concat current-dir dependency)))))
+(defun cabbage-load-bundle-dependencies (bundle dependencies)
+  (dolist (dependency dependencies)
+    (dolist (dependency-path (cabbage--bundle-path bundle dependency))
+      (load dependency-path t))))
