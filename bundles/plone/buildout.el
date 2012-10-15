@@ -2,9 +2,15 @@
 (defvar cabbage-plone-buildout--run-persp-prefix "*fg*")
 (defvar cabbage-plone-buildout--tests-persp-prefix "*tests*")
 (defvar cabbage-plone-buildout--default-compilation-fun 'pdb)
+
 (defcustom cabbage-plone-buildout--use-local-pep8 nil
   "Use pep8 executable from buildout when there is one."
   :type 'boolean
+  :group 'cabbage)
+
+(defcustom cabbage-plone-buildout--default-zope-user "admin"
+  "Default username for connecting to zope."
+  :type 'string
   :group 'cabbage)
 
 
@@ -149,7 +155,8 @@ script in this buildout"
         (message "Buildout not found.")
       (let* ((port (cabbage-plone--find-instance-port))
              (url (url-generic-parse-url
-                   (concat "http://localhost:" port "/" path))))
+                   (concat "http://" cabbage-plone-buildout--default-zope-user
+                           "@localhost:" port "/" path))))
 
         (url-retrieve url callback cbargs)))))
 
