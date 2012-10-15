@@ -215,11 +215,3 @@ then prompts for a file. Expects to be within a package
   (define-key python-mode-map (kbd "C-M-S-<return>") 'cabbage-plone-lookup-import))
 
 (add-hook 'python-mode-hook 'cabbage-plone--python-bindings)
-
-(defun cabbage-plone--init-snippets ()
-  (when (cabbage-bundle-active-p 'snippets)
-    (add-to-list 'yas/root-directory
-                 (concat (concat cabbage-bundle-dir "plone/snippets")) t)
-    (yas/reload-all)))
-
-(add-hook 'python-mode-hook 'cabbage-plone--init-snippets)
