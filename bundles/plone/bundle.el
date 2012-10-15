@@ -68,20 +68,21 @@ optional parameters."
 If a buildout root is found return the path, othwise return
 nil."
   ;; find the most top one, not the first one
-  (let* ((dir default-directory)
-         (previous dir))
-    (while (not (equalp dir nil))
-      (setq dir (cabbage--find-parent-with-file dir "bootstrap.py"))
-      (when (and first-match dir)
-        (setq previous dir)
-        (setq dir nil))
+  (when (cabbage--find-parent-with-file path "bootstrap.py")
+    (let* ((dir default-directory)
+           (previous dir))
+      (while (not (equalp dir nil))
+        (setq dir (cabbage--find-parent-with-file dir "bootstrap.py"))
+        (when (and first-match dir)
+          (setq previous dir)
+          (setq dir nil))
 
-      (if (not (equalp dir nil))
-          (progn
-            (setq previous dir)
-            ;; get parent dir
-            (setq dir (file-name-directory (directory-file-name dir))))))
-    previous))
+        (if (not (equalp dir nil))
+            (progn
+              (setq previous dir)
+              ;; get parent dir
+              (setq dir (file-name-directory (directory-file-name dir))))))
+      previous)))
 
 
 (defun cabbage-plone-make-changelog-entry ()
