@@ -231,20 +231,3 @@ then prompts for a file. Expects to be within a package
 
 (add-hook 'python-mode-hook 'cabbage-plone--python-bindings)
 
-(defun cabbage-plone--init-snippets ()
-  (when (cabbage-bundle-active-p 'snippets)
-    (add-to-list 'yas/root-directory
-                 (concat (concat cabbage-bundle-dir "plone/snippets")) t)
-    (yas/reload-all)))
-
-(add-hook 'python-mode-hook 'cabbage-plone--init-snippets)
-
-
-(defadvice textmate-goto-file (around textmate-goto-file-in-buildout activate)
-  "Change `textmate-goto-file' to ignore files as src/* bin/* of a package
-when within a buildout environment."
-  ;; Only use reduced find-file implementation when we are in a buildout
-  ;; environment.
-  (if (cabbage-plone--find-buildout-root default-directory)
-      (cabbage-plone--find-file-in-package (textmate-project-root))
-    ad-do-it))
