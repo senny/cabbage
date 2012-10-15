@@ -45,6 +45,13 @@ especially when using
   `cabbage-plone-find-changelog-make-entry`, the here configured name
   will be used. If `nil`, the user login-name is used (default).
 
+* `cabbage-plone-buildout--use-local-pep8`: Set to `t` when you have
+  a `bin/pep8` in your buildout.
+
+* `cabbage-plone-buildout--default-zope-user` Change the default
+  username for connecting to Zope.
+
+
 ## Functions
 
 WARNING: the here defined key bindings may change in the upcoming
@@ -69,7 +76,8 @@ binding refactoring.
 
 * `cabbage-plone-reload-code`: Reload the python code in a running zope
   instance where plone.reload is installed. The instance does not need
-  to be running within emacs.
+  to be running within emacs. This method does not use the
+  `cabbage-plone-buildout--default-zope-user` option.
   Options:
   * `-c`: Reload only code (default)
   * `-z`: Reload code and zcml
@@ -87,6 +95,29 @@ binding refactoring.
   using omelette. You can enter things like `Products.CMFCore.utils`
   or `from zope.interface import Interface`.
 
+* `cabbage-plone--pep8-package` (`C-c f p`): Run pep8 for the current
+  package. This needs `cabbage-plone-buildout--use-local-pep8` to be
+  enabled.
+
+* `cabbage-plone-find-adapter-by-name` (`C-c f a`): Find an adapter by
+  its name by searching the component registry of the current
+  zope instance. collective.z3cinspector needs to be installed on
+  the zope instance.
+
+* `cabbage-plone-find-adapter-by-providing-interface` (`C-c f A`):
+  Find an adapter by the interface it provides by searching the
+  component registry of the current zope instance.
+  collective.z3cinspector needs to be installed on the zope instance.
+
+* `cabbage-plone-find-utility-by-name` (`C-c f u`): Find a utility by
+  its name by searching the component registry of the current
+  zope instance. collective.z3cinspector needs to be installed on
+  the zope instance.
+
+* `cabbage-plone-find-utility-by-providing-interface` (`C-c f U`):
+  Find an utility by the interface it provides by searching the
+  component registry of the current zope instance.
+  collective.z3cinspector needs to be installed on the zope instance.
 
 ## Buildout layout
 
