@@ -218,12 +218,6 @@
   (cabbage-global-set-key (kbd "M-w") 'textmate-goto-symbol)
   (cabbage-global-set-key (kbd "C-x p") 'cabbage-project-ido-find-project))
 
-;; terminal bundle bindings
-(when (cabbage-bundle-active-p 'terminal)
-  (cabbage-global-set-key (kbd "C-p t") 'cabbage-terminal-open-term-persp)
-  (cabbage-global-set-key (kbd "C-x t n") 'multi-term)
-  (cabbage-global-set-key (kbd "C-x t t") 'multi-term-dedicated-toggle))
-
 ;; org bundle bindings
 (when (cabbage-bundle-active-p 'org)
   (cabbage-global-set-key (kbd "C-p o") 'cabbage-org-emacs-persp))

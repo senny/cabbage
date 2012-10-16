@@ -1,5 +1,5 @@
 (defvar cabbage--globaly-bound-keys-alist '())
-(defvar cabbage--deprecated-bundles '("terminal"))
+(defvar cabbage--deprecated-bundles '())
 
 (defun cabbage-bundle-active-p (bundle-name)
   (member bundle-name cabbage-bundles))
