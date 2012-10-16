@@ -182,7 +182,11 @@
   (cabbage-global-set-key (kbd "C-c f r") 'cabbage-plone-reload-code)
   (cabbage-global-set-key (kbd "C-c f f") 'cabbage-plone-run)
   (cabbage-global-set-key (kbd "C-c f t") 'cabbage-plone-tests)
-  (cabbage-global-set-key (kbd "C-c f p") 'cabbage-plone--pep8-package))
+  (cabbage-global-set-key (kbd "C-c f p") 'cabbage-plone--pep8-package)
+  (cabbage-global-set-key (kbd "C-c f a") 'cabbage-plone-find-adapter-by-name)
+  (cabbage-global-set-key (kbd "C-c f A") 'cabbage-plone-find-adapter-by-providing-interface)
+  (cabbage-global-set-key (kbd "C-c f u") 'cabbage-plone-find-utility-by-name)
+  (cabbage-global-set-key (kbd "C-c f U") 'cabbage-plone-find-utility-by-providing-interface))
 
 ;; cabbage-developer bundle bindings
 (when (cabbage-bundle-active-p 'cabbage-developer)

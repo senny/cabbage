@@ -119,3 +119,6 @@
 [submodule "vendor/ace-jump-mode"]
 	path = vendor/ace-jump-mode
 	url = https://github.com/winterTTr/ace-jump-mode.git
+[submodule "vendor/json"]
+	path = vendor/json
+	url = https://github.com/thorstadt/json.el.git
