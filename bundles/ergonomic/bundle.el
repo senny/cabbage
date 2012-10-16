@@ -166,10 +166,6 @@
   (cabbage-global-set-key (kbd "C-x r s") 'string-rectangle)
   (cabbage-global-set-key (kbd "C-x r <down-mouse-1>") 'rm-mouse-drag-region))
 
-;; irc bundle bindings
-(when (cabbage-bundle-active-p 'irc)
-  (cabbage-global-set-key (kbd "C-p i") 'cabbage-erc))
-
 ;; jabber bundle bindings
 (when (cabbage-bundle-active-p 'jabber)
   (cabbage-global-set-key (kbd "C-p j") 'cabbage-jabber))
