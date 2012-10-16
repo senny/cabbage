@@ -76,16 +76,17 @@ This excludes paths as bin/, src/ etc."
            "^\/?" ""
            (replace-regexp-in-string (concat path "/") "" (concat "/" e))))
 
-        (let ((*textmate-gf-exclude*
-               (replace-regexp-in-string
-                "build"
-                (concat "build|"
-                        (concat path "/bin|")
-                        (concat path "/develop-eggs|")
-                        (concat path "/src|")
-                        (concat path "/parts|")
-                        (concat path "/var"))
-                *textmate-gf-exclude*)))
+        (let* ((pathend (mapconcat 'identity (last (split-string path "/") 2) "/"))
+               (*textmate-gf-exclude*
+                (replace-regexp-in-string
+                 "build"
+                 (concat "build|"
+                         (concat pathend "/bin|")
+                         (concat pathend "/develop-eggs|")
+                         (concat pathend "/src|")
+                         (concat pathend "/parts|")
+                         (concat pathend "/var"))
+                 *textmate-gf-exclude*)))
           (textmate-project-files path))))))))
 
 (defun cabbage-plone--find-buildout-root (path &optional first-match)
