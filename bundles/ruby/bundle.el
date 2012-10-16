@@ -9,8 +9,7 @@
 ;;;; Bundle
 
 ;; load the latest ruby-mode to get the syntax-higlighting working
-(load (concat cabbage-vendor-dir "ruby-mode"))
-
+(cabbage-vendor 'ruby-mode)
 (cabbage-vendor 'rhtml-mode)
 (cabbage-vendor 'yari)
 (cabbage-vendor 'inf-ruby)
@@ -79,7 +78,7 @@
      (define-key ruby-mode-map (kbd "C-c , ,") 'cabbage-open-spec-other-buffer)
 
      (when cabbage-ruby-automatically-insert-end
-       (load (concat cabbage-bundle-dir "ruby/electric_end"))
+       (cabbage-load-bundle-dependencies "ruby" '("electric_end"))
        (define-key ruby-mode-map " " 'cabbage-ruby-electric-space))
 
      ;; disable TAB in ruby-mode-map, so that cabbage-smart-tab is used
@@ -93,7 +92,7 @@
      ))
 
 (when (cabbage-flymake-active-p)
-  (load (concat cabbage-bundle-dir "ruby/flymake")))
+  (cabbage-load-bundle-dependencies "ruby" '("flymake")))
 
 (defun cabbage-ruby-mode-hook ()
   (cabbage--set-pairs '("(" "{" "[" "\"" "\'" "|"))
