@@ -62,26 +62,54 @@ optional parameters."
 
 ;; helpers
 
+(defun cabbage-plone--find-file-in-package (path)
+  "Open a file using textmate-completing-read within a python package.
+This excludes paths as bin/, src/ etc."
+  (let ((path (replace-regexp-in-string "\/*$" "" path)))
+    (find-file
+     (concat
+      path "/"
+      (textmate-completing-read
+       "Find file: "
+       (mapcar
+        (lambda (e)
+          (replace-regexp-in-string
+           "^\/?" ""
+           (replace-regexp-in-string (concat path "/") "" (concat "/" e))))
+
+        (let ((*textmate-gf-exclude*
+               (replace-regexp-in-string
+                "build"
+                (concat "build|"
+                        (concat path "/bin|")
+                        (concat path "/develop-eggs|")
+                        (concat path "/src|")
+                        (concat path "/parts|")
+                        (concat path "/var"))
+                *textmate-gf-exclude*)))
+          (textmate-project-files path))))))))
+
 (defun cabbage-plone--find-buildout-root (path &optional first-match)
   "Search PATH for a buildout root.
 
 If a buildout root is found return the path, othwise return
 nil."
   ;; find the most top one, not the first one
-  (let* ((dir default-directory)
-         (previous dir))
-    (while (not (equalp dir nil))
-      (setq dir (cabbage--find-parent-with-file dir "bootstrap.py"))
-      (when (and first-match dir)
-        (setq previous dir)
-        (setq dir nil))
+  (when (cabbage--find-parent-with-file path "bootstrap.py")
+    (let* ((dir default-directory)
+           (previous dir))
+      (while (not (equalp dir nil))
+        (setq dir (cabbage--find-parent-with-file dir "bootstrap.py"))
+        (when (and first-match dir)
+          (setq previous dir)
+          (setq dir nil))
 
-      (if (not (equalp dir nil))
-          (progn
-            (setq previous dir)
-            ;; get parent dir
-            (setq dir (file-name-directory (directory-file-name dir))))))
-    previous))
+        (if (not (equalp dir nil))
+            (progn
+              (setq previous dir)
+              ;; get parent dir
+              (setq dir (file-name-directory (directory-file-name dir))))))
+      previous)))
 
 
 (defun cabbage-plone-make-changelog-entry ()
@@ -145,21 +173,8 @@ then prompts for a file. Expects to be within a package
       (setq path root))
 
     (setq path (replace-regexp-in-string "\/*$" "" path))
-    (find-file
-     (concat path "/"
-             (textmate-completing-read
-              "Find file: "
-              (mapcar
-               (lambda (e)
-                 (replace-regexp-in-string
-                  "^\/?" ""
-                  (replace-regexp-in-string (concat path "/") "" (concat "/" e))))
+    (cabbage-plone--find-file-in-package path)))
 
-               (let ((*textmate-gf-exclude*
-                      (replace-regexp-in-string "build"
-                                                (concat "build|" path "/src")
-                                                *textmate-gf-exclude*)))
-                 (textmate-project-files path))))))))
 
 
 (defun cabbage-plone-ido-find-buildout (&optional projects-root)
@@ -203,10 +218,10 @@ then prompts for a file. Expects to be within a package
              cabbage-xml-flymake-enabled
              (executable-find "xml"))
 
-      (add-to-list 'flymake-allowed-file-name-masks
-                   '("\\.[zc]?pt$" flymake-xml-init))
-      (add-to-list 'flymake-allowed-file-name-masks
-                   '("\\.zcml$" flymake-xml-init))))
+    (add-to-list 'flymake-allowed-file-name-masks
+                 '("\\.[zc]?pt$" flymake-xml-init))
+    (add-to-list 'flymake-allowed-file-name-masks
+                 '("\\.zcml$" flymake-xml-init))))
 
 (add-hook 'nxml-mode-hook 'cabbage-plone--xml-flymake)
 
@@ -225,3 +240,13 @@ then prompts for a file. Expects to be within a package
     (yas/reload-all)))
 
 (add-hook 'python-mode-hook 'cabbage-plone--init-snippets)
+
+
+(defadvice textmate-goto-file (around textmate-goto-file-in-buildout activate)
+  "Change `textmate-goto-file' to ignore files as src/* bin/* of a package
+when within a buildout environment."
+  ;; Only use reduced find-file implementation when we are in a buildout
+  ;; environment.
+  (if (cabbage-plone--find-buildout-root default-directory)
+      (cabbage-plone--find-file-in-package (textmate-project-root))
+    ad-do-it))
