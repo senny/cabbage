@@ -78,7 +78,7 @@
      (define-key ruby-mode-map (kbd "C-c , ,") 'cabbage-open-spec-other-buffer)
 
      (when cabbage-ruby-automatically-insert-end
-       (cabbage-load-bundle-dependencies '("electric_end"))
+       (cabbage-load-bundle-dependencies "ruby" '("electric_end"))
        (define-key ruby-mode-map " " 'cabbage-ruby-electric-space))
 
      ;; disable TAB in ruby-mode-map, so that cabbage-smart-tab is used
@@ -92,7 +92,7 @@
      ))
 
 (when (cabbage-flymake-active-p)
-  (cabbage-load-bundle-dependencies '("flymake")))
+  (cabbage-load-bundle-dependencies "ruby" '("flymake")))
 
 (defun cabbage-ruby-mode-hook ()
   (cabbage--set-pairs '("(" "{" "[" "\"" "\'" "|"))

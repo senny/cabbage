@@ -94,4 +94,27 @@ The following bundles are supported currently:
 if you got a pice of emacs functionality, that you think might be usefull for other people, please package it up in a bundle and open a
 pull-request.
 
+### Local bundles
+
+It also to create private / local bundles if something does not belong
+into the cabbage core. It is quite easy:
+
+- Create a local bundles directory, e.g. `~/.emacs.d/bundles`
+- Create your bundle, for example
+  `~/.emacs.d/bundles/secret-stuff/bundle.el`
+- Register the bundles directory on top of your
+  `~/.emacs.d/config.el`, so that it is set before you define your
+  `cabbage-bundles`, by adding this line:
+
+      (add-to-list 'cabbage-bundle-dirs (expand-file-name "~/.emacs.d/bundles/")
+
+- Add `secret-stuff` to your bundles list.
+- You can also create a local vendors directory and
+  register it with:
+
+      (add-to-list 'cabbage-vendor-dirs (expand-file-name "~/.emacs.d/vendor/"))
+
+- Take a look on how the existing bundles work.
+
+
 If you are interested in helping out, please have a look at our [Contribution Guidelines](https://github.com/senny/cabbage/blob/master/CONTRIBUTING.md).
