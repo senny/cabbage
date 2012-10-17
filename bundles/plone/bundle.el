@@ -81,11 +81,8 @@ This excludes paths as bin/, src/ etc."
                 (replace-regexp-in-string
                  "build"
                  (concat "build|"
-                         (concat pathend "/bin|")
-                         (concat pathend "/develop-eggs|")
                          (concat pathend "/src|")
-                         (concat pathend "/parts|")
-                         (concat pathend "/var"))
+                         (concat pathend "/parts"))
                  *textmate-gf-exclude*)))
           (textmate-project-files path))))))))
 
