@@ -122,3 +122,6 @@
 [submodule "vendor/json"]
 	path = vendor/json
 	url = https://github.com/thorstadt/json.el.git
+[submodule "vendor/multiple-cursors"]
+	path = vendor/multiple-cursors
+	url = https://github.com/magnars/multiple-cursors.el.git

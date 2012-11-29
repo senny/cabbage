@@ -216,7 +216,11 @@
 (when (cabbage-bundle-active-p 'project)
   (cabbage-global-set-key (kbd "M-t") 'textmate-goto-file)
   (cabbage-global-set-key (kbd "M-w") 'textmate-goto-symbol)
-  (cabbage-global-set-key (kbd "C-x p") 'cabbage-project-ido-find-project))
+  (cabbage-global-set-key (kbd "C-x p") 'cabbage-project-ido-find-project)
+  (cabbage-global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+  (cabbage-global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (cabbage-global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (cabbage-global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
 
 ;; org bundle bindings
 (when (cabbage-bundle-active-p 'org)
