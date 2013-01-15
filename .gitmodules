@@ -5,7 +5,7 @@
 
 [submodule "vendor/perspective"]
 	path = vendor/perspective
-	url = https://github.com/fred-o/perspective-el.git
+	url = https://github.com/nex3/perspective-el.git
 	ignore = untracked
 
 [submodule "vendor/theme-roller"]
