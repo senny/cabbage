@@ -102,13 +102,11 @@ into the cabbage core. It is quite easy:
 - Create a local bundles directory, e.g. `~/.emacs.d/bundles`
 - Create your bundle, for example
   `~/.emacs.d/bundles/secret-stuff/bundle.el`
-- Register the bundles directory on top of your
-  `~/.emacs.d/config.el`, so that it is set before you define your
-  `cabbage-bundles`, by adding this line:
+- Register the bundles directory at the top of your `~/.emacs.d/local.el` by adding this line:
 
-      (add-to-list 'cabbage-bundle-dirs (expand-file-name "~/.emacs.d/bundles/")
+      (add-to-list 'cabbage-bundle-dirs (expand-file-name "~/.emacs.d/bundles/"))
 
-- Add `secret-stuff` to your bundles list.
+- Add `secret-stuff` to your bundles list in `~/.emacs.d/config.el`
 - You can also create a local vendors directory and
   register it with:
 
