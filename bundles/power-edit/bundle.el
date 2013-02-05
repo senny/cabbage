@@ -1,3 +1,5 @@
+(global-auto-revert-mode)
+
 (defun move-text-internal (arg)
   (cond
    ((and mark-active transient-mark-mode)
