@@ -80,14 +80,7 @@ Seriously, if you're not using PowerShell under Windows, you're probably doing i
 
 cabbage fundamental organization are bundles. You can eneable and disable the configuration on a per bundle basis.
 The bundles live in cabbage/bundles. The active bundles are configured in your ~/.emacs.d/config.el file in the `cabbage-bundles` variable.
-The following bundles are supported currently:
-
-* ergonomic (use ergonomic keybindings to use emacs more efficently)
-* accessibility (make emacs behave the way you expect it and get distractions out of the way)
-* git (git handling with magit)
-* lisp (to write elisp)
-* python (to write python)
-* projects (simple projects management stuff)
+Check out the [bundles directory](https://github.com/senny/cabbage/tree/master/bundles) to see whats currently available.
 
 ### Your Bundles are welcome too!
 
