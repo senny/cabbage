@@ -82,10 +82,12 @@ echo -e "\033[0;32mPress enter to continue (CTRL + c to cancel)\033[0m"
 if $clone_repo; then
     echo -e "Cloning cabbage to \033[0;32m$emaxdir\033[0m ..."
     /usr/bin/env git clone $cloneurl $emaxdir || exit 1
-    (cd $emaxdir && /usr/bin/env git submodule init) || exit 1
-    (cd $emaxdir && /usr/bin/env git submodule update) || exit 1
-    echo ""
 fi
+
+# Initialize the submodules
+(cd $emaxdir && /usr/bin/env git submodule init) || exit 1
+(cd $emaxdir && /usr/bin/env git submodule update) || exit 1
+echo ""
 
 # Create backup
 if $create_backup; then
