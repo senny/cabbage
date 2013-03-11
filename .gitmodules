@@ -125,3 +125,6 @@
 [submodule "vendor/multiple-cursors"]
 	path = vendor/multiple-cursors
 	url = https://github.com/magnars/multiple-cursors.el.git
+[submodule "vendor/php-mode"]
+	path = vendor/php-mode
+	url = https://github.com/ejmr/php-mode.git
