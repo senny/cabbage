@@ -53,7 +53,7 @@
 
 (defun cabbage-project-root (&optional directory)
   "Finds the root directory of the project by walking the directory tree until it finds a project root indicator."
-  (let* ((directory (file-name-as-directory (or directory default-directory)))
+  (let* ((directory (file-name-as-directory (or directory (expand-file-name default-directory))))
          (present-files (directory-files directory)))
     (cond ((cabbage-project-root-directory-p directory) nil)
           ((> (length (intersection present-files cabbage-project-root-indicators :test 'string=)) 0) directory)
