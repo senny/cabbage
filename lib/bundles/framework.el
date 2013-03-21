@@ -63,6 +63,14 @@
           ((> (length (intersection present-files cabbage-project-root-indicators :test 'string=)) 0) directory)
           (t (cabbage-project-root (file-name-directory (directory-file-name directory)))))))
 
+(defun cabbage-project-expand-path (&rest segments)
+  "Construct a path relative to the cabbage-project-root"
+  (let ((project-root (cabbage-project-root)))
+    (when (not project-root) (error "Could not detect project root"))
+    (let ((path (mapconcat 'identity segments "/"))
+          (installation-dir (replace-regexp-in-string "/$" "" project-root)))
+      (expand-file-name (concat installation-dir "/" path)))))
+
 ;; API: integrated testing
 (defvar cabbage-testing--last-project-root nil
   "cache for the project-root of the last executed spec-file")
