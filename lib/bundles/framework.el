@@ -43,6 +43,10 @@
   '("Rakefile" ".git" "Gemfile")
   "list of file-/directory-names which indicate a root of a project")
 
+(defun cabbage-project-p ()
+  "Returns whether cabbage has access to a project root or not"
+  (stringp (cabbage-project-root)))
+
 (defun cabbage-project-parent-directory (a-directory)
   "Returns the directory of which a-directory is a child"
   (file-name-directory (directory-file-name a-directory)))
