@@ -43,6 +43,10 @@
   '("Rakefile" ".git" "Gemfile")
   "list of file-/directory-names which indicate a root of a project")
 
+(defun cabbage-project-p ()
+  "Returns whether cabbage has access to a project root or not"
+  (stringp (cabbage-project-root)))
+
 (defun cabbage-project-parent-directory (a-directory)
   "Returns the directory of which a-directory is a child"
   (file-name-directory (directory-file-name a-directory)))
@@ -53,11 +57,19 @@
 
 (defun cabbage-project-root (&optional directory)
   "Finds the root directory of the project by walking the directory tree until it finds a project root indicator."
-  (let* ((directory (file-name-as-directory (or directory default-directory)))
+  (let* ((directory (file-name-as-directory (or directory (expand-file-name default-directory))))
          (present-files (directory-files directory)))
     (cond ((cabbage-project-root-directory-p directory) nil)
           ((> (length (intersection present-files cabbage-project-root-indicators :test 'string=)) 0) directory)
           (t (cabbage-project-root (file-name-directory (directory-file-name directory)))))))
+
+(defun cabbage-project-expand-path (&rest segments)
+  "Construct a path relative to the cabbage-project-root"
+  (let ((project-root (cabbage-project-root)))
+    (when (not project-root) (error "Could not detect project root"))
+    (let ((path (mapconcat 'identity segments "/"))
+          (installation-dir (replace-regexp-in-string "/$" "" project-root)))
+      (expand-file-name (concat installation-dir "/" path)))))
 
 ;; API: integrated testing
 (defvar cabbage-testing--last-project-root nil
