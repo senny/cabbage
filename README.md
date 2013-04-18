@@ -109,3 +109,5 @@ into the cabbage core. It is quite easy:
 
 
 If you are interested in helping out, please have a look at our [Contribution Guidelines](https://github.com/senny/cabbage/blob/master/CONTRIBUTING.md).
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/63a56e02597deaf55327bc0dd26638c6 "githalytics.com")](http://githalytics.com/senny/cabbage)
