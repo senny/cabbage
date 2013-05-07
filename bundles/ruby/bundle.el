@@ -30,6 +30,13 @@
 ;; We never want to edit Rubinius bytecode
 (add-to-list 'completion-ignored-extensions ".rbc")
 
+(defun cabbage-run-single-ruby-file (filename)
+  (let* ((name (file-name-nondirectory (car (split-string filename))))
+         (name-buffer (format "*%s*" name)))
+    (if (get-buffer name-buffer)
+        (kill-buffer name-buffer))
+    (ruby-compilation-run filename)))
+
 (defun cabbage-open-spec-other-buffer ()
   (interactive)
   (when (featurep 'rspec-mode)
@@ -99,6 +106,9 @@
 
   (when (and buffer-file-name (string-match "_spec.rb$" buffer-file-name))
     (setq cabbage-testing-execute-function 'rspec-run-single-file))
+
+  (when (and buffer-file-name (string-match "_test.rb$" buffer-file-name))
+    (setq cabbage-testing-execute-function 'cabbage-run-single-ruby-file))
 
   (when (cabbage-bundle-active-p 'completion)
     (setq ac-sources '(ac-source-words-in-same-mode-buffers ac-source-yasnippet))
