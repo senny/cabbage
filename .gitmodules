@@ -115,7 +115,7 @@
 
 [submodule "vendor/ido-ubiquitous"]
 	path = vendor/ido-ubiquitous
-	url = git://github.com/DarwinAwardWinner/ido-ubiquitous.git
+	url = https://github.com/DarwinAwardWinner/ido-ubiquitous.git
 [submodule "vendor/ace-jump-mode"]
 	path = vendor/ace-jump-mode
 	url = https://github.com/winterTTr/ace-jump-mode.git
