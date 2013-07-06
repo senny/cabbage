@@ -26,6 +26,7 @@
 (add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.js.rjs$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.xml.builder$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.json.jbuilder$" . ruby-mode))
 
 ;; We never want to edit Rubinius bytecode
 (add-to-list 'completion-ignored-extensions ".rbc")
