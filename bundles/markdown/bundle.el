@@ -9,6 +9,7 @@
 (add-to-list 'auto-mode-alist '("\\.text$" . markdown-mode))
 
 (defun cabbage-markdown-mode-hook ()
+  (setq fill-column 80)
   (cabbage--set-pairs '("(" "{" "[" "\""))
   (auto-fill-mode 1))
 
