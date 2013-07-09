@@ -1,5 +1,6 @@
 (defvar cabbage--globaly-bound-keys-alist '())
 (defvar cabbage--deprecated-bundles '())
+(defvar cabbage--protect-binding-modes '(tar-mode))
 
 (defun cabbage-bundle-active-p (bundle-name)
   (member bundle-name cabbage-bundles))
@@ -13,8 +14,9 @@
 
 (defun cabbage-clear-local-bindings ()
   (interactive)
-  (dolist (binding cabbage--globaly-bound-keys-alist)
-    (local-unset-key (car binding))))
+  (unless (member major-mode cabbage--protect-binding-modes)
+    (dolist (binding cabbage--globaly-bound-keys-alist)
+      (local-unset-key (car binding)))))
 
 (add-hook 'after-change-major-mode-hook 'cabbage-clear-local-bindings)
 (add-hook 'org-mode-hook 'cabbage-clear-local-bindings)
