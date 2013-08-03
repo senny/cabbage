@@ -11,7 +11,6 @@
   :type 'boolean)
 
 (cabbage-vendor 'idle-highlight-mode)
-(cabbage-vendor 'popwin)
 
 (if window-system
     (progn
@@ -36,8 +35,6 @@
       inhibit-startup-message t
       truncate-partial-width-windows nil
       gnuserv-frame (car (frame-list)))
-
-(setq special-display-function 'popwin:special-display-popup-window)
 
 (setq-default cursor-type '(bar . 2))
 (setq-default indicate-empty-lines t)
