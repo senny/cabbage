@@ -53,11 +53,6 @@
 	url = https://github.com/auto-complete/auto-complete.git
 	ignore = untracked
 
-[submodule "vendor/popwin"]
-	path = vendor/popwin
-	url = https://github.com/m2ym/popwin-el.git
-	ignore = untracked
-
 [submodule "vendor/smex"]
 	path = vendor/smex
 	url = https://github.com/nonsequitur/smex.git
