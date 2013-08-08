@@ -1,3 +1,4 @@
+(cabbage-vendor 'cl-lib)
 (cabbage-vendor 'magit)
 
 ;;;; Magit
