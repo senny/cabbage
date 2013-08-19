@@ -38,6 +38,16 @@
         (kill-buffer name-buffer))
     (ruby-compilation-run filename)))
 
+(defun cabbage-ruby-test-run-file (filename)
+  (interactive (list(buffer-file-name)))
+  (let* ((name-buffer "ruby-test")
+         (name-buffer-full (format "*%s*" name-buffer)))
+    (display-buffer (get-buffer-create name-buffer-full))
+    (with-current-buffer name-buffer-full
+      (erase-buffer))
+    (display-buffer name-buffer-full)
+    (ruby-compilation-do name-buffer (cons "ruby" (list filename)))))
+
 (defun cabbage-open-spec-other-buffer ()
   (interactive)
   (when (featurep 'rspec-mode)
@@ -109,7 +119,7 @@
     (setq cabbage-testing-execute-function 'rspec-run-single-file))
 
   (when (and buffer-file-name (string-match "_test.rb$" buffer-file-name))
-    (setq cabbage-testing-execute-function 'cabbage-run-single-ruby-file))
+    (setq cabbage-testing-execute-function 'cabbage-ruby-test-run-file))
 
   (when (cabbage-bundle-active-p 'completion)
     (setq ac-sources '(ac-source-words-in-same-mode-buffers ac-source-yasnippet))
