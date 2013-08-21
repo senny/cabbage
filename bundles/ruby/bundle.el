@@ -41,9 +41,11 @@
 (defun cabbage-ruby-test-run-file (filename)
   (interactive (list(buffer-file-name)))
   (let* ((name-buffer "ruby-test")
-         (name-buffer-full (format "*%s*" name-buffer)))
+         (name-buffer-full (format "*%s*" name-buffer))
+         (project-root (cabbage-project-root (file-name-directory filename))))
     (display-buffer (get-buffer-create name-buffer-full))
     (with-current-buffer name-buffer-full
+      (setq default-directory project-root)
       (erase-buffer))
     (display-buffer name-buffer-full)
     (ruby-compilation-do name-buffer (cons "ruby" (list filename)))))
