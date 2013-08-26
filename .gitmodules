@@ -123,3 +123,6 @@
 [submodule "vendor/php-mode"]
 	path = vendor/php-mode
 	url = https://github.com/ejmr/php-mode.git
+[submodule "vendor/ruby-tools"]
+	path = vendor/ruby-tools
+	url = https://github.com/rejeep/ruby-tools.git
