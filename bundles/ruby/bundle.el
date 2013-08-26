@@ -5,6 +5,11 @@
   :type 'boolean
   :group 'cabbage)
 
+(defcustom cabbage-ruby-test-ruby-options '("-Itest")
+  "Options to pass to ruby when executing a test file."
+  :type 'string
+  :group 'cabbage)
+
 ;;;; -------------------------------------
 ;;;; Bundle
 
@@ -37,6 +42,19 @@
     (if (get-buffer name-buffer)
         (kill-buffer name-buffer))
     (ruby-compilation-run filename)))
+
+(defun cabbage-ruby-test-run-file (filename)
+  (interactive (list(buffer-file-name)))
+  (let* ((name-buffer "ruby-test")
+         (name-buffer-full (format "*%s*" name-buffer))
+         (project-root (cabbage-project-root (file-name-directory filename)))
+         (command-list (cons "ruby" (append cabbage-ruby-test-ruby-options (list filename)))))
+    (display-buffer (get-buffer-create name-buffer-full))
+    (with-current-buffer name-buffer-full
+      (setq default-directory project-root)
+      (erase-buffer))
+    (display-buffer name-buffer-full)
+    (ruby-compilation-do name-buffer command-list)))
 
 (defun cabbage-open-spec-other-buffer ()
   (interactive)
@@ -99,7 +117,7 @@
     (setq cabbage-testing-execute-function 'rspec-run-single-file))
 
   (when (and buffer-file-name (string-match "_test.rb$" buffer-file-name))
-    (setq cabbage-testing-execute-function 'cabbage-run-single-ruby-file))
+    (setq cabbage-testing-execute-function 'cabbage-ruby-test-run-file))
 
   (when (cabbage-bundle-active-p 'completion)
     (setq ac-sources '(ac-source-words-in-same-mode-buffers ac-source-yasnippet))
