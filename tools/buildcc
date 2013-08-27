@@ -18,7 +18,7 @@ class CabbageCheatSheet
   end
 
   def build!
-    @pdf.image MISC_PATH + "logo.png", :width => 150
+    @pdf.image MISC_PATH + "logo.png", :width => 110
     @pdf.table(table_header + keystrokes,
                         :width => @pdf.bounds.width,
                         :row_colors => ["FFFFFF", "EEEEEE"],
@@ -50,11 +50,11 @@ class CabbageCheatSheet
   private :keystrokes
 
   def make_two_strokes_per_row(keystrokes)
-    rows = []
-    (keystrokes.size / 2).times do |count|
-      rows << keystrokes.shift(2).flatten
-    end
-    rows
+    half = keystrokes.size / 2
+    left = keystrokes[0..half]
+    right = keystrokes[half+1..-1]
+
+    left.zip(right).each(&:compact!).each(&:flatten!)
   end
   private :make_two_strokes_per_row
 
