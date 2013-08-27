@@ -107,6 +107,12 @@ into the cabbage core. It is quite easy:
 
 - Take a look on how the existing bundles work.
 
+### Cheat Sheet
+
+There is a [cheat-sheet](misc/cheat-sheet.pdf) available for the default keyboard
+shortcuts that come with cabbage.
+
+### Contributions
 
 If you are interested in helping out, please have a look at our [Contribution Guidelines](https://github.com/senny/cabbage/blob/master/CONTRIBUTING.md).
 
