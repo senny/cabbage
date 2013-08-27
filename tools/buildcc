@@ -1,12 +1,10 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
-
 require 'pathname'
 require 'prawn'
 
 class CabbageCheatSheet
-
   EMACS_KEY_REGEX       = /\".+\"|\[.+\]/
   EMACS_FUNCTION_REGEX  = /'(.+)$/
   EMACS_KEYSTROKE_REGEX = /cabbage-global-set-key/
@@ -21,7 +19,6 @@ class CabbageCheatSheet
 
   def build!
     @pdf.image MISC_PATH + "logo.png", :width => 150
-
     @pdf.table(table_header + keystrokes,
                         :width => @pdf.bounds.width,
                         :row_colors => ["FFFFFF", "EEEEEE"],
@@ -54,18 +51,15 @@ class CabbageCheatSheet
 
   def make_two_strokes_per_row(keystrokes)
     rows = []
-
     (keystrokes.size / 2).times do |count|
       rows << keystrokes.shift(2).flatten
     end
-
     rows
   end
   private :make_two_strokes_per_row
 
   def parse_keystrokes
     keystrokes = []
-
     File.open(BINDING_FILE, 'r').each_line do |line|
       if keystroke?(line)
         key      = extract_keystroke(line)
@@ -74,7 +68,6 @@ class CabbageCheatSheet
         keystrokes << [function, key]
       end
     end
-
     keystrokes
   end
   private :parse_keystrokes
@@ -93,7 +86,6 @@ class CabbageCheatSheet
     line[EMACS_FUNCTION_REGEX, 1].gsub(/\)+/, '')
   end
   private :extract_function_name
-
 end
 
 cheat_sheet = CabbageCheatSheet.new
