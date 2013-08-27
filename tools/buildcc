@@ -59,16 +59,14 @@ class CabbageCheatSheet
   private :make_two_strokes_per_row
 
   def parse_keystrokes
-    keystrokes = []
-    File.open(BINDING_FILE, 'r').each_line do |line|
+    File.open(BINDING_FILE, 'r').each_line.map do |line|
       if keystroke?(line)
         key      = extract_keystroke(line)
         function = extract_function_name(line)
 
-        keystrokes << [function, key]
+        [function, key]
       end
-    end
-    keystrokes
+    end.compact
   end
   private :parse_keystrokes
 
