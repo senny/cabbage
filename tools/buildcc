@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'bundler/setup'
+
 require 'prawn'
 
 class CabbageCheatSheet
@@ -8,14 +10,14 @@ class CabbageCheatSheet
   EMACS_FUNCTION_REGEX  = /'(.+)$/
   EMACS_KEYSTROKE_REGEX = /cabbage-global-set-key/
 
-  TOOLS_PATH = File.expand_path("../../tools/", __FILE__)
+  MISC_PATH = File.expand_path("../../misc/", __FILE__)
 
   def initialize
     @pdf = Prawn::Document.new(:margin => 5)
   end
 
   def build!
-    @pdf.image "#{TOOLS_PATH}/logo.png", :width => 150
+    @pdf.image "#{MISC_PATH}/logo.png", :width => 150
 
     @pdf.table(table_header + keystrokes,
                         :width => @pdf.bounds.width,
@@ -32,7 +34,7 @@ class CabbageCheatSheet
 
   def save_as(filename)
     build!
-    filename = "#{TOOLS_PATH}/#{filename}"
+    filename = "#{MISC_PATH}/#{filename}"
     @pdf.render_file filename
     puts "#{' ' * 4}\e[32mbuilt:\e[0m #{filename}"
   end
