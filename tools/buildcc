@@ -1,24 +1,24 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
-
+require 'pathname'
 require 'prawn'
 
 class CabbageCheatSheet
-
   EMACS_KEY_REGEX       = /\".+\"|\[.+\]/
   EMACS_FUNCTION_REGEX  = /'(.+)$/
   EMACS_KEYSTROKE_REGEX = /cabbage-global-set-key/
 
-  MISC_PATH = File.expand_path("../../misc/", __FILE__)
+  PROJECT_ROOT = Pathname.new(File.expand_path("../../", __FILE__))
+  MISC_PATH = PROJECT_ROOT + "misc/"
+  BINDING_FILE = PROJECT_ROOT + "bundles/ergonomic/bundle.el"
 
   def initialize
     @pdf = Prawn::Document.new(:margin => 5)
   end
 
   def build!
-    @pdf.image "#{MISC_PATH}/logo.png", :width => 150
-
+    @pdf.image MISC_PATH + "logo.png", :width => 110
     @pdf.table(table_header + keystrokes,
                         :width => @pdf.bounds.width,
                         :row_colors => ["FFFFFF", "EEEEEE"],
@@ -34,7 +34,7 @@ class CabbageCheatSheet
 
   def save_as(filename)
     build!
-    filename = "#{MISC_PATH}/#{filename}"
+    filename = MISC_PATH + filename
     @pdf.render_file filename
     puts "#{' ' * 4}\e[32mbuilt:\e[0m #{filename}"
   end
@@ -50,31 +50,23 @@ class CabbageCheatSheet
   private :keystrokes
 
   def make_two_strokes_per_row(keystrokes)
-    rows = []
+    half = keystrokes.size / 2
+    left = keystrokes[0..half]
+    right = keystrokes[half+1..-1]
 
-    (keystrokes.size / 2).times do |count|
-      rows << keystrokes.shift(2).flatten
-    end
-
-    rows
+    left.zip(right).each(&:compact!).each(&:flatten!)
   end
   private :make_two_strokes_per_row
 
   def parse_keystrokes
-    file_with_keys = File.expand_path('../../bundles/ergonomic/bundle.el', __FILE__)
-
-    keystrokes = []
-
-    File.open(file_with_keys, 'r').each_line do |line|
+    File.open(BINDING_FILE, 'r').each_line.map do |line|
       if keystroke?(line)
         key      = extract_keystroke(line)
         function = extract_function_name(line)
 
-        keystrokes << [function, key]
+        [function, key]
       end
-    end
-
-    keystrokes
+    end.compact
   end
   private :parse_keystrokes
 
@@ -92,7 +84,6 @@ class CabbageCheatSheet
     line[EMACS_FUNCTION_REGEX, 1].gsub(/\)+/, '')
   end
   private :extract_function_name
-
 end
 
 cheat_sheet = CabbageCheatSheet.new
