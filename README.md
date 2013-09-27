@@ -22,7 +22,9 @@ cabbage helps you to manage your emacs configuration and allows you to stay in s
 
 ## Requirements
 
-We want to get cabbage working under as many different circumstances as possible. We are aiming to make the configuration as platform-/emacs-version independent as possible. So all you need to use cabbage is Emacs.
+We want to get cabbage working under as many different circumstances as possible.
+We are aiming to make the configuration as platform independent as possible.
+So all you need to use cabbage is Emacs 24 or later.
 
 ## Install
 
