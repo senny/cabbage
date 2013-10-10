@@ -41,9 +41,11 @@
   cabbage-insert-pairs)
 
 ;; API: project
-(defvar cabbage-project-root-indicators
+(defcustom cabbage-project-root-indicators
   '("Rakefile" ".git" "Gemfile")
-  "list of file-/directory-names which indicate a root of a project")
+  "list of file-/directory-names which indicate a root of a project"
+  :type 'list
+  :group 'cabbage)
 
 (defun cabbage-project-p ()
   "Returns whether cabbage has access to a project root or not"
