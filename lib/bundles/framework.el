@@ -42,7 +42,7 @@
 
 ;; API: project
 (defcustom cabbage-project-root-indicators
-  '("Rakefile" ".git" "Gemfile")
+  '("Rakefile" ".git" "Gemfile", "bower.json", "package.json")
   "list of file-/directory-names which indicate a root of a project"
   :type 'list
   :group 'cabbage)
