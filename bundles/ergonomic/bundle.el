@@ -138,8 +138,6 @@
 
 ;; File finding
 (cabbage-global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
-(when (fboundp 'recentf-ido-find-file)
-  (cabbage-global-set-key (kbd "C-x f") 'recentf-ido-find-file))
 (cabbage-global-set-key (kbd "C-c r") 'revert-buffer)
 
 ;;;; isearch
@@ -220,7 +218,8 @@
   (cabbage-global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
   (cabbage-global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (cabbage-global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-  (cabbage-global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
+  (cabbage-global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+  (cabbage-global-set-key (kbd "C-x f") 'recentf-ido-find-file))
 
 ;; org bundle bindings
 (when (cabbage-bundle-active-p 'org)
