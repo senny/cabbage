@@ -126,3 +126,6 @@
 [submodule "vendor/ruby-tools"]
 	path = vendor/ruby-tools
 	url = https://github.com/rejeep/ruby-tools.git
+[submodule "vendor/rbenv"]
+	path = vendor/rbenv
+	url = https://github.com/senny/rbenv.el.git

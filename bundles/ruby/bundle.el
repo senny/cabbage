@@ -5,6 +5,11 @@
   :type 'boolean
   :group 'cabbage)
 
+(defcustom cabbage-ruby-version-manager 'rvm
+  "Active Ruby version manager"
+  :type 'string
+  :group 'cabbage)
+
 (defcustom cabbage-ruby-test-ruby-options '("-Itest")
   "Options to pass to ruby when executing a test file."
   :type 'string
@@ -76,20 +81,23 @@
   '(progn
      ;;;; Additional Libraries
      (cabbage-vendor 'rspec-mode)
-     (setq rspec-use-rvm t)
      (setq rspec-use-rake-flag nil)
      (setq rspec-spec-command "rspec")
      (setq rspec-use-bundler-when-possible nil)
 
-     (cabbage-vendor 'rvm)
      (cabbage-vendor 'ruby-tools)
 
-     ;; active the default ruby configured with rvm
-     (when (fboundp 'rvm-use-default)
-       (rvm-use-default))
+     (cond
+      ((eq cabbage-ruby-version-manager 'rvm)
+       (setq rspec-use-rvm t)
+       (cabbage-vendor 'rvm)
+       (rvm-use-default)
+       (define-key ruby-mode-map (kbd "C-c C-r g") 'rvm-open-gem))
+      ((eq cabbage-ruby-version-manager 'rbenv)
+       (cabbage-vendor 'rbenv)
+       (global-rbenv-mode)))
 
      (define-key ruby-mode-map (kbd "C-h r") 'yari)
-     (define-key ruby-mode-map (kbd "C-c C-r g") 'rvm-open-gem)
      (define-key ruby-mode-map (kbd "RET") 'reindent-then-newline-and-indent)
      (define-key ruby-mode-map (kbd "C-c , ,") 'cabbage-open-spec-other-buffer)
 
