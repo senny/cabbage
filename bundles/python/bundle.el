@@ -17,7 +17,8 @@
   "Sorts lines of the block at point. Used for sorting python imports."
   (interactive)
   (mark-paragraph)
-  (call-interactively 'sort-lines))
+  (let ((sort-fold-case t))
+    (call-interactively 'sort-lines)))
 
 
 ;; hooks
