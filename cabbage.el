@@ -41,7 +41,14 @@
 (dolist (bundle cabbage-bundles)
   (cabbage-load-bundle bundle))
 
-;; TODO: load this earlier and debug the weird error
-(load (concat cabbage-repository "lib/themes"))
+(when (and (eq nil custom-enabled-themes)
+           (eq nil (featurep 'theme-roller)))
+  (warn "Deprecated warning:
+Since emacs version 24 the `deftheme` macro for creating themes is more sophisticated.
+Therefore `theme-roller` package is now a separated bundle and will not be loaded as a default in future releases.
+
+* Add `theme-roller` to your bundle list in `config.el` to keep the current behavior.
+* Use `load-theme` to use a theme provided by the `deftheme` macro.")
+  (cabbage-load-bundle 'theme-roller))
 
 (run-hooks 'cabbage-initialized-hook)

@@ -24,6 +24,7 @@
         haml-and-sass
         yaml
         snippets
+        theme-roller
 
         ;; cabbage-developer
         ;; rails
