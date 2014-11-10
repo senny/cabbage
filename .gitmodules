@@ -129,3 +129,6 @@
 [submodule "vendor/rbenv"]
 	path = vendor/rbenv
 	url = https://github.com/senny/rbenv.el.git
+[submodule "vendor/company"]
+	path = vendor/company
+	url = https://github.com/company-mode/company-mode.git
