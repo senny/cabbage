@@ -80,7 +80,7 @@ Seriously, if you're not using PowerShell under Windows, you're probably doing i
 
 ## Bundles
 
-cabbage fundamental organization are bundles. You can eneable and disable the configuration on a per bundle basis.
+cabbage fundamental organization are bundles. You can enable and disable the configuration on a per bundle basis.
 The bundles live in cabbage/bundles. The active bundles are configured in your ~/.emacs.d/config.el file in the `cabbage-bundles` variable.
 Check out the [bundles directory](https://github.com/senny/cabbage/tree/master/bundles) to see whats currently available.
 
