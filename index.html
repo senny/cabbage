@@ -15,13 +15,11 @@
   </head>
   <body>
     <div class="wrapper">
-      <div id="actions">
-        <ul>
-          <li><a href="https://github.com/senny/cabbage/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/senny/cabbage/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/senny/cabbage">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </div>
+
+      <a href="https://github.com/senny/cabbage">
+        <img id="forkme" src="https://aral.github.com/fork-me-on-github-retina-ribbons/right-grey@2x.png" alt="Fork me on GitHub">
+        </a>
+
       <section>
         <div id="header">
           <div id="logo">
@@ -32,79 +30,23 @@
 
         <div class="clearfix"></div>
 
-        <h3>Overview</h3>
-
-        <p>cabbage helps you to manage your emacs configuration and allows you to stay in sync with other fellow emacs users. It is designed to be a community-driven framework to build your emacs configuration. The ultimate goal of cabbage is to provide a hassle-free, fast and robust emacs setup.</p>
-        <p>Share your opinions in the cabbage <a href="https://groups.google.com/forum/#!forum/emacs-cabbage" target="_blank">Google Group</a>.</p>
-
-        <h3>Requirements</h3>
-        <p>We want to get cabbage working under as many different circumstances as possible. We are aiming to make the configuration as platform-/emacs-version independent as possible. So all you need to use cabbage is Emacs.</p>
-
-        <h3>Installation on *nix Systems</h3>
-
-        <h4>Automatic Installer</h4>
-
-        <pre><code>$ /usr/bin/env bash -c "$(curl -fsSL https://raw.github.com/senny/cabbage/master/scripts/install.sh)"</code></pre>
-
-        <h4>Developer installation</h4>
-
-        <pre><code>$ git clone https://github.com/senny/cabbage.git
-$ cd cabbage
-$ ./scripts/install.sh</code></pre>
-
-        <h3>Installation on Windows (PowerShell</h3>
-
-        <p>If you don't yet have PowerShell; it is part of the Windows Management Framework and you can get it from the Microsoft download center: <a href="http://www.microsoft.com/en-us/download/details.aspx?id=34595" target="_blank">Windows Management Framework 3.0</a></p>
-
-        <p>All tested and developed with GNU Emacs 24.1.1 from <a href="http://ftp.gnu.org/gnu/emacs/windows/" target="_blank">http://ftp.gnu.org/gnu/emacs/windows/</a>. If you're using another Emacs version under windows, your configuration directories might not match. If this is the case, please report the issue and we will try to fix it.</p>
-
-        <h4>Automatic installation</h4>
-
-        <pre><code>> (new-object Net.WebClient).DownloadString("https://raw.github.com/senny/cabbage/master/scripts/install.ps1") | iex</code></pre>
-
-        <h4>Developer installation</h4>
-
-        <pre><code>> git clone https://github.com/senny/cabbage.git
-> cd cabbage
-> ./scripts/install.ps1</code></pre>
-
-        <h4>Updating an existing installation</h4>
-
-        <p>
-          <ol>
-            <li>Go to your cabbage directory</li>
-            <li>Execute the installation script again</li>
-          </ol>
-
-          <pre><code>./scripts/install.ps1</code></pre>
-        </p>
-
-        <h4>Manual installation on Windows</h4>
-
-        <p>Seriously, if you're not using PowerShell under Windows, you're probably doing it wrong. Here are however the manual installation instructions.</p>
-
-        <p>
-          <ol>
-            <li>You need to have emacs and git installed</li>
-            <li>Clone the cabbage repository with git:
-            <code>git clone https://github.com/senny/cabbage.git</code>
-            </li>
-            <li>Pull down the submodules: cd the cabbage directory, then run <code>git submodule init &amp;&amp; git submodule update</code>
-            </li>
-            <li>Create a .emacs.d directory in your %APPDATA% folder</li>
-            <li>Copy the file templates/init.el from cabbage to %APPDATA%/.emacs.d/init.el</li>
-            <li>Replace "CABBAGE-DIR/" in the init.el with the path to the cabbage checkout</li>
-            <li>Copy the contents of the templates/emacs.d directory to your %APPDATA%/.emacs.d directory</li>
-        </ol></p>
+        <p>Cabbage helps you to manage your emacs configuration and allows you to stay in sync with other fellow emacs users. It is designed to be a community-driven framework to build your emacs configuration. The ultimate goal of cabbage is to provide a hassle-free, fast and robust emacs setup.</p>
+</p>
 
         <h3>Bundles</h3>
 
-        <p>cabbage fundamental organization are bundles. You can eneable and disable the configuration on a per bundle basis. The bundles live in cabbage/bundles. The active bundles are configured in your ~/.emacs.d/config.el file in the cabbage-bundles variable. The following bundles are supported <a href="https://github.com/senny/cabbage/wiki/Bundles" target="_blank">currently</a></p>
+        <p>Cabbage fundamental organization are bundles. You can enable and disable the configuration on a per bundle basis. The bundles live in cabbage/bundles. The active bundles are configured in your ~/.emacs.d/config.el file in the cabbage-bundles variable. The following bundles are supported <a href="https://github.com/senny/cabbage/tree/master/bundles" target="_blank">currently</a></p>
 
-        <h3>Your Bundles are welcome too!</h3>
+        <h3>Install Cabbage</h3>
 
-        <p>if you got a piece of emacs functionality that you think might be useful for other people, please package it up in a bundle and open a pull-request.</p>
+        <p>
+        <pre><code>/usr/bin/env bash -c "$(curl -fsSL https://raw.github.com/senny/cabbage/master/scripts/install.sh)"</code></pre></p>
 
+        <p class="center">Paste that at a Terminal prompt.<p>
+
+        <h3>More information</h3>
+
+        <p>If you want to get more detailed informations about installation and how bundles work, please have a look at the <a href="https://github.com/senny/cabbage/blob/master/README.md" target="_blank">documentation</a>.</p>
       </section>
       <hr />
       <footer>
