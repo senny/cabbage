@@ -10,19 +10,32 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   color:#222;
-  margin:0 0 20px;
   font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.center {
+  text-align: center;
+}
+
+#forkme {
+  width: 149px;
+  height: 149px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
 }
 
 h3 {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 36px;
   font-weight: 400;
-  margin: 0 0 10px;
 }
 
 p, ul, ol, table, pre, dl {
-  margin:0 0 20px;
+  margin:10px 0 25px 0;
 }
 
 h1, h2, h3 {
@@ -60,7 +73,7 @@ a small {
 }
 
 .wrapper {
-  width:750px;
+  width:760px;
   margin:0 auto;
 }
 
@@ -124,7 +137,7 @@ img {
 }
 
 #actions {
-  width: 750px;
+  width: 760px;
 }
 
 #actions ul {
@@ -187,8 +200,8 @@ strong {
 }
 
 section {
-  width:750px;
-  padding-bottom:50px;
+  width:760px;
+  /* padding-bottom:20px; */
 }
 
 small {
@@ -205,7 +218,7 @@ hr {
 
 footer {
   text-align: center;
-  width:750px;
+  width:760px;
   bottom:50px;
 }
 
