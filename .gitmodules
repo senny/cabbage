@@ -132,3 +132,9 @@
 [submodule "vendor/company"]
 	path = vendor/company
 	url = https://github.com/company-mode/company-mode.git
+[submodule "vendor/alchemist"]
+	path = vendor/alchemist
+	url = git@github.com:tonini/alchemist.el.git
+[submodule "vendor/elixir-mode"]
+	path = vendor/elixir-mode
+	url = git@github.com:elixir-lang/emacs-elixir.git
