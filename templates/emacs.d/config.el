@@ -27,6 +27,7 @@
         theme-roller
 
         ;; cabbage-developer
+        ;; elixir
         ;; rails
         ;; latex
         ;; org
