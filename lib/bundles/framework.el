@@ -127,8 +127,9 @@ a value of nil means, this buffer does not contain an executable test")
     (load bundle-path t)))
 
 (defun cabbage--bundle-name (symbol-or-string)
+  "If SYMBOL-OR-STRING is a symbol convert it to a string."
   (if (symbolp symbol-or-string)
-      (symbol-name bundle) symbol-or-string))
+      (symbol-name symbol-or-string) symbol-or-string))
 
 (defun cabbage--bundle-path (bundle &optional filename)
   (let ((name (or filename "bundle")))
