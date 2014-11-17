@@ -140,23 +140,6 @@ a value of nil means, this buffer does not contain an executable test")
                       name))
             cabbage-bundle-dirs)))
 
-(defun cabbage-list-bundles ()
-  "Show available and enabled list of bundles"
-  (interactive)
-
-  (let* ((bundles (cabbage-bundles--list-available))
-         (active (mapcar (lambda (e) (symbol-name e)) cabbage-bundles))
-         (inactive (delq nil (mapcar (lambda (e)
-                                       (if (not (member e active))
-                                           e))
-                                     bundles))))
-
-    (message (concat
-              "cabbage-bundles: \n"
-              (concat "INACTIVE: " (mapconcat 'identity inactive ", "))
-              "\n"
-              (concat "ACTIVE: " (mapconcat 'identity active ", "))))))
-
 (defun cabbage-bundles--list-available ()
   (sort (reduce 'union (mapcar (lambda (repository)
                                  (directory-files repository nil "^[^.]"))
@@ -167,3 +150,52 @@ a value of nil means, this buffer does not contain an executable test")
   (dolist (dependency dependencies)
     (dolist (dependency-path (cabbage--bundle-path bundle dependency))
       (load dependency-path t))))
+
+(define-derived-mode cabbage-bundle-list-mode tabulated-list-mode "Cabbage Bundle List"
+  "Major mode for listing all cabbage bundles."
+  (setq tabulated-list-format [("Bundle Name" 30 t)
+                               ("Status" 15 t)
+                               ("File" 35 t)])
+  (setq tabulated-list-sort-key (cons "Status" nil))
+  (tabulated-list-init-header))
+
+(defun cabbage-list-bundles ()
+  "Display a list of all available Cabbage bundles."
+  (interactive)
+  (setq buffer (get-buffer-create "*Cabbage Bundles*"))
+  (with-current-buffer buffer
+    (cabbage-bundle-list-mode)
+    (cabbage-bundles-tabulated-list-entries)
+    (tabulated-list-print))
+  (display-buffer buffer))
+
+(defun cabbage-bundles-tabulated-list-entries ()
+  (setq tabulated-list-entries nil)
+  (let* ((bundles (delete-dups (cabbage-bundles--list-available)))
+         (active-bundles (mapcar (lambda (bundle-name)
+                                   (cabbage--build--tabulated-row (cabbage--bundle-name bundle-name) "active"))
+                                 (delete-dups cabbage-bundles)))
+         (inactive-bundles (delq nil (mapcar (lambda (bundle-name)
+                                               (when (not (member (intern bundle-name) cabbage-bundles))
+                                                 (cabbage--build--tabulated-row (cabbage--bundle-name bundle-name) "inactive")
+                                                 ))
+                                             bundles))))
+    (setq tabulated-list-entries (append inactive-bundles active-bundles))
+    tabulated-list-entries))
+
+(defun cabbage--build--tabulated-row (bundle-name status)
+  (list bundle-name `[,(propertize bundle-name 'font-lock-face 'face)
+                      ,(propertize status 'font-lock-face 'face)
+                      ,(list (cabbage-bundle-filename bundle-name)
+                             'face 'link
+                             'follow-link t
+                             'action 'cabbage-bundle-open-file)]))
+
+(defun cabbage-bundle-filename (bundle)
+  (let ((bundle-name (delq nil (mapcar (lambda (e)
+                                         (if (file-exists-p e) e nil))
+                                       (cabbage--bundle-path bundle "bundle.el")))))
+    (if bundle-name (file-relative-name (car bundle-name)) "")))
+
+(defun cabbage-bundle-open-file (&optional marker)
+  (find-file-at-point (ffap-guesser)))
