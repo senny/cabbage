@@ -138,3 +138,6 @@
 [submodule "vendor/elixir-mode"]
 	path = vendor/elixir-mode
 	url = git@github.com:elixir-lang/emacs-elixir.git
+[submodule "vendor/flycheck"]
+	path = vendor/flycheck
+	url = https://github.com/flycheck/flycheck.git
