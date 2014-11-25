@@ -3,6 +3,7 @@
       ;; Full list of bundles: https://github.com/senny/cabbage/wiki/Bundles
 
       '(
+        elpa
         accessibility
         rect-mark
         completion
