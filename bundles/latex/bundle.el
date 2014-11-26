@@ -1,18 +1,3 @@
-;; configurations
-
-(defcustom cabbage-latex-enable-flymake
-  t
-  "Enable flymake. Uses texify by default."
-  :type 'boolean
-  :group 'cabbage)
-
-(defcustom cabbage-latex-flymake-use-chktex
-  t
-  "If t, flymake uses chktext instead of texify in latex mode."
-  :type 'boolean
-  :group 'cabbage)
-
-
 ;;;; -------------------------------------
 ;;;; Bundle
 
@@ -26,13 +11,6 @@
      (define-key latex-mode-map (kbd "C-c 1") 'cabbage-latex-pdflatex-build)
      (define-key latex-mode-map (kbd "C-c 2") 'cabbage-latex-open-pdf)
      (define-key latex-mode-map (kbd "C-c 3") 'cabbage-latex-cleanup)))
-
-
-;; flymake
-
-(when (and cabbage-latex-enable-flymake (cabbage-flymake-active-p))
-  (cabbage-load-bundle-dependencies "latex" '("flymake.el")))
-
 
 ;; funs
 
@@ -69,3 +47,8 @@
     (mapcar (lambda (x) (shell-command (concat "rm " basename x)))
             (list ".aux" ".lof" ".log" ".lot" ".pdf" ".toc")))
   (message "Deleted temp files and pdf"))
+
+(when (cabbage-flycheck-active-p)
+  (cabbage-flycheck-init)
+  (add-hook 'latex-mode-hook 'flycheck-mode)
+  (add-hook 'latex-mode-hook 'cabbage-flycheck-keybindings))

@@ -115,9 +115,6 @@
                     (6 (7 . ?/))))
      ))
 
-(when (cabbage-flymake-active-p)
-  (cabbage-load-bundle-dependencies "ruby" '("flymake")))
-
 (defun cabbage-ruby-mode-hook ()
   (cabbage--set-pairs '("(" "{" "[" "\"" "\'" "|"))
 
@@ -135,3 +132,8 @@
       (add-to-list 'ac-ignores "end"))))
 
 (add-hook 'ruby-mode-hook 'cabbage-ruby-mode-hook)
+
+(when (cabbage-flycheck-active-p)
+  (cabbage-flycheck-init)
+  (add-hook 'ruby-mode-hook 'flycheck-mode)
+  (add-hook 'ruby-mode-hook 'cabbage-flycheck-keybindings))

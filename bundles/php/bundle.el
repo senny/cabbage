@@ -52,7 +52,9 @@
   (when (and buffer-file-name (string-match "Test.php$" buffer-file-name))
     (setq cabbage-testing-execute-function 'cabbage-phpunit-run-single-file)))
 
-(when (cabbage-flymake-active-p)
-  (cabbage-load-bundle-dependencies "php" '("flymake")))
-
 (add-hook 'php-mode-hook 'cabbage-php-mode-hook)
+
+(when (cabbage-flycheck-active-p)
+  (cabbage-flycheck-init)
+  (add-hook 'php-mode-hook 'flycheck-mode)
+  (add-hook 'php-mode-hook 'cabbage-flycheck-keybindings))

@@ -8,7 +8,6 @@ especially when using
 ## Features
 
 * Configures modes for .zcml, .?pt and .po[t] files.
-* Configures flymake (pyflakes, xml-startlet)
 * Provides shortcuts for finding files when using buildout.
 * Configures pdb-mode, so that zope can be run within emacs.
 * Reload code using

@@ -1,12 +1,3 @@
-;; Configuration
-
-(defcustom cabbage-xml-flymake-enabled
-  t
-  "Enable flymake for xml mode."
-  :type 'boolean
-  :group 'cabbage)
-
-
 ;;;; -------------------------------------
 ;;;; Bundle
 
@@ -31,15 +22,6 @@
 
 (add-hook 'nxml-mode-hook 'cabbage-xml-set-pairs)
 
-(defun cabbage-xml-flymake ()
-  (when (and cabbage-xml-flymake-enabled (executable-find "xml"))
-    (when (load "flymake" t)
-      (cabbage-flymake-init)
-
-      (flymake-find-file-hook))))
-
-(add-hook 'nxml-mode-hook 'cabbage-xml-flymake)
-
 ;; Rebind '>', so that it automatically inserts a closing xml tag (if
 ;; appropriate)
 (defun cabbage-nxml-end-tag ()
@@ -56,5 +38,7 @@
             ;; rebind > to close the current tag
             (define-key nxml-mode-map ">" 'cabbage-nxml-end-tag)))
 
-
-
+(when (cabbage-flycheck-active-p)
+  (cabbage-flycheck-init)
+  (add-hook 'nxml-mode-hook 'flycheck-mode)
+  (add-hook 'nxml-mode-hook 'cabbage-flycheck-keybindings))

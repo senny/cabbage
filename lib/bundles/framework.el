@@ -5,8 +5,8 @@
 (defun cabbage-bundle-active-p (bundle-name)
   (member bundle-name cabbage-bundles))
 
-(defun cabbage-flymake-active-p ()
-  cabbage-use-flymake)
+(defun cabbage-flycheck-active-p ()
+  cabbage-use-flycheck)
 
 (defun cabbage-global-set-key (binding func)
   (add-to-list 'cabbage--globaly-bound-keys-alist (cons binding func))
@@ -31,11 +31,9 @@
 (defun cabbage-lisp-buffer-p ()
   (memql major-mode '(emacs-lisp-mode lisp-mode lisp-interaction-mode)))
 
-(defun cabbage-flymake-init ()
-  "registered as hook in bundles ; configures flymake"
-  (cabbage-vendor 'flymake-point)
-
-  (local-set-key (kbd "C-§") 'flymake-goto-next-error))
+(defun cabbage-flycheck-init ()
+  "Initialize flycheck and specific functionalities."
+  (cabbage-load-bundle 'flycheck))
 
 (defun cabbage-insert-pairs-p ()
   cabbage-insert-pairs)

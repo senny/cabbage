@@ -10,8 +10,8 @@
   :type 'string
   :group 'cabbage)
 
-(defcustom cabbage-use-flymake t
-  "set if you want to use flymake or not"
+(defcustom cabbage-use-flycheck t
+  "set if you want to use flycheck or not"
   :type 'boolean
   :group 'cabbage)
 

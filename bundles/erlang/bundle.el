@@ -8,7 +8,6 @@
     (setq exec-path (cons erlang-bin-dir exec-path))
 
     (defun cabbage-erlang-mode-hook ()
-      (require 'erlang-flymake)
       (local-set-key (kbd "C-c C-l") 'erlang-compile))
 
     ;; customizations
@@ -16,3 +15,8 @@
       (add-hook 'erlang-mode-hook 'cabbage-erlang-mode-hook))
 
     (require 'erlang-start)))
+
+(when (cabbage-flycheck-active-p)
+  (cabbage-flycheck-init)
+  (add-hook 'erlang-mode-hook 'flycheck-mode)
+  (add-hook 'erlang-mode-hook 'cabbage-flycheck-keybindings))

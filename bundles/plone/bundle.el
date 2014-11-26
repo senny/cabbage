@@ -209,20 +209,6 @@ then prompts for a file. Expects to be within a package
 (add-to-list 'auto-mode-alist '("\\.[zc]?pt$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.zcml$" . nxml-mode))
 
-
-(defun cabbage-plone--xml-flymake ()
-  (when (and (cabbage-bundle-active-p 'xml)
-             cabbage-xml-flymake-enabled
-             (executable-find "xml"))
-
-    (add-to-list 'flymake-allowed-file-name-masks
-                 '("\\.[zc]?pt$" flymake-xml-init))
-    (add-to-list 'flymake-allowed-file-name-masks
-                 '("\\.zcml$" flymake-xml-init))))
-
-(add-hook 'nxml-mode-hook 'cabbage-plone--xml-flymake)
-
-
 (defun cabbage-plone--python-bindings ()
   (define-key python-mode-map (kbd "C-M-<return>") 'cabbage-plone-goto-defition)
   (define-key python-mode-map (kbd "C-M-S-<return>") 'cabbage-plone-lookup-import))
