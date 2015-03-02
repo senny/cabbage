@@ -138,3 +138,6 @@
 [submodule "vendor/elixir-mode"]
 	path = vendor/elixir-mode
 	url = git@github.com:elixir-lang/emacs-elixir.git
+[submodule "vendor/git-modes"]
+	path = vendor/git-modes
+	url = https://github.com/magit/git-modes

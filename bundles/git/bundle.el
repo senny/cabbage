@@ -1,5 +1,10 @@
 (cabbage-vendor 'cl-lib)
-(cabbage-vendor 'magit)
+(add-to-list 'load-path (cabbage-vendor-library-dir 'git-modes))
+(add-to-list 'load-path (cabbage-vendor-library-dir 'magit))
+(eval-after-load 'info
+  '(progn (info-initialize)
+          (add-to-list 'Info-directory-list (cabbage-vendor-library-dir 'magit))))
+(require 'magit)
 
 ;;;; Magit
 (eval-after-load 'magit
