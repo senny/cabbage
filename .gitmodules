@@ -1,6 +1,6 @@
 [submodule "vendor/magit"]
 	path = vendor/magit
-	url = http://github.com/magit/magit.git
+	url = https://github.com/magit/magit.git
 	ignore = untracked
 
 [submodule "vendor/perspective"]
@@ -82,7 +82,7 @@
 	url = https://github.com/hron/yari.el.git
 [submodule "vendor/markdown-mode"]
 	path = vendor/markdown-mode
-	url = http://jblevins.org/git/markdown-mode.git
+	url = https://github.com/defunkt/markdown-mode.git
 [submodule "vendor/rinari"]
 	path = vendor/rinari
 	url = https://github.com/technomancy/rinari.git
@@ -134,10 +134,10 @@
 	url = https://github.com/company-mode/company-mode.git
 [submodule "vendor/alchemist"]
 	path = vendor/alchemist
-	url = git@github.com:tonini/alchemist.el.git
+	url = https://github.com/tonini/alchemist.el.git
 [submodule "vendor/elixir-mode"]
 	path = vendor/elixir-mode
-	url = git@github.com:elixir-lang/emacs-elixir.git
+	url = https://github.com/elixir-lang/emacs-elixir.git
 [submodule "vendor/git-modes"]
 	path = vendor/git-modes
 	url = https://github.com/magit/git-modes
