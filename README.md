@@ -1,3 +1,12 @@
+# Project no longer under active development. 
+
+Use only as a reference / inspiration.
+
+You can find my current personal emacs configuration here:
+https://github.com/senny/emacs.d
+
+---
+
 <p align="center">
   <img
   src="https://raw.githubusercontent.com/senny/cabbage/master/misc/logo.png"
