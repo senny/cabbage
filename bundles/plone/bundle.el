@@ -123,12 +123,13 @@ nil."
     (replace-string "\n- Nothing changed yet.\n" "")
 
     (newline)
+    (newline)
+    (previous-line 1)
     (insert "- ")
-    (newline)
-    (insert (concat "  [" name "]"))
-    (newline)
-    (previous-line 2)
-    (end-of-line)))
+    (insert (concat " [" name "]"))
+    (beginning-of-line)
+    (right-char)
+    (right-char)))
 
 (defun cabbage-plone-find-changelog-make-entry ()
   (interactive)
