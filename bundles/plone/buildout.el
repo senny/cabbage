@@ -99,11 +99,18 @@ script in this buildout"
 
 
 (defun cabbage-plone--run-single-file-tests (filename)
-  (let ((cabbage-plone-run-in-perspective nil)
-        (cabbage-plone-buildout--default-compilation-fun 'compile)
-        (testname (file-name-sans-extension
-                   (car (last (split-string filename "/"))))))
-    (cabbage-plone-tests (concat "-t " testname) t)))
+  (let* ((cabbage-plone-run-in-perspective nil)
+         (cabbage-plone-buildout--default-compilation-fun 'compile)
+         (buildout-dir (expand-file-name
+                        (concat (file-name-as-directory
+                                 (cabbage-plone-buildout--get-command
+                                  '(("bootstrap.py" ""))))
+                                (file-name-as-directory ".."))))
+         (dottedname (replace-regexp-in-string
+                      "/" "."
+                      (file-name-sans-extension
+                       (file-relative-name filename buildout-dir)))))
+    (cabbage-plone-tests (concat "-m " dottedname) t)))
 
 (defun cabbage-plone--python-setup-testing ()
   (when (and buffer-file-name (string-match "/tests" buffer-file-name))
