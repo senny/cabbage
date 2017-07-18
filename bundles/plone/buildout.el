@@ -120,6 +120,7 @@ script in this buildout"
              (python-pep8-command
               (or
                (cabbage-plone-buildout--get-command '(("bin/pep8" "")) t)
+               (cabbage-plone-buildout--get-command '(("bin/pycodestyle" "")) t)
                ori-command)))
 
         ad-do-it))
@@ -130,7 +131,8 @@ script in this buildout"
       (cabbage-vendor 'python-pep8)
       (require 'tramp)
 
-      (let* ((command (cabbage-plone-buildout--get-command '(("bin/pep8" "--absolute")) t)))
+      (let* ((command (or (cabbage-plone-buildout--get-command '(("bin/pep8" "--absolute")) t)
+                          (cabbage-plone-buildout--get-command '(("bin/pycodestyle" "--absolute")) t))))
         (when command
           (add-to-list 'compilation-finish-functions 'cabbage-python-pep8-finished)
           (compilation-start command 'python-pep8-mode))
