@@ -123,8 +123,6 @@ nil."
     (replace-string "\n- Nothing changed yet.\n" "")
 
     (newline)
-    (newline)
-    (previous-line 1)
     (insert "- ")
     (insert (concat " [" name "]"))
     (beginning-of-line)
