@@ -141,3 +141,9 @@
 [submodule "vendor/git-modes"]
 	path = vendor/git-modes
 	url = https://github.com/magit/git-modes
+[submodule "vendor/dash"]
+	path = vendor/dash
+	url = git@github.com:magnars/dash.el.git
+[submodule "vendor/with-editor"]
+	path = vendor/with-editor
+	url = git@github.com:magit/with-editor.git

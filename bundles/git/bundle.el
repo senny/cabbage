@@ -1,20 +1,13 @@
 (cabbage-vendor 'cl-lib)
-(add-to-list 'load-path (cabbage-vendor-library-dir 'git-modes))
-(add-to-list 'load-path (cabbage-vendor-library-dir 'magit))
-(eval-after-load 'info
-  '(progn (info-initialize)
-          (add-to-list 'Info-directory-list (cabbage-vendor-library-dir 'magit))))
+(cabbage-vendor 'dash)
+(cabbage-vendor 'with-editor)
+(add-to-list 'load-path (concat (cabbage-vendor-library-dir 'magit) "lisp/"))
 (require 'magit)
 
 ;;;; Magit
 (eval-after-load 'magit
   '(progn
-     (define-key magit-mode-map (kbd "S-SPC") 'magit-show-item-or-scroll-down)
-     (define-key magit-mode-map (kbd "C-SPC") 'magit-show-item-or-scroll-down)
-     (define-key magit-mode-map (kbd "C-1") 'magit-show-level-1-all)
-     (define-key magit-mode-map (kbd "C-2") 'magit-show-level-2-all)
-     (define-key magit-mode-map (kbd "C-3") 'magit-show-level-3-all)
-     (define-key magit-mode-map (kbd "C-4") 'magit-show-level-4-all)))
+     (define-key magit-popup-mode-map "\C-p" nil)))
 
 
 ;; A monkeypatch to cause annotate to ignore whitespace
