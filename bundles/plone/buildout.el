@@ -52,6 +52,26 @@
                    first-match))
 
 
+(defun cabbage-plone-tests-this-file ()
+  "Run tests in current buildout for the current file."
+  (interactive)
+
+  (let* ((buildout-dir (expand-file-name
+                        (concat (file-name-as-directory
+                                 (cabbage-plone-buildout--get-command
+                                  '(("bootstrap.py" ""))
+                                  t))
+                                (file-name-as-directory ".."))))
+         (dottedname (replace-regexp-in-string
+                      "/" "."
+                      (file-name-sans-extension
+                       (file-relative-name buffer-file-name buildout-dir)))))
+    (cabbage-plone-run cabbage-plone-known-buildout-test-scripts
+                       cabbage-plone-buildout--tests-persp-prefix
+                       (concat "-m" dottedname)
+                       t)))
+
+
 (defun cabbage-plone--run-pdb-in-persp (cmd script-name persp-prefix)
   (let ((target-persp-name nil)
         (current-persp-name (persp-name persp-curr)))
@@ -98,19 +118,31 @@ script in this buildout"
 (add-hook 'pdb-mode-hook 'cabbage-plone--pdb-hook)
 
 
+(defun cabbage-plone--run-single-file-tests-pytest (filename)
+  (let ((default-directory (cabbage-plone--find-buildout-root default-directory))
+        (cabbage-plone-buildout--default-compilation-fun 'compile))
+    (funcall cabbage-plone-buildout--default-compilation-fun
+             (concat "bin/pytest " filename))))
+
+
 (defun cabbage-plone--run-single-file-tests (filename)
-  (let* ((cabbage-plone-run-in-perspective nil)
-         (cabbage-plone-buildout--default-compilation-fun 'compile)
-         (buildout-dir (expand-file-name
-                        (concat (file-name-as-directory
-                                 (cabbage-plone-buildout--get-command
-                                  '(("bootstrap.py" ""))))
-                                (file-name-as-directory ".."))))
-         (dottedname (replace-regexp-in-string
-                      "/" "."
-                      (file-name-sans-extension
-                       (file-relative-name filename buildout-dir)))))
-    (cabbage-plone-tests (concat "-m " dottedname) t)))
+  (if (cabbage-plone-buildout--get-command '(("pytest.ini" "")))
+      (cabbage-plone--run-single-file-tests-pytest filename)
+
+    (let* ((cabbage-plone-run-in-perspective nil)
+           (cabbage-plone-buildout--default-compilation-fun 'compile)
+           (buildout-dir (expand-file-name
+                          (concat (file-name-as-directory
+                                   (cabbage-plone-buildout--get-command
+                                    '(("bootstrap.py" "")
+                                      ("setup.py" "")) t))
+                                  (file-name-as-directory ".."))))
+           (dottedname (replace-regexp-in-string
+                        "/" "."
+                        (file-name-sans-extension
+                         (file-relative-name filename buildout-dir)))))
+      (cabbage-plone-tests (concat "-m " dottedname) t))))
+
 
 (defun cabbage-plone--python-setup-testing ()
   (when (and buffer-file-name (string-match "/tests" buffer-file-name))

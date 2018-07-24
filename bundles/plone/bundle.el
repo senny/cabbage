@@ -92,11 +92,11 @@ This excludes paths as bin/, src/ etc."
 If a buildout root is found return the path, othwise return
 nil."
   ;; find the most top one, not the first one
-  (when (cabbage--find-parent-with-file path "bootstrap.py")
+  (when (cabbage--find-parent-with-file path ".git")
     (let* ((dir default-directory)
            (previous dir))
       (while (not (equalp dir nil))
-        (setq dir (cabbage--find-parent-with-file dir "bootstrap.py"))
+        (setq dir (cabbage--find-parent-with-file dir ".git"))
         (when (and first-match dir)
           (setq previous dir)
           (setq dir nil))
